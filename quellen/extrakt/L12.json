@@ -1,0 +1,46 @@
+{
+  "lektion": 12,
+  "quelle": "2026-10-07 10-45.pdf",
+  "seiten": 28,
+  "status": "gelesen",
+  "abschnitte": [
+    {"seite":1,"art":"Wiederholung","titel":"Wortschatz Japanisch→Deutsch (28)"},
+    {"seite":2,"art":"Neu","titel":"New: コインランドリー, でんわをかけます, ロビー, ごみをすてます, いぬをさわります, かさをつかいます, ねつ, うま, びじゅつかん"},
+    {"seite":"3-6","art":"Wiederholung","titel":"Bild-Wortbank, て-Form Wiederholung (Gruppen), Wortschatz Verben (25)"},
+    {"seite":"7-10","art":"Übung","titel":"dürfen / nicht dürfen (Erlaubnis bitten, Verbotsschilder)"},
+    {"seite":"11-15","art":"Übung","titel":"Modalverben-Übersicht (möchten … nicht dürfen), gelernte Modalverben, Wiederholung Übersetzen"},
+    {"seite":"16-20","art":"Übung","titel":"Hörübungen Genki 第6課 (Hostel, Picknick), Verbform ergänzen; ちょっと… = passt nicht gut"},
+    {"seite":"21-22","art":"Lesen","titel":"dürfen-Übungen, Lesetext わたしはだれですか (Weihnachtsmann)"},
+    {"seite":"23-26","art":"Kanji","titel":"Kanji 第7課: 花 茶 肉 文 字 物 牛 馬 鳥 魚"},
+    {"seite":"27-28","art":"Kanji","titel":"Kanji-Leseliste ① (54) und Sätze ② (13)"}
+  ],
+  "vokabeln_neu": [
+    ["コインランドリー","","Waschsalon","N."],["でんわをかけます","電話をかけます","anrufen","V. II"],["かけます","","(an)rufen; aufhängen","V. II"],
+    ["ロビー","","Lobby","N."],["ねつ","熱","Fieber","N."],["うま","馬","Pferd","N."],["びじゅつかん","美術館","Kunstmuseum","N."],
+    ["かります","借ります","sich (aus)leihen","V. II"],["ちょっと…","","das passt nicht so gut (höfliche Absage)","Ausdr."],
+    ["カタログ","","Katalog","N."],["エレベーター","","Aufzug","N."],["ピクニック","","Picknick","N."],["つくります","作ります","machen, herstellen","V. I"],
+    ["コンピューターソフト","","Computer-Software","N."],["たのしい","楽しい","fröhlich, macht Spaß","i-Adj."],["すてき","素敵","toll, wunderschön","na-Adj."],
+    ["みんな","","alle","N."],["よる","夜","Nacht","N."],["にく","肉","Fleisch","N."],["とりにく","鳥肉","Hühnerfleisch","N."],["ぎゅうにく","牛肉","Rindfleisch","N."],
+    ["ぶたにく","豚肉","Schweinefleisch","N."],["ぎゅうにゅう","牛乳","Milch","N."],["まっちゃ","抹茶","Matcha","N."],["きもの","着物","Kimono","N."],
+    ["やきとり","焼き鳥","Yakitori","N."],["バーベキュー","","Barbecue","N."],["びょうき","病気","Krankheit","N."],["えもじ","絵文字","Emoji","N."],["もじ","文字","Schriftzeichen","N."]
+  ],
+  "grammatik_neu": [
+    {"pattern":"ちょっと…","titel":"höfliche Ablehnung (passt nicht gut)","beispiele":["すみません、ちょっと…。","あしたはちょっと…。"]},
+    {"pattern":"Modalverben-Übersicht 2","titel":"möchten / nicht möchten / Soll ich? / Bitte / dürfen / nicht dürfen","hinweis":"Wiederholung/Zusammenfassung"}
+  ],
+  "kanji_neu": ["花","茶","肉","文","字","物","牛","馬","鳥","魚"],
+  "kanji_buch": [
+    {"k":"花","on":["カ"],"kun":["はな"],"meaning":"Blume","strokes":7,"examples":[["花","はな","Blume"],["花火","はなび","Feuerwerk"],["花びん","かびん","Vase"]]},
+    {"k":"茶","on":["チャ","サ"],"kun":[],"meaning":"Tee","strokes":9,"examples":[["お茶","おちゃ","Tee"],["紅茶","こうちゃ","schwarzer Tee"],["日本茶","にほんちゃ","japanischer Tee"],["喫茶店","きっさてん","Café"]]},
+    {"k":"肉","on":["ニク"],"kun":[],"meaning":"Fleisch","strokes":6,"examples":[["肉","にく","Fleisch"],["牛肉","ぎゅうにく","Rindfleisch"],["鳥肉","とりにく","Hühnerfleisch"]]},
+    {"k":"文","on":["ブン","モン"],"kun":[],"meaning":"Satz, Schrift","strokes":4,"examples":[["文","ぶん","Satz"],["文学","ぶんがく","Literatur"]]},
+    {"k":"字","on":["ジ"],"kun":[],"meaning":"Schriftzeichen","strokes":6,"examples":[["字","じ","Schriftzeichen"],["文字","もじ","Schriftzeichen"],["漢字","かんじ","Kanji"],["数字","すうじ","Zahl"]]},
+    {"k":"物","on":["ブツ","モツ"],"kun":["もの"],"meaning":"Ding, Sache","strokes":8,"examples":[["物","もの","Ding"],["買い物","かいもの","Einkauf"],["荷物","にもつ","Gepäck"],["生物","せいぶつ","Lebewesen"]]},
+    {"k":"牛","on":["ギュウ"],"kun":["うし"],"meaning":"Rind, Kuh","strokes":4,"examples":[["牛","うし","Rind"],["牛肉","ぎゅうにく","Rindfleisch"],["牛乳","ぎゅうにゅう","Milch"],["子牛","こうし","Kalb"]]},
+    {"k":"馬","on":["バ"],"kun":["うま"],"meaning":"Pferd","strokes":10,"examples":[["馬","うま","Pferd"],["馬力","ばりき","Pferdestärke"],["馬車","ばしゃ","Kutsche"]]},
+    {"k":"鳥","on":["チョウ"],"kun":["とり"],"meaning":"Vogel","strokes":11,"examples":[["鳥","とり","Vogel"],["焼き鳥","やきとり","Yakitori"],["白鳥","はくちょう","Schwan"],["野鳥","やちょう","Wildvogel"]]},
+    {"k":"魚","on":["ギョ"],"kun":["さかな"],"meaning":"Fisch","strokes":11,"examples":[["魚","さかな","Fisch"],["焼き魚","やきざかな","gegrillter Fisch"],["金魚","きんぎょ","Goldfisch"],["魚屋","さかなや","Fischladen"]]}
+  ],
+  "kanji_leseliste": ["竹","雨","貝","石","岩","糸","休みます","花","え文字","お金","お茶","体","口","目","耳","かん字","足","から手","肉","鳥肉","牛肉","牛きゅう","魚","ぶた肉","たべ物","かい物","き物","川","きれいな花","先生","大きい鳥","小さい鳥","上","下","馬の足","馬の耳","中","半分","分かります","やき鳥","雨の日","大きい魚","小さい馬","明るい","明日","好き","男の人","女の人","畑","森","林","水","何","門"],
+  "kanji_saetze": ["私はスーパーで花とケーキをかって、好きな人にあげました。","日本でまっ茶とさくらの花のお茶をかいました。","肉と魚とどちらが好きですか。","あの馬は足のびょうきです。","かん字は分かりませんが、ひらがなは分かります。","五じ半にかい物をして、うちで魚をりょうりして、たべました。","牛にゅうが好きではありません。","よくえ文字をつかいますか。","中ごくのお茶はおいしいです。","木の上に小さい鳥がいます。","休みの日に肉をかって、かぞくとバーベキューをします。","日本人はよく魚をたべます。","森の中できれいな花をみました。"]
+}
