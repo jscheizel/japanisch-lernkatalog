@@ -136,14 +136,14 @@ jobs:
         id: apk
         run: |
           SRC=android/app/build/outputs/apk/release/app-release.apk
-          DEST="go-nihongo-${{ steps.ver.outputs.version_name }}.apk"
+          DEST="go-nihongo-2-${{ steps.ver.outputs.version_name }}.apk"
           cp "$SRC" "$DEST"
           echo "path=$DEST" >> "$GITHUB_OUTPUT"
 
       - name: Release-APK als Artefakt hochladen
         uses: actions/upload-artifact@v4
         with:
-          name: go-nihongo-release-apk
+          name: go-nihongo-2-release-apk
           path: ${{ steps.apk.outputs.path }}
           if-no-files-found: error
 

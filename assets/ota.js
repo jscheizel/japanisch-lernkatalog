@@ -16,7 +16,7 @@
      …/releases/latest/download/www-bundle.zip    → das gepackte www/ */
 (function () {
   'use strict';
-  var OWNER = 'SDX-Thordan', REPO = 'japanisch-lernkatalog';
+  var OWNER = 'jscheizel', REPO = 'japanisch-lernkatalog'; // Go! Nihongo 2: Updates aus dem Fork
   var BASE = 'https://github.com/' + OWNER + '/' + REPO + '/releases/latest/download/';
   var MANIFEST = BASE + 'ota-manifest.json', BUNDLE = BASE + 'www-bundle.zip';
   var HEAL_FLAG = 'ota_selfheal'; // sessionStorage: max. 1 Selbstheilungs-Reset pro Sitzung

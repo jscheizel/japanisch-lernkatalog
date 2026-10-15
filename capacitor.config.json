@@ -1,6 +1,6 @@
 {
-  "appId": "de.thordan.japanischkatalog",
-  "appName": "Go! Nihongo",
+  "appId": "de.thordan.japanischkatalog2",
+  "appName": "Go! Nihongo 2",
   "webDir": "www",
   "plugins": {
     "CapacitorUpdater": {

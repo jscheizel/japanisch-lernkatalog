@@ -1,4 +1,4 @@
-# Go! Nihongo
+# Go! Nihongo 2
 
 Lern-App für Japanisch — Inhalte aus den Unterrichts-PDFs des Kurses (Lektion 0 = vorausgesetzt, Lektionen 1–13 = je Unterrichtsstunde; Quellen und Auswertung unter `quellen/`).
 Läuft als **Offline-Website / PWA** und als **Android-APK** — derselbe Code-Stand.
