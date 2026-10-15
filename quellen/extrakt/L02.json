@@ -1,0 +1,52 @@
+{
+  "lektion": 2,
+  "quelle": "2026-07-15 12-33 - Adobe cloud storage.pdf",
+  "seiten": 21,
+  "status": "gelesen",
+  "regel": "Als 'Wiederholung' oder 'gelernte …' markierter Stoff, der vorher noch nicht vorkam, gilt als vorausgesetzt → Lektion 0.",
+  "abschnitte": [
+    {"seite":"1-5","art":"Wiederholung","titel":"たい/ほしい (aus L1), Übersetzen"},
+    {"seite":6,"art":"Lesen","titel":"いっしょによみましょう – やきそば-Text + Fragen"},
+    {"seite":"7-8","art":"Übung","titel":"Practice Deutsch→Japanisch; Fragewörter-Tabelle; Komparativ/Superlativ"},
+    {"seite":9,"art":"Wiederholung","titel":"gelernte Verben (28)"},
+    {"seite":"10-15","art":"Neu","titel":"Neue Verben (て-Verben-Gruppe: てつだいます, まどをあけます …) mit Übungen"},
+    {"seite":"16","art":"Übung","titel":"Übung neue Verben – Übersetzen"},
+    {"seite":"17-18","art":"Kanji","titel":"Kanji-Buch Lesson 3 Nr. 28–35 (八 九 十 百 千 万 円 年), neu eingekreist: 31–35"},
+    {"seite":"19-21","art":"Kanji","titel":"Kanji-Lesesätze ① und ②"}
+  ],
+  "vokabeln_neu": [
+    ["てつだいます","手伝います","helfen","V. I"],["てがみをかきます","手紙を書きます","einen Brief schreiben","V. I"],
+    ["でんきをつけます","電気をつけます","Licht anschalten","V. II"],["でんきをけします","電気を消します","Licht ausschalten","V. I"],
+    ["まどをあけます","窓を開けます","Fenster aufmachen","V. II"],["まどをしめます","窓を閉めます","Fenster zumachen","V. II"],
+    ["いいます","言います","sagen","V. I"],["まちます","待ちます","warten","V. I"],
+    ["じゅうしょをおしえます","住所を教えます","die Adresse mitteilen","V. II"],["にほんごをおしえます","日本語を教えます","Japanisch unterrichten","V. II"],
+    ["パスポートをみせます","パスポートを見せます","den Reisepass zeigen","V. II"],["くるまをとめます","車を止めます","das Auto parken","V. II"],
+    ["すみます","住みます","wohnen (sich niederlassen)","V. I"],["しゃしんをとります","写真を撮ります","fotografieren","V. I"],
+    ["あんないします","案内します","führen, herumführen","V. III"],["タクシーをよびます","タクシーを呼びます","ein Taxi rufen","V. I"],
+    ["いそぎます","急ぎます","sich beeilen","V. I"],["ペンをかします","ペンを貸します","einen Stift (ver)leihen","V. I"],
+    ["かばんをおきます","かばんを置きます","die Tasche hinstellen","V. I"],["わかります","分かります","verstehen","V. I"],
+    ["かばんをもちます","かばんを持ちます","die Tasche tragen","V. I"],["なまえをかきます","名前を書きます","den Namen schreiben","V. I"],
+    ["エアコンをつけます","","die Klimaanlage anmachen","V. II"],["エアコンをけします","エアコンを消します","die Klimaanlage ausmachen","V. I"],
+    ["あつい","暑い","heiß","i-Adj."],["さむい","寒い","kalt","i-Adj."],["じゅうしょ","住所","Adresse","N."],
+    ["しゅくだい","宿題","Hausaufgabe","N."],["てがみ","手紙","Brief","N."],["おんがくをききます","音楽を聞きます","Musik hören","V. I"],
+    ["テーブル","","Tisch","N."],["でんき","電気","Licht, Strom","N."],["まど","窓","Fenster","N."],["しゃしん","写真","Foto","N."],["なまえ","名前","Name","N."]
+  ],
+  "vokabeln_wiederholung_L0": [
+    ["ごはんをたべます","ご飯を食べます","essen (eine Mahlzeit)"],["コーヒーをのみます","コーヒーを飲みます","Kaffee trinken"],
+    ["しんぶんをよみます","新聞を読みます","Zeitung lesen"],["テレビをみます","テレビを見ます","fernsehen"],
+    ["スポーツをします","","Sport machen"],["でんわします","電話します","telefonieren"],["おきます","起きます","aufstehen"],
+    ["ねます","寝ます","schlafen"],["はたらきます","働きます","arbeiten"],["がっこうへいきます","学校へ行きます","in die Schule gehen"],
+    ["きます","来ます","kommen"],["かえります","帰ります","zurückkehren"],["あげます","","geben"],["もらいます","","bekommen"],
+    ["どうして","","warum"],["いつ","","wann"],["だれと","","mit wem"],["なんじからなんじまで","何時から何時まで","von wann bis wann"],
+    ["なんようび","何曜日","welcher Wochentag"],["なんで","何で","womit"],["どこ","","wo"],["だれ","","wer"],["だれの","","wessen"],
+    ["どんな","","was für ein"],["いくら","","wie viel (Preis)"],["なんさい","何歳","wie alt"]
+  ],
+  "verwendet_jp": ["ピザ","コーヒー","スポーツ","あした","あるいて","かいしゃ","やすい","じてんしゃ","えいが","でんわをかけます","しちじ","やきそば","レシピ","かんたん","せんしゅう","スーパー","そば","ソース","えび","ドイツご","ほんとうに","らいしゅう","もういっかい","いっしょに","よく","なん","ラーメン","きれい","バス","でんわばんごう","けいたい","まいあさ","きょうしつ","いしゃ","ちゅうごく","たくさん","つま","みせ","おばあさん","ひろしま","ユーロ","～さい","山田","アメリカ人","ここ","フェスティバル","お父さん","男の人","タバコ","きょねん","ことし"],
+  "grammatik_neu": [
+    {"pattern":"Fragewörter","titel":"Fragewörter-Übersicht (いつ, だれと, なんで, いくら …)","hinweis":"als Tabelle geübt; eher Wiederholung"}
+  ],
+  "kanji_neu": ["百","千","万","年"],
+  "kanji_wiederholung": ["八","九","十","円"],
+  "kanji_verwendet": ["私","車","三","先","生","四","六","山","田","子","女","七","人","一","五","日","本","九","十","金","父","男","二","月"],
+  "kanji_beispiele": ["二百","六百","八百","千葉","三千","千円","一万円","百万人","五千円","百円","年上","去年","来年","三千ユーロ","四十六さい","一八五三年","九百円","十さい","三百円","四万円","二百年まえ","七千人","一万人","三万ユーロ","金よう日","お父さん","千円","五百円","きょ年","こ年"]
+}
