@@ -1,0 +1,59 @@
+{
+  "lektion": 5,
+  "quelle": "2026-08-05 14-30.pdf",
+  "seiten": 29,
+  "status": "gelesen",
+  "abschnitte": [
+    {"seite":1,"art":"Wiederholung","titel":"Wortschatz Deutsch 1–54"},
+    {"seite":2,"art":"Neu","titel":"New: ばすてい, つり, つりをします, はをみがきます, およぎます, むすめ, むすこ, りょうしん, ウェイター, メニュー, おきゃくさん, そうじします, アルバイトをします"},
+    {"seite":"3-12","art":"Wiederholung","titel":"Wortschatz 1–25, möchte+Bitte, Soll ich (ましょうか), Dialog Asakusa"},
+    {"seite":"13-17","art":"Neu","titel":"V-ています (gerade tun): いま、なにをしていますか"},
+    {"seite":"18-20","art":"Übung","titel":"Lesen+Übersetzen, Wiederholung"},
+    {"seite":"21-24","art":"Neu","titel":"V-ています (Gewohnheit): まいにち/まいしゅう/まいつき/まいとし; どこで はたらいています"},
+    {"seite":"25-28","art":"Kanji","titel":"Kanji-Buch 第4課: 上 下 中 大 小 本 半 分 力 何 (Nr. 36–45)"},
+    {"seite":29,"art":"Kanji","titel":"Kanji-Leseliste bis Lektion 4 (1–34)"}
+  ],
+  "vokabeln_neu": [
+    ["バスてい","バス停","Bushaltestelle","N."],["つりをします","釣りをします","angeln","V. III"],
+    ["はをみがきます","歯を磨きます","Zähne putzen","V. I"],["は","歯","Zahn","N."],
+    ["おきゃくさん","お客さん","Kunde, Gast","N."],["そうじします","掃除します","putzen, sauber machen","V. III"],
+    ["アルバイトをします","","jobben, nebenher arbeiten","V. III"],["アルバイト","","Nebenjob","N."],
+    ["むかえにいきます","迎えに行きます","jemanden abholen","V. I"],["てら","寺","Tempel","N."],["しんかんせん","新幹線","Shinkansen","N."],
+    ["きっぷ","切符","Fahrkarte","N."],["かさ","傘","Regenschirm","N."],["えき","駅","Bahnhof","N."],
+    ["としょかん","図書館","Bibliothek","N."],["れいぞうこ","冷蔵庫","Kühlschrank","N."],["しょうがっこう","小学校","Grundschule","N."],
+    ["しずか","静か","ruhig","na-Adj."],["はやい","速い","schnell","i-Adj."],["みせ","店","Laden","N."],
+    ["はな","花","Blume","N."],["やさい","野菜","Gemüse","N."],["くだもの","果物","Obst","N."],["いま","今","jetzt","N."],
+    ["スマホ","","Smartphone","N."],["ロック","","Rock(musik)","N."],["フランス","","Frankreich","N."],
+    ["おくさん","奥さん","Ehefrau (eines anderen)","N."],["ごしゅじん","ご主人","Ehemann (eines anderen)","N."],
+    ["じしょ","辞書","Wörterbuch","N."],["ほんやくします","翻訳します","übersetzen","V. III"],["おじさん","","Onkel","N."],
+    ["だいどころ","台所","Küche","N."],["まいつき","毎月","jeden Monat","N."],["まいとし","毎年","jedes Jahr","N."],
+    ["まいしゅう","毎週","jede Woche","N."],["すいようび","水曜日","Mittwoch","N."],["こうこう","高校","Oberschule","N."],
+    ["かいしゃ","会社","Firma","N."],["カフェテリア","","Cafeteria","N."],["テニス","","Tennis","N."],["ギター","","Gitarre","N."],
+    ["あまり","","nicht sehr (+ Verneinung)","Adv."],["しぶや","渋谷","Shibuya","N."],["しんじゅく","新宿","Shinjuku","N."],
+    ["あさくさ","浅草","Asakusa","N."],["かぶき","歌舞伎","Kabuki","N."]
+  ],
+  "vokabeln_wiederholung_L0": [
+    ["きれい","","schön, sauber","na-Adj."],["しゃしん","写真","Foto","N."],["えいがかん","映画館","Kino","N."],
+    ["うみ","海","Meer","N."],["おとうと","弟","kleiner Bruder","N."],["しんぶん","新聞","Zeitung","N."],["かいしゃ","会社","Firma","N."],
+    ["いぬ","犬","Hund","N."],["さかな","魚","Fisch","N."]
+  ],
+  "grammatik_neu": [
+    {"pattern":"V-て います (Verlauf)","titel":"gerade etwas tun","bildung":"V-て + います","beispiele":["このへやの人はいま、テレビをみています。","やまださんはいま、りょうりをしています。","私はいま、にほんごをべんきょうしています。"]},
+    {"pattern":"V-て います (Gewohnheit)","titel":"etwas regelmäßig tun / beruflich tun","bildung":"まいにち/まいしゅう/まいつき/まいとし + V-ています","beispiele":["あなたはまい日しんぶんをよんでいますか。…はい、私はまい日しんぶんをよんでいます。","シュミットさんはどこではたらいていますか。…ソニーではたらいています。"]}
+  ],
+  "kanji_neu": ["上","下","中","大","小","本","半","分","力","何"],
+  "kanji_buch": [
+    {"k":"上","on":["ジョウ"],"kun":["うえ","あ-がる","のぼ-る","あ-げる"],"meaning":"oben, hinauf","strokes":3,"examples":[["上","うえ","oben"],["上がる","あがる","hinaufgehen"],["上手","じょうず","geschickt"]]},
+    {"k":"下","on":["カ","ゲ"],"kun":["した","さ-がる","くだ-る","さ-げる"],"meaning":"unten","strokes":3,"examples":[["下","した","unten"],["地下","ちか","Untergrund"],["下車する","げしゃする","aussteigen"]]},
+    {"k":"中","on":["チュウ","ジュウ"],"kun":["なか"],"meaning":"Mitte, innen","strokes":4,"examples":[["中","なか","innen"],["中学","ちゅうがく","Mittelschule"],["一日中","いちにちじゅう","den ganzen Tag"]]},
+    {"k":"大","on":["ダイ","タイ"],"kun":["おお-きい"],"meaning":"groß","strokes":3,"examples":[["大きい","おおきい","groß"],["大学","だいがく","Universität"],["大人","おとな","Erwachsener"],["大切","たいせつ","wichtig"]]},
+    {"k":"小","on":["ショウ"],"kun":["ちい-さい","こ","お"],"meaning":"klein","strokes":3,"examples":[["小さい","ちいさい","klein"],["小川","おがわ","Bach"],["小学校","しょうがっこう","Grundschule"]]},
+    {"k":"本","on":["ホン"],"kun":["もと"],"meaning":"Buch, Ursprung","strokes":5,"examples":[["本","ほん","Buch"],["山本","やまもと","Yamamoto (Name)"],["本日","ほんじつ","heute"]]},
+    {"k":"半","on":["ハン"],"kun":["なか-ば"],"meaning":"halb","strokes":5,"examples":[["半年","はんとし","ein halbes Jahr"],["三時半","さんじはん","halb vier"],["半分","はんぶん","Hälfte"]]},
+    {"k":"分","on":["ブン","フン","プン"],"kun":["わ-ける","わ-かる","わ-かれる"],"meaning":"Teil, Minute","strokes":4,"examples":[["分かる","わかる","verstehen"],["五分","ごふん","fünf Minuten"],["六分","ろっぷん","sechs Minuten"]]},
+    {"k":"力","on":["リョク","リキ"],"kun":["ちから"],"meaning":"Kraft","strokes":2,"examples":[["力","ちから","Kraft"],["水力","すいりょく","Wasserkraft"],["火力","かりょく","Feuerkraft"]]},
+    {"k":"何","on":["カ"],"kun":["なに","なん"],"meaning":"was","strokes":7,"examples":[["何","なに","was"],["何人","なんにん","wie viele Personen"],["何年","なんねん","welches Jahr"]]}
+  ],
+  "kanji_leseliste": ["力","何","ふじ山","千円","先生","十年","三百円","学生","木の下","小さい","山の上","アメリカ人","何人","大きい","中ごく","中","小さい車","学こう","大学","小学こう","中学こう","お金","金よう日","火よう日","木よう日","学校の中","五分","十分","水","四じ半","何ようび","日本人","先月","女の子"],
+  "kanji_verwendet": ["私","日","人","山","田","本","大","学","高","校","校","月"]
+}
