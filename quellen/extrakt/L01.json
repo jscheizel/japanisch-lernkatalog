@@ -1,0 +1,44 @@
+{
+  "lektion": 1,
+  "quelle": "2026-06-24 14-13 - Adobe cloud storage.pdf",
+  "seiten": 21,
+  "status": "gelesen",
+  "abschnitte": [
+    {"seite": 1, "art": "Wiederholung", "titel": "Vokabelliste (nur Deutsch, 1–30)"},
+    {"seite": 2, "art": "Wiederholung", "titel": "Bild-Wortbank (Hiragana)"},
+    {"seite": 3, "art": "Wiederholung", "titel": "Bildsätze Deutsch → Japanisch"},
+    {"seite": 4, "art": "Wiederholung", "titel": "Übersetzen Japanisch → Deutsch"},
+    {"seite": 5, "art": "Neu", "titel": "～たいです / ～たくないです / ～たかったです"},
+    {"seite": 6, "art": "Neu", "titel": "möchten / wollen (Vergangenheit) – Übersetzen"},
+    {"seite": 7, "art": "Neu", "titel": "Lesetext Japanreise + Fragen"},
+    {"seite": 8, "art": "Neu", "titel": "+Verb (たい) / +Etwas (ほしい), Präsens/Vergangenheit, Negation"},
+    {"seite": "9-14", "art": "Neu", "titel": "～がほしいです (Rōmaji-Übungen, れんしゅう, どうして～か / ～から)"},
+    {"seite": "15-17", "art": "Neu", "titel": "Mix ほしい/たい, Übersetzen"},
+    {"seite": 18, "art": "Wiederholung", "titel": "Fragen beantworten (Kinkakuji)"},
+    {"seite": "19-20", "art": "Kanji", "titel": "Kanji-Leseliste ① 1–24, ② 25–60"},
+    {"seite": 21, "art": "Lesen", "titel": "Izakaya-Speisekarte, Preise lesen (Kanji-Zahlen)"}
+  ],
+  "vokabelliste_de": [
+    ["Boot","ふね","船"],["Englisch","えいご","英語"],["A und B und C usw.","～や～や～など",""],
+    ["Schwimmen","およぎます","泳ぎます"],["See","みずうみ","湖"],["Oben","うえ","上"],["Unten","した","下"],
+    ["Links","ひだり","左"],["Rechts","みぎ","右"],["Vor","まえ","前"],["Hinter","うしろ","後ろ"],
+    ["Zwischen","あいだ","間"],["Neben an","となり","隣"],["Drin","なか","中"],["Reisen","りょこうします","旅行します"],
+    ["Kochen","りょうりします","料理します"],["Duschen","シャワーをあびます","シャワーを浴びます"],
+    ["In Berlin wohnen","ベルリンにすんでいます","ベルリンに住んでいます"],["Park","こうえん","公園"],
+    ["Frau","おんなのひと","女の人"],["Mann","おとこのひと","男の人"],["Schreibtisch","つくえ","机"],["Stuhl","いす",""],
+    ["Nah","ちかい","近い"],["Fern","とおい","遠い"],["Sommerurlaub","なつやすみ","夏休み"],["Pausieren","やすみます","休みます"],
+    ["Warum?","どうして",""],["Einfach","かんたん","簡単"],["Interessant","おもしろい","面白い"]
+  ],
+  "wortbank_jp": ["おかし","あいます","あたらしい","はなします","いぬ","ねこ","なつ","みぎ","いもうと","たん生日","ピアノをならいます","てんき","てんぷら","した","まえ","ふるい","うしろ","となり","マレーシア","ビール","ビル","ひだり"],
+  "grammatik_neu": [
+    {"pattern":"V-ます → ～たいです","titel":"etwas tun möchten","formen":["たべたいです","たべたくないです","たべたかったです","たべたくなかったです"]},
+    {"pattern":"N が ほしいです","titel":"etwas haben möchten","formen":["ほしいです","ほしくないです","ほしかったです","ほしくなかったです"]},
+    {"pattern":"どうして～か / ～から","titel":"Warum? – weil (Begründung)","hinweis":"in Übung genutzt, evtl. Wiederholung"},
+    {"pattern":"こどもの とき、～","titel":"als ich Kind war","hinweis":"in Übung genutzt"}
+  ],
+  "grammatik_vorausgesetzt": ["N に N が あります/います","N1 や N2 (など)","N の なかで N が いちばん～","N1 と N2 と どちらが～","N1 の ほうが N2 より～","なにも/どこへも + Verneinung","V-ませんでした","い-Adj. Vergangenheit (たかかったです)","N を V-ます","N へ いきます","N で (Ort der Handlung)","N と (mit)","から (weil)"],
+  "verwendet_jp": ["わたし","私","へや","つくえ","いす","ベッド","あります","います","にほん","日本","りょうり","なか","中","てんぷら","いちばん","すき","たんじょうび","たん生日","あたらしい","けいたいでんわ","ほしい","あなた","うち","ちかく","こうえん","うみ","山","どちら","せんしゅうまつ","なにも","なに","します","なつやすみ","どこ","りょこう","りょこうします","どうして","すし","たべます","とても","たかい","から","ちかてつ","ほう","より","車","くるま","はやい","イースター","おばあさん","あいます","ハンバーガー","みずうみ","いきます","にほんご","べんきょうします","あした","やすみます","やすみ","シャワー","あびます","かいます","しごと","しごとします","こども","子ども","とき","レゴ","あそびます","やさい","がくせい","まいにち","ともだち","ミッキーマウス","ほん","よみます","らいねん","～がつ","とうきょう","おおさか","きょうと","さくら","みます","おいしい","それから","にほんじん","えいご","はなします","でも","かのじょ","いい","このひと","ひと","ことし","ありません","おかね","じかん","ごはん","おおきい","大きい","すみます","ちいさい","いぬ","ねこ","おかあさん","どんな","えいが","DVD","プレゼント","はい","いいえ","いま","ふるい","ちゅうごく","ドイツ","ビール","ゆうめい","ミュンヘン","ゲーム","モノポリー","かばん","上","うえ","やきとり","ドリンク","円"],
+  "deutsch_saetze_brauchen": ["Kino えいがかん","Freitag きんようび","Schule がっこう","Klavier ピアノ","gestern きのう","arbeiten はたらきます","Mutter はは/おかあさん","Pause machen やすみます","Freundin かのじょ","Zeit じかん","lecker おいしい","Restaurant レストラン","Kamera カメラ","Weihnachten クリスマス","Buch ほん","Haustier ペット","Geburtstag たんじょうび","nett やさしい","Süßigkeiten おかし","teuer たかい","Tasche かばん","schön きれい","spielen あそびます","schlafen ねます","kleine Schwester いもうと","Oma おばあさん","geben (mir) くれます","Wochenende しゅうまつ","wer だれ","Eltern りょうしん","sprechen はなします","Sonntag にちようび","Vater ちち/おとうさん","chinesisches Gericht ちゅうかりょうり","Weihnachtsmann サンタクロース","Geschenk プレゼント","bekommen もらいます","geben あげます","Konbini コンビニ","Cola コーラ","Kuchen ケーキ","Zimmer へや","Sofa ソファ","Lampe ランプ","Wohnzimmer いま","verreisen りょこうします","jeden Tag まいにち","wohnen すみます"],
+  "kanji_liste": ["水","お金","先生","山","学生","女の子","あの人","ドイツ人","私の子ども","口","先月","たん生日","私の車","川","月よう日","土よう日","日よう日","火よう日","金よう日","水よう日","木よう日","ふじ山","女の子","木","こん月","先月","車","でん車","三","川","四","月よう日","火よう日","土よう日","木よう日","六","七","五","三十円","九じ","八","木","山","二","先生","水","お金","一円","学生","学こう","女の人","十","子ども","口","九","まい日","日よう日","門","私","田"],
+  "kanji_einzeln": ["水","金","先","生","山","学","女","子","人","私","口","月","日","車","川","土","火","木","三","四","六","七","五","十","円","九","八","二","一","門","田","上","大","中","本"]
+}
