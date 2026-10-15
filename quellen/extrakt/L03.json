@@ -1,0 +1,47 @@
+{
+  "lektion": 3,
+  "quelle": "2026-07-22 16-07 - Adobe cloud storage.pdf",
+  "seiten": 22,
+  "status": "gelesen",
+  "abschnitte": [
+    {"seite":1,"art":"Wiederholung","titel":"Vokabelliste Deutsch 1–30"},
+    {"seite":2,"art":"Wiederholung","titel":"Verben Rōmaji → Deutsch (aus L2)"},
+    {"seite":3,"art":"Neu","titel":"Verben-Liste Deutsch → Japanisch (1–25)"},
+    {"seite":4,"art":"Neu","titel":"Bitte = kudasai: N を ください / V-て ください"},
+    {"seite":"5-10","art":"Neu","titel":"Verbgruppen I/II/III und て-Form-Regeln (って/んで/いて/いで/して; Ausnahme いきます→いって)"},
+    {"seite":"11-16","art":"Neu","titel":"～てください Übungen (inkl. Genki 第6課-3)"},
+    {"seite":17,"art":"Neu","titel":"Bitte + Grund: ～から、～てください"},
+    {"seite":18,"art":"Wiederholung","titel":"Übersetzung japanischer Sätze"},
+    {"seite":"19-21","art":"Übung","titel":"Wiederholung Übersetzen, て-Form Konjugationstabelle, Bitte-Form"},
+    {"seite":22,"art":"Kanji","titel":"Kanji-Lesesätze (Zahlen, Geld, 大学)"}
+  ],
+  "vokabeln_wiederholung_L0": [
+    ["つり","釣り","das Angeln","N."],["おかし","お菓子","Süßigkeiten","N."],
+    ["あに","兄","(mein) großer Bruder","N."],["おにいさん","お兄さん","großer Bruder (höflich)","N."],
+    ["おとうと","弟","kleiner Bruder","N."],["あね","姉","(meine) große Schwester","N."],["おねえさん","お姉さん","große Schwester (höflich)","N."],
+    ["いもうと","妹","kleine Schwester","N."],["ごぜん","午前","Vormittag","N."],["ごご","午後","Nachmittag","N."],
+    ["つま","妻","(meine) Ehefrau","N."],["おっと","夫","(mein) Ehemann","N."],["でんわばんごう","電話番号","Telefonnummer","N."],
+    ["りょうしん","両親","Eltern","N."],["むすこ","息子","Sohn","N."],["むすめ","娘","Tochter","N."],["おちゃ","お茶","(grüner) Tee","N."],
+    ["もういちど","もう一度","noch einmal","Adv."],["もういっかい","もう一回","noch einmal","Adv."],["おんがく","音楽","Musik","N."],["みず","水","Wasser","N."],["エアコン","","Klimaanlage","N."]
+  ],
+  "vokabeln_neu": [
+    ["とります","取ります","nehmen","V. I"],["ドア","","Tür","N."],["タオル","","Handtuch","N."],["レポート","","Bericht, Referat","N."],
+    ["かんじ","漢字","Kanji","N."],["ひらがな","","Hiragana","N."],["おもい","重い","schwer","i-Adj."],["とけい","時計","Uhr","N."],
+    ["カフェ","","Café","N."],["ウェイター","","Kellner","N."],["プール","","Schwimmbad","N."],["メニュー","","Speisekarte","N."],
+    ["だいがく","大学","Universität","N."],["ワイン","","Wein","N."],["パン","","Brot","N."],["ケーキ","","Kuchen","N."],
+    ["すみません","","Entschuldigung","Ausdr."],["ください","","bitte (geben Sie mir)","Ausdr."],["ここ","","hier","Pron."],
+    ["およぎましょう","泳ぎましょう","lass uns schwimmen","Ausdr."]
+  ],
+  "grammatik_neu": [
+    {"pattern":"N を ください","titel":"Etwas + bitte","beispiele":["ピザとコーラをください。","あのかばんをください。","ビールとやきとりをください。"]},
+    {"pattern":"Verbgruppen I / II / III","titel":"Verbgruppen bestimmen","hinweis":"I = -i-masu (ikimasu, nomimasu, kakimasu); II = -e-masu + Sonderfälle (tabemasu, nemasu, mimasu, okimasu 'aufstehen', abimasu, kimasu?); III = ～shimasu, kimasu"},
+    {"pattern":"V-て (て-Form)","titel":"て-Form bilden","regeln":{"い/ち/り-ます":"って","み/び/に-ます":"んで","き-ます":"いて","ぎ-ます":"いで","し-ます (Gr. I)":"して","Gr. II":"ます→て","Gr. III":"します→して, きます→きて","Ausnahme":"いきます→いって"}},
+    {"pattern":"V-て ください","titel":"Bitte (tun Sie …)","beispiele":["まどをあけてください。","しゃしんをとってください。","ここでまってください。"]},
+    {"pattern":"～から、V-て ください","titel":"Bitte mit Begründung","beispiele":["すみません、さむいですから、まどをしめてください。","じかんがありませんから、いそいでください。"]},
+    {"pattern":"V-ましょう","titel":"Lass uns …","hinweis":"nur im Wiederholungssatz (いっしょにおよぎましょう) → L0"}
+  ],
+  "verwendet_jp": ["なつやすみ","みずうみ","つり","りょうしん","でんわばんごう","おしえて","ちかく","大学","てつだって","ペン","かして","おいて","さむい","あつい","おちゃ","のみたい","むすこ","たん生日","とけい","ほしい","いもうと","カフェ","ウェイター","プール","いっしょに","メニュー","みせて","むすめ","よく","しゃしん","いそいで","おかね","おもい","じかん","てがみ","かきたい","じゅうしょ","にほんご","わかりません","えいご","かんじ","ひらがな","ごご","ごじ","がっこう","りょうり","こども","この","ほん","あなた","つくえ","ピザ","コーラ","ビール","やきとり","パン","ケーキ","けいたい","ユーロ","ワイン","かみ","いちばん"],
+  "kanji_neu": [],
+  "kanji_verwendet": ["木","千","車","九","万","大","金","五","百","円","四","六","年","日","本","学","生","一","水","二","私","窓","開"],
+  "kanji_beispiele": ["この木は千さいです。","ちいさい車は九千ユーロ、おおきい車は二万ユーロです。","お金が五百円あります。","ビールは四百円、ワインは千円です。","アメリカ人は二百年まえに、日本へきました。","六年まえに、日本でしごとしました。","千円は六ユーロです。","水、ください。…二百円です。","だい学生は四年、だい学でべんきょうします。","日本で一ばんおおきいかみのお金は一万円です。","窓を開けてください。"]
+}
