@@ -1,0 +1,34 @@
+{
+  "lektion": 13,
+  "quelle": "2026-10-14 11-48.pdf",
+  "seiten": 23,
+  "status": "gelesen",
+  "abschnitte": [
+    {"seite":1,"art":"Neu","titel":"New (17 Verben/Wörter): かみをきります, ふくをきます, 車にのります, しにます, うんどうします, 本をかえします, おはなみします, くつをぬぎます, ギターをひきます, あぶない, きんえん, 火をけします, しんぱいします …"},
+    {"seite":"2-3","art":"Wiederholung","titel":"gelernte Verben (29), Bild-Wortbank"},
+    {"seite":"4-12","art":"Neu","titel":"ない-Form (Gruppe I: -i-masu → -a-nai; II: -masu → -nai; III: shimasu → shinai, kimasu → konai) und V-ないでください (Bitte nicht …)"},
+    {"seite":"13-17","art":"Übung","titel":"Genki 第8課-5 ～ないでください, Bitte nicht!, gelernte Modalverben, nai-Form Konjugation (20)"},
+    {"seite":"18-22","art":"Kanji","titel":"Kanji 第7課 (Wiederholung aus L12): 花 茶 肉 文 字 物 牛 馬 鳥 魚; Leseliste ① (54), Sätze ② (13)"}
+  ],
+  "vokabeln_neu": [
+    ["かみをきります","髪を切ります","die Haare schneiden","V. I"],["きります","切ります","schneiden","V. I"],
+    ["ふくをきます","服を着ます","Kleidung anziehen","V. II"],["きます","着ます","anziehen (Oberkörper)","V. II"],
+    ["くるまにのります","車に乗ります","ins Auto einsteigen","V. I"],["のります","乗ります","einsteigen, fahren mit","V. I"],
+    ["しにます","死にます","sterben","V. I"],["うんどうします","運動します","Sport treiben","V. III"],
+    ["おはなみします","お花見します","Kirschblüten anschauen (Hanami)","V. III"],["おはなみ","お花見","Hanami","N."],
+    ["くつをぬぎます","靴を脱ぎます","Schuhe ausziehen","V. I"],["ぬぎます","脱ぎます","ausziehen","V. I"],
+    ["ギターをひきます","ギターを弾きます","Gitarre spielen","V. I"],["ひきます","弾きます","(ein Instrument) spielen","V. I"],
+    ["あぶない","危ない","gefährlich","i-Adj."],["きんえん","禁煙","Rauchverbot","N."],["ひをけします","火を消します","das Feuer löschen","V. I"],
+    ["しんぱいします","心配します","sich Sorgen machen","V. III"],["おぼえます","覚えます","sich merken, auswendig lernen","V. II"],
+    ["かんじをおぼえます","漢字を覚えます","Kanji lernen/merken","V. II"],["わすれます","忘れます","vergessen","V. II"],
+    ["おします","押します","drücken","V. I"],["ボタン","","Knopf","N."],["ニュース","","Nachrichten","N."],["ざっし","雑誌","Zeitschrift","N."],
+    ["おそくなります","遅くなります","sich verspäten","V. I"],["バスにのります","バスに乗ります","in den Bus einsteigen","V. I"]
+  ],
+  "grammatik_neu": [
+    {"pattern":"V-ない (ない-Form)","titel":"ない-Form bilden","bildung":"Gruppe I: -i-ます → -a-ない (いきます→いかない, かいます→かわない); Gruppe II: ます → ない (たべます→たべない); Gruppe III: します→しない, きます→こない","beispiele":["いきます → いかない","のみます → のまない","まちます → またない","かいます → かわない","たべます → たべない","します → しない","きます → こない"]},
+    {"pattern":"V-ないで ください","titel":"Bitte nicht … (negative Bitte)","bildung":"V-ない + でください","beispiele":["このいすにすわらないでください。","ねないでください。","たばこをすわないでください。","私を待たないでください。遅くなりますから。","とりにごはんをあげないでください。"]},
+    {"pattern":"～から、V-ないで ください","titel":"Bitte nicht … mit Begründung","beispiele":["きんえんですから、たばこをすわないでください。","あぶないですから、おさないでください。"]}
+  ],
+  "kanji_neu": [],
+  "kanji_hinweis": "Kanji-Teil wiederholt 第7課 aus L12 (keine neuen Kanji)."
+}
