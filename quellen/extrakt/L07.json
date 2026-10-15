@@ -1,0 +1,51 @@
+{
+  "lektion": 7,
+  "quelle": "2026-08-19 10-43.pdf",
+  "seiten": 22,
+  "status": "gelesen",
+  "abschnitte": [
+    {"seite":1,"art":"Neu","titel":"New: いけばな, にもつ, いそがしいです, おねがいします"},
+    {"seite":"2-3","art":"Wiederholung","titel":"Wortschatz ① 1–54, Wortschatz ② 1–56"},
+    {"seite":"5-6","art":"Lesen","titel":"Text やないただしさん; gelernte Satzbau-Muster (13)"},
+    {"seite":"7-12","art":"Übung","titel":"て-Form-Tabelle mit Kanji, Bitte-Form 練習, möchten/wollen (ほしい/たい), Pendeltext 千葉"},
+    {"seite":"13-14","art":"Kanji","titel":"Wiederholung 第4課 Kanji (Lesen + Sätze)"},
+    {"seite":"15-19","art":"Kanji","titel":"Kanji neu 第5課: 明 休 体 好 男 林 森 間 畑 岩 (+石); Kanji-Kombinationen"},
+    {"seite":"20-22","art":"Kanji","titel":"Was bedeuten die Kanji (38), Kanjis bis Lektion 5 (58), Kanji-Puzzle"}
+  ],
+  "vokabeln_neu": [
+    ["いけばな","生け花","Ikebana (Blumenstecken)","N."],["にもつ","荷物","Gepäck","N."],
+    ["いそがしい","忙しい","beschäftigt","i-Adj."],["おねがいします","お願いします","bitte (Bitte um etwas)","Ausdr."],
+    ["やすい","安い","billig","i-Adj."],["わるい","悪い","schlecht","i-Adj."],["いい","","gut","i-Adj."],
+    ["ゆうめい","有名","berühmt","na-Adj."],["でんしゃ","電車","Zug","N."],["ひこうき","飛行機","Flugzeug","N."],
+    ["かわ","川","Fluss","N."],["まいかい","毎回","jedes Mal","N."],["なんぷん","何分","wie viele Minuten","N."],
+    ["ひる","昼","Mittag","N."],["なつ","夏","Sommer","N."],["かんこく","韓国","Korea","N."],["さんぽします","散歩します","spazieren gehen","V. III"],
+    ["チケット","","Ticket","N."],["きょねん","去年","letztes Jahr","N."],["らいねん","来年","nächstes Jahr","N."],["ことし","今年","dieses Jahr","N."],
+    ["ヨガ","","Yoga","N."],["アジア","","Asien","N."],["サッカー","","Fußball","N."],["ゴルフ","","Golf","N."],
+    ["ボールペン","","Kugelschreiber","N."],["カメラ","","Kamera","N."],["ほっかいどう","北海道","Hokkaido","N."],
+    ["しゃしんか","写真家","Fotograf","N."],["ちば","千葉","Chiba","N."],["ちかてつ","地下鉄","U-Bahn","N."],
+    ["しごと","仕事","Arbeit","N."],["ピクニック","","Picknick","N."],["うどん","","Udon","N."],["フランスりょうり","フランス料理","französisches Essen","N."],
+    ["なにも","何も","nichts (+ Verneinung)","Adv."],["どこにも","","nirgendwo (+ Verneinung)","Adv."],["どこへも","","nirgendwohin (+ Verneinung)","Adv."],["だれも","","niemand (+ Verneinung)","Adv."],
+    ["いっしょに","一緒に","zusammen","Adv."],["そして","","und dann, außerdem","Konj."]
+  ],
+  "grammatik_neu": [
+    {"pattern":"V-ませんか","titel":"Wollen wir nicht …? (Einladung)","hinweis":"im Satzbau-Muster いっしょにおちゃをのみませんか (gelernte Satzbau → L0)"},
+    {"pattern":"V-て は いけません","titel":"Verbot","hinweis":"nur im Kanji-Satz 子どもは一人で川であそんではいけません → noch nicht als Grammatik eingeführt"}
+  ],
+  "grammatik_vorausgesetzt": ["V-ませんか","N1 と N2 と どちらが～","N が いちばん～","N が あります/います","なにも/どこへも/だれも + Verneinung"],
+  "kanji_neu": ["明","休","体","好","男","林","森","間","畑","岩","石"],
+  "kanji_buch": [
+    {"k":"明","on":["メイ"],"kun":["あか-るい","あ-ける"],"meaning":"hell","strokes":8,"examples":[["明るい","あかるい","hell, fröhlich"],["明日","あした","morgen"],["説明する","せつめいする","erklären"]]},
+    {"k":"休","on":["キュウ"],"kun":["やす-む"],"meaning":"ausruhen","strokes":6,"examples":[["休む","やすむ","sich ausruhen, fehlen"],["休み","やすみ","Pause, Urlaub"],["休日","きゅうじつ","Feiertag"]]},
+    {"k":"体","on":["タイ"],"kun":["からだ"],"meaning":"Körper","strokes":7,"examples":[["体","からだ","Körper"],["体育","たいいく","Sportunterricht"],["体力","たいりょく","Körperkraft"]]},
+    {"k":"好","on":["コウ"],"kun":["す-き","す-く"],"meaning":"mögen","strokes":6,"examples":[["好き","すき","mögen"],["大好き","だいすき","sehr mögen"],["好物","こうぶつ","Lieblingsessen"]]},
+    {"k":"男","on":["ダン","ナン"],"kun":["おとこ"],"meaning":"Mann","strokes":7,"examples":[["男","おとこ","Mann"],["男の子","おとこのこ","Junge"],["長男","ちょうなん","ältester Sohn"]]},
+    {"k":"林","on":["リン"],"kun":["はやし"],"meaning":"Wäldchen","strokes":8,"examples":[["林","はやし","Wäldchen; Hayashi (Name)"],["小林","こばやし","Kobayashi (Name)"]]},
+    {"k":"森","on":["シン"],"kun":["もり"],"meaning":"Wald","strokes":12,"examples":[["森","もり","Wald"],["森林","しんりん","Wälder"],["森田","もりた","Morita (Name)"]]},
+    {"k":"間","on":["カン"],"kun":["あいだ","ま"],"meaning":"zwischen","strokes":12,"examples":[["間","あいだ","zwischen"],["時間","じかん","Zeit"],["一年間","いちねんかん","ein Jahr lang"]]},
+    {"k":"畑","on":[],"kun":["はたけ","はた"],"meaning":"Feld (Acker)","strokes":9,"examples":[["畑","はたけ","Acker"],["田畑","たはた","Reis- und Ackerfelder"],["花畑","はなばたけ","Blumenfeld"]]},
+    {"k":"岩","on":["ガン"],"kun":["いわ"],"meaning":"Felsen","strokes":8,"examples":[["岩","いわ","Felsen"],["岩田","いわた","Iwata (Name)"],["火山岩","かざんがん","Vulkangestein"]]},
+    {"k":"石","on":["セキ","シャク"],"kun":["いし"],"meaning":"Stein","strokes":5,"examples":[["石","いし","Stein"]]}
+  ],
+  "kanji_leseliste": ["畑","岩","分かりません","あの人","日本人","私","まい日","先生","先月","火","火よう日","水よう日","土よう日","日よう日","木よう日","口","お金","休みます","体","ふじ山","山田さん","川","一人","二人","三人","林さん","五じ半","六じ","森","明るい","明日","十","力","九","女の子","男の子","女の人","男の人","子ども","七","学こう","学生","大学","山と山の間","ブランデンブルグ門","百円","何","上","下","本","中","車の中","大きい","小さい","好き","大好き","八","十分"],
+  "kanji_verwendet": ["私","東","京","働","高","千","葉","住","仕","事","毎","日","午","前","八","時","半","六","起","七","地","下","鉄","会","社","行","家","分","遠","何","通","書","買","貸","食","見","勉","強","来","急","飲","遊","待","帰","閉","持","忙","荷","物","願","手","伝","写","真","撮","欲","北","海","道","習","生","花","両","親","旅"]
+}
