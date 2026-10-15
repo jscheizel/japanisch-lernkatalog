@@ -1,0 +1,33 @@
+{
+  "lektion": 4,
+  "quelle": "2026-07-29 15-07.pdf",
+  "seiten": 21,
+  "status": "gelesen",
+  "abschnitte": [
+    {"seite":1,"art":"Neu","titel":"Neue Verben: からてをならいます, けっこんします, いすにすわります, ベルリンにすみます"},
+    {"seite":"2-3","art":"Wiederholung","titel":"Vokabeln Japanisch→Deutsch (21) und Deutsch→Japanisch (30)"},
+    {"seite":"4-10","art":"Wiederholung","titel":"Verbgruppen, て-Form, Bitte-Form (1/5–5/5), Bildübungen"},
+    {"seite":"11-13","art":"Wiederholung","titel":"deshalb: ～から、～てください; Bitte-Form"},
+    {"seite":"15-17","art":"Neu","titel":"V-ましょうか (Soll ich …?) – はい、～てください"},
+    {"seite":"18-21","art":"Übung","titel":"Modalverben-Übersicht: ほしい / たい / たくない / をください / てください / ましょうか"}
+  ],
+  "vokabeln_neu": [
+    ["からてをならいます","空手を習います","Karate lernen","V. I"],["ならいます","習います","lernen (bei jemandem)","V. I"],
+    ["けっこんします","結婚します","heiraten","V. III"],["すわります","座ります","sich setzen","V. I"],
+    ["からて","空手","Karate","N."],["Eメールアドレス","","E-Mail-Adresse","N."],["パソコン","","Computer, PC","N."],
+    ["さかな","魚","Fisch","N."],["ジョギング","","Jogging","N."],["はがき","葉書","Postkarte","N."],["え","絵","Bild","N."],
+    ["げつようび","月曜日","Montag","N."],["にちようび","日曜日","Sonntag","N."]
+  ],
+  "vokabeln_wiederholung_L0": [
+    ["くすり","薬","Medikament","N."],["びょういん","病院","Krankenhaus","N."],["えをみます","絵を見ます","ein Bild ansehen","V. II"],
+    ["コピーします","","kopieren","V. III"],["かるい","軽い","leicht (Gewicht)","i-Adj."],["しゅうまつ","週末","Wochenende","N."],
+    ["ピアノをならいます","ピアノを習います","Klavier lernen","V. I"],["とうきょうにすみます","東京に住みます","in Tokio wohnen","V. I"]
+  ],
+  "grammatik_neu": [
+    {"pattern":"V-ましょうか","titel":"Soll ich …? (Angebot)","bildung":"V-ます → ます streichen + ましょうか","beispiele":["でんきをつけましょうか。…はい、つけてください。","かばんをもちましょうか。","まどをあけましょうか。…はい、あけてください。"]},
+    {"pattern":"Modalverben-Übersicht","titel":"ほしい・たい・をください・てください・ましょうか im Vergleich","hinweis":"Zusammenfassung, keine neue Form"}
+  ],
+  "verwendet_jp": ["やまださん","やまもとさん","ほん","とります","とうきょう","あんないします","じゅうしょ","かきます","おしえます","てつだいます","ペン","かします","まど","あけます","でんき","つけます","かばん","もちます","にほん","すみます","ビール","もういちど","にちようび","はたらきます","かんじ","いぬ","がっこう","おばあさん","さかな","おもい","パスポート","ジョギング","さむい","けいたい","でんわばんごう","いもうと","あいます","ビール","かします","エアコン","びょういん","にほんご","わかりません","ケーキ","おいしい","レポート","らいしゅう","まいにち","スポーツ","しゃしん","えいご","まちます","あした","でんわします","げつようび","ろくじ","おきます","しゅくだい","むずかしい","ちょっと"],
+  "kanji_neu": [],
+  "kanji_verwendet": []
+}
