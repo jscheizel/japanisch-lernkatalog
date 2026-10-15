@@ -1,4 +1,5 @@
-/* Erweiterte Grammatik (window.GRAMMATIK_PLUS).
+/* Erweiterte Grammatik (window.GRAMMATIK_PLUS) — Japanischkurs (Unterrichts-PDFs), Lektion 0–13.
+   Erzeugt mit quellen/werkzeug/gen_grammatik.py — dort ändern, nicht hier.
    Schlüssel = exakter `pattern`-String aus grammatik.js.
    Felder je Eintrag (alle optional):
      erklaerung_lang : ausführliche Erklärung mit Nuancen
@@ -7,861 +8,1414 @@
      uebungen        : Liste von Übungen
                        { typ:"mc",    frage, optionen:[…], richtig:Index, erkl }
                        { typ:"cloze", satz (mit ＿), luecke:"…", erkl }
-   Wird im Katalog additiv unter „Mehr erklären" angezeigt; Übungen laufen über window.Exercises. */
+   Wird im Katalog additiv unter „Mehr erklären" angezeigt; Übungen laufen im Trainer mit. */
 window.GRAMMATIK_PLUS = {
   "N1 は N2 です": {
-    erklaerung_lang: "は (geschrieben mit dem Hiragana ха, gesprochen „wa“) markiert das Thema des Satzes — das, worüber gesprochen wird. です ist die höfliche Kopula und steht immer am Satzende. Anders als das deutsche „sein“ wird です nicht an Person oder Zahl angepasst. Die Verneinung lautet じゃありません (umgangssprachlich) bzw. ではありません (förmlich).",
-    fehler: [
-      "は als Themenpartikel wird „wa“ gesprochen, nicht „ha“.",
-      "Kein です vergessen — der höfliche Satz endet darauf.",
-      "Verneinung ist nicht „です + ない“, sondern じゃ／ではありません.",
+    "erklaerung_lang": "は (geschrieben mit dem Hiragana は, gesprochen „wa“) nennt das Thema — das, worüber man spricht. です steht am Satzende und ändert sich nicht nach Person oder Zahl. Die Verneinung ist じゃありません (gesprochen) bzw. ではありません (förmlicher).",
+    "fehler": [
+      "は als Themenpartikel wird „wa“ gesprochen.",
+      "Verneinung ist じゃありません, nicht „ですない“."
     ],
-    kontrast: [
-      { a: "は", b: "が", note: "は nennt das (bekannte) Thema, が hebt neue/betonte Information hervor." },
+    "kontrast": [
+      {
+        "a": "は",
+        "b": "が",
+        "note": "は nennt das (bekannte) Thema, が hebt neue oder betonte Information hervor (z. B. bei あります/います, すき)."
+      }
     ],
-    uebungen: [
-      { typ: "mc", frage: "わたし＿ミラーです。", optionen: ["は", "を", "が", "に"], richtig: 0, erkl: "は markiert das Thema „ich“." },
-      { typ: "cloze", satz: "サントスさんは学生じゃ＿。（Verneinung）", luecke: "ありません", erkl: "じゃありません = „ist nicht“." },
-    ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "私＿学生です。",
+        "optionen": [
+          "は",
+          "を",
+          "へ",
+          "で"
+        ],
+        "richtig": 0,
+        "erkl": "は markiert das Thema „ich“."
+      },
+      {
+        "typ": "cloze",
+        "satz": "あの人は先生じゃ＿。（Verneinung）",
+        "luecke": "ありません",
+        "erkl": "じゃありません = „ist nicht“."
+      }
+    ]
   },
-
   "～か": {
-    erklaerung_lang: "Die Partikel か am Satzende macht aus einer Aussage eine Frage. Die Wortstellung bleibt gleich — es wird nichts umgestellt wie im Deutschen. Im Höflichkeitsstil steht か nach です／ます. Ein Fragezeichen ist im Japanischen nicht nötig (の Punkt 。 genügt).",
-    fehler: [
-      "Wortstellung NICHT umstellen — nur か anhängen.",
-      "Nach です／ます kommt か, nicht „ですか？“ mit zusätzlichem westlichem Fragezeichen.",
+    "erklaerung_lang": "Im Japanischen wird für eine Frage nichts umgestellt: Man hängt nur か an. Ein Fragezeichen ist nicht nötig, der Punkt 。 genügt. Fragewörter (なに, だれ, どこ …) stehen an der Stelle, an der in der Antwort die Information steht.",
+    "fehler": [
+      "Nicht die Wortstellung ändern — nur か anhängen."
     ],
-    uebungen: [
-      { typ: "mc", frage: "ミラーさんは会社員です＿。", optionen: ["か", "ね", "よ", "の"], richtig: 0, erkl: "か bildet die Ja/Nein-Frage." },
-      { typ: "cloze", satz: "あなたは学生です＿。（Frage）", luecke: "か", erkl: "Frage → か am Satzende." },
-      { typ: "mc", frage: "Was ändert sich bei der Frage gegenüber der Aussage?", optionen: ["nur か anhängen", "Subjekt nach vorn", "Verb nach vorn", "です weglassen"], richtig: 0, erkl: "Wortstellung bleibt; nur か anhängen." },
-    ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "あなたは日本人です＿。",
+        "optionen": [
+          "か",
+          "を",
+          "に",
+          "へ"
+        ],
+        "richtig": 0,
+        "erkl": "か bildet die Frage."
+      },
+      {
+        "typ": "cloze",
+        "satz": "これは何です＿。",
+        "luecke": "か",
+        "erkl": "Frage → か am Satzende."
+      }
+    ]
   },
-
-  "N を V": {
-    erklaerung_lang: "を markiert das direkte Objekt — das, worauf sich die Handlung richtet. Es steht direkt vor dem transitiven Verb. を wird wie „o“ gesprochen. Das Verb steht im Japanischen immer am Satzende.",
-    fehler: [
-      "を nur bei transitiven Verben (essen, trinken, lesen …), nicht bei Bewegungszielen — dort へ／に.",
-      "を wird „o“ gesprochen, nicht „wo“.",
-    ],
-    kontrast: [
-      { a: "を", b: "が", note: "を = direktes Objekt; が = Subjekt/neue Information." },
-      { a: "を", b: "へ", note: "を = was getan wird; へ = wohin man geht." },
-    ],
-    uebungen: [
-      { typ: "mc", frage: "毎朝コーヒー＿のみます。", optionen: ["を", "は", "で", "へ"], richtig: 0, erkl: "コーヒー ist das Objekt von „trinken“." },
-      { typ: "cloze", satz: "本＿よみます。（Objekt-Partikel）", luecke: "を", erkl: "Direktes Objekt → を." },
-    ],
-  },
-
-  "[Ort] へ 行きます": {
-    erklaerung_lang: "へ (als Richtungspartikel gesprochen „e“) markiert das Ziel einer Bewegung. Häufig ist auch に möglich; へ betont stärker die Richtung, に das Ankunftsziel. Verben der Bewegung sind z. B. 行きます (gehen/fahren), 来ます (kommen), 帰ります (zurückkehren).",
-    fehler: [
-      "へ als Richtungspartikel wird „e“ gesprochen, nicht „he“.",
-      "Bei Bewegungszielen kein を verwenden.",
-    ],
-    kontrast: [
-      { a: "へ", b: "に", note: "Beide markieren das Ziel; へ = Richtung, に = Ankunftspunkt. Oft austauschbar." },
-    ],
-    uebungen: [
-      { typ: "mc", frage: "あした東京＿行きます。", optionen: ["へ", "を", "が", "も"], richtig: 0, erkl: "Ziel der Bewegung → へ (oder に)." },
-      { typ: "cloze", satz: "うち＿帰ります。（nach Hause）", luecke: "へ", erkl: "Bewegungsziel → へ." },
-      { typ: "mc", frage: "へ als Richtungspartikel spricht man …", optionen: ["e", "he", "we", "ye"], richtig: 0, erkl: "へ = „e“." },
-    ],
-  },
-
-  "V て-Form": {
-    erklaerung_lang: "Die て-Form ist eine Verbindungsform ohne eigene Zeit. Sie reiht Handlungen, bildet Bitten (〜てください), Verlaufsformen (〜ています) u. v. m. Bildung nach Verbgruppe: Gruppe II = ます-Stamm + て; Gruppe III します→して, きます→きて; Gruppe I nach Endung: う・つ・る→って, む・ぶ・ぬ→んで, く→いて, ぐ→いで, す→して. Ausnahme: 行きます→行って.",
-    fehler: [
-      "Gruppe I: む・ぶ・ぬ werden zu んで (nicht んて).",
-      "行きます ist Ausnahme: 行って, nicht 行いて.",
-    ],
-    uebungen: [
-      { typ: "cloze", satz: "のみます → の＿（て-Form）", luecke: "んで", erkl: "む → んで." },
-      { typ: "mc", frage: "行きます → ?", optionen: ["行って", "行いて", "行きて", "行んで"], richtig: 0, erkl: "Ausnahme 行く → 行って." },
-    ],
-  },
-
-  "V ない-Form": {
-    erklaerung_lang: "Die ない-Form ist die einfache (Plain-)Verneinung. Gruppe II: ます-Stamm + ない (たべない). Gruppe III: しない, こない. Gruppe I: der i-Laut der ます-Form wird zum a-Laut + ない (かきます→かかない); endet die Wörterbuchform auf 〜う, wird daraus 〜わない (かいます→かわない). Sie ist Basis für 〜なければなりません, 〜ないでください u. a.",
-    fehler: [
-      "Gruppe I 〜います → 〜わない (nicht 〜あない).",
-      "きます (kommen) → こない, nicht きない.",
-    ],
-    uebungen: [
-      { typ: "mc", frage: "かいます → ?", optionen: ["かわない", "かあない", "かない", "かいない"], richtig: 0, erkl: "〜います → 〜わない." },
-      { typ: "cloze", satz: "きます → ＿（ない-Form, „nicht kommen“）", luecke: "こない", erkl: "Unregelmäßig: こない." },
-    ],
-  },
-
-  "V 辞書形 (Wörterbuchform)": {
-    erklaerung_lang: "Die Wörterbuchform (辞書形) ist die Grundform, unter der Verben im Wörterbuch stehen. Aus der ます-Form: Gruppe II ます→る (たべます→たべる); Gruppe III します→する, きます→くる; Gruppe I i-Laut → u-Laut (かきます→かく, のみます→のむ). Sie ist Basis für ことができます, 〜まえに, 〜とき u. a.",
-    fehler: [
-      "Gruppe I: nur den letzten Laut von -i nach -u ändern (き→く, み→む …).",
-      "Gruppe II endet immer auf る (たべる, みる).",
-    ],
-    uebungen: [
-      { typ: "mc", frage: "のみます → ?", optionen: ["のむ", "のる", "のみる", "のまる"], richtig: 0, erkl: "み → む (Gruppe I)." },
-      { typ: "cloze", satz: "たべます → ＿（Wörterbuchform）", luecke: "たべる", erkl: "Gruppe II: ます→る." },
-    ],
-  },
-
-  "N が すき／じょうず です": {
-    erklaerung_lang: "Bei すき (mögen), きらい (nicht mögen), じょうず (gut können) und へた (schlecht können) steht das Bezugsobjekt mit が, nicht mit を. Das Thema (die Person) steht mit は. Muster: [Person] は [Sache] が すきです.",
-    fehler: [
-      "Nach すき／じょうず steht が, nicht を.",
-      "すき und じょうず sind な-Adjektive: すきです, nicht すきいです.",
-    ],
-    kontrast: [
-      { a: "が", b: "を", note: "Bei Vorlieben/Können steht das Objekt mit が, nicht mit を." },
-    ],
-    uebungen: [
-      { typ: "mc", frage: "わたしは日本語＿すきです。", optionen: ["が", "を", "は", "に"], richtig: 0, erkl: "すき verlangt が." },
-      { typ: "mc", frage: "ミラーさんはテニス＿じょうずです。", optionen: ["が", "を", "に", "へ"], richtig: 0, erkl: "じょうず verlangt が." },
-      { typ: "cloze", satz: "わたしはケーキ＿すきです。（Vorliebe）", luecke: "が", erkl: "Vorlieben/Können → が." },
-    ],
-  },
-
-  "N も N です": {
-    erklaerung_lang: "も ersetzt は (oder が) und bedeutet „auch“. Es signalisiert, dass für das genannte Thema dasselbe gilt wie für etwas zuvor Gesagtes.",
-    fehler: ["も ersetzt は — nicht „は も“ zusammen verwenden."],
-    kontrast: [{ a: "も", b: "は", note: "は führt ein neues Thema ein; も heißt „auch“ und schließt an Bekanntes an." }],
-    uebungen: [
-      { typ: "mc", frage: "カリナさんは学生です。ワンさん＿学生です。", optionen: ["も", "は", "が", "を"], richtig: 0, erkl: "„auch“ → も." },
-      { typ: "cloze", satz: "わたしも会社員です。— あの人＿会社員です。", luecke: "も", erkl: "„auch“ → も." },
-      { typ: "mc", frage: "Was bedeutet も?", optionen: ["auch", "aber", "nur", "und"], richtig: 0, erkl: "も = auch." },
-    ],
-  },
-
   "N1 の N2": {
-    erklaerung_lang: "の verbindet zwei Nomen: N1 bestimmt N2 näher (Besitz, Zugehörigkeit, Herkunft, Material). N1 の N2 ≈ „N2 von/des N1“. Es kann auch ein Nomen ersetzen (わたしの = „meins“).",
-    fehler: ["Reihenfolge: das Bestimmende (N1) steht vorn — わたしの本 = „mein Buch“, nicht 本のわたし."],
-    uebungen: [
-      { typ: "mc", frage: "これは＿本です。（mein Buch）", optionen: ["わたしの", "わたしは", "わたしが", "わたしも"], richtig: 0, erkl: "Besitz → の." },
-      { typ: "cloze", satz: "IMC＿社員です。（Angestellter von IMC）", luecke: "の", erkl: "Zugehörigkeit → の." },
-      { typ: "mc", frage: "日本語＿本（ein Japanisch-Buch）", optionen: ["の", "は", "を", "で"], richtig: 0, erkl: "N1 の N2." },
+    "erklaerung_lang": "Das Bestimmende steht immer vorn: 私の子ども (mein Kind), 日本語の本 (ein Japanischbuch), 大学の先生 (Lehrer an der Uni). Auch Ortsangaben werden so gebildet: つくえの上 = auf dem Schreibtisch.",
+    "fehler": [
+      "Reihenfolge nicht umdrehen: 私の車, nicht 車の私."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "私＿かばんです。",
+        "optionen": [
+          "の",
+          "は",
+          "を",
+          "に"
+        ],
+        "richtig": 0,
+        "erkl": "の zeigt die Zugehörigkeit („meine Tasche“)."
+      },
+      {
+        "typ": "cloze",
+        "satz": "つくえ＿上に本があります。",
+        "luecke": "の",
+        "erkl": "Ortsangaben: N の 上／下／中 …"
+      }
+    ]
   },
-
-  "これ／それ／あれ": {
-    erklaerung_lang: "Demonstrativpronomen für Dinge: これ = beim Sprecher (hier), それ = beim Hörer (da), あれ = von beiden entfernt (dort drüben). Frage: どれ (welches von dreien?). Sie stehen allein, nicht vor einem Nomen.",
-    fehler: ["これ/それ/あれ stehen allein; vor einem Nomen braucht man この/その/あの."],
-    kontrast: [{ a: "これ", b: "この", note: "これ steht allein („das hier“); この steht vor einem Nomen (この本 = „dieses Buch“)." }],
-    uebungen: [
-      { typ: "mc", frage: "（beim Sprecher）＿は本です。", optionen: ["これ", "それ", "あれ", "どれ"], richtig: 0, erkl: "Beim Sprecher → これ." },
-      { typ: "mc", frage: "（beim Hörer）＿は何ですか。", optionen: ["それ", "これ", "あれ", "どこ"], richtig: 0, erkl: "Beim Hörer → それ." },
-      { typ: "cloze", satz: "（weit von beiden weg）＿は学校です。", luecke: "あれ", erkl: "Entfernt → あれ." },
+  "N が あります／います": {
+    "erklaerung_lang": "Die Wahl hängt davon ab, ob sich das Ding von selbst bewegen kann: Menschen und Tiere → います, Gegenstände und Pflanzen → あります. Mit あります sagt man auch „haben“: じかんがあります = ich habe Zeit.",
+    "fehler": [
+      "Für Menschen und Tiere nicht あります benutzen.",
+      "Das Vorhandene wird mit が markiert, nicht mit を."
     ],
-  },
-
-  "この／その／あの ＋ N": {
-    erklaerung_lang: "この/その/あの stehen direkt vor einem Nomen und richten sich nach der Entfernung wie これ/それ/あれ. Frage: どの N (welches N?).",
-    fehler: ["Nach この/その/あの folgt immer ein Nomen — nicht allein verwenden."],
-    kontrast: [{ a: "この N", b: "これ", note: "この braucht ein Nomen (この人); これ steht allein." }],
-    uebungen: [
-      { typ: "mc", frage: "＿本はわたしのです。（dieses Buch hier）", optionen: ["この", "これ", "ここ", "こちら"], richtig: 0, erkl: "Vor Nomen → この." },
-      { typ: "cloze", satz: "＿人はだれですか。（jene Person dort）", luecke: "あの", erkl: "Entfernt + Nomen → あの." },
-      { typ: "mc", frage: "＿N = „welches N?“", optionen: ["どの", "どれ", "どこ", "だれ"], richtig: 0, erkl: "どの + Nomen." },
+    "kontrast": [
+      {
+        "a": "あります",
+        "b": "います",
+        "note": "あります = Dinge/Pflanzen, います = Menschen/Tiere."
+      }
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "へやにねこが＿。",
+        "optionen": [
+          "います",
+          "あります",
+          "です",
+          "します"
+        ],
+        "richtig": 0,
+        "erkl": "Katze = Lebewesen → います."
+      },
+      {
+        "typ": "mc",
+        "frage": "つくえの上に本が＿。",
+        "optionen": [
+          "あります",
+          "います",
+          "いきます",
+          "みます"
+        ],
+        "richtig": 0,
+        "erkl": "Buch = Gegenstand → あります."
+      }
+    ]
   },
-
-  "そうです／そうじゃありません": {
-    erklaerung_lang: "Antwort auf eine Nomen-Frage: はい、そうです bestätigt („ja, genau“). Verneinung: いいえ、そうじゃ(では)ありません. Nur bei Nomen-Sätzen (N です), nicht bei Verben oder Adjektiven.",
-    fehler: ["そうです nur bei Nomen-Fragen; bei Verben/Adjektiven antwortet man mit dem Verb/Adjektiv."],
-    uebungen: [
-      { typ: "mc", frage: "それは本ですか。— はい、＿。", optionen: ["そうです", "そうします", "あります", "います"], richtig: 0, erkl: "Bestätigung → そうです." },
-      { typ: "cloze", satz: "いいえ、そう＿ありません。（Verneinung）", luecke: "じゃ", erkl: "そうじゃありません." },
-      { typ: "mc", frage: "Bei welchem Satztyp passt そうです?", optionen: ["N です", "V ます", "い-Adjektiv", "Bewegung"], richtig: 0, erkl: "Nur bei Nomen-Sätzen." },
+  "[Ort] に N が あります／います": {
+    "erklaerung_lang": "Ortswörter sind im Japanischen Nomen: 上 (oben), 下 (unten), 中 (in), 前 (vor), うしろ (hinter), 右 (rechts), 左 (links), となり (neben), 間 (zwischen; A と B の 間). Sie hängen mit の am Bezugswort. Fragt man, wo etwas ist, dreht man um: 本はどこにありますか。…つくえの上にあります。",
+    "fehler": [
+      "Bezugswort + の + Ortswort: つくえの上 (nicht 上のつくえ).",
+      "Ort mit に, nicht mit で (で ist für Handlungen)."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "つくえの上＿本があります。",
+        "optionen": [
+          "に",
+          "で",
+          "を",
+          "が"
+        ],
+        "richtig": 0,
+        "erkl": "Ort des Vorhandenseins → に."
+      },
+      {
+        "typ": "mc",
+        "frage": "„Zwischen Berg und Berg“ heißt …",
+        "optionen": [
+          "山と山の間",
+          "山の間と山",
+          "間の山と山",
+          "山と間の山"
+        ],
+        "richtig": 0,
+        "erkl": "A と B の 間."
+      },
+      {
+        "typ": "cloze",
+        "satz": "木の＿に鳥がいます。（oben, auf）",
+        "luecke": "上",
+        "erkl": "上 = oben, auf."
+      }
+    ]
   },
-
-  "ここ／そこ／あそこ": {
-    erklaerung_lang: "Ortsdemonstrativa: ここ = hier (beim Sprecher), そこ = da (beim Hörer), あそこ = dort drüben. Höflicher und zugleich Richtungsangabe: こちら/そちら/あちら. Frage: どこ (wo?) / どちら (höflich).",
-    fehler: ["どこ fragt nach dem Ort; どちら ist die höfliche Variante (auch „welche Richtung/welches von zweien“)."],
-    uebungen: [
-      { typ: "mc", frage: "トイレは＿ですか。（wo?）", optionen: ["どこ", "どれ", "どの", "だれ"], richtig: 0, erkl: "Ort fragen → どこ." },
-      { typ: "cloze", satz: "エレベーターは＿です。（dort drüben）", luecke: "あそこ", erkl: "Entfernt → あそこ." },
-      { typ: "mc", frage: "höfliche Form von どこ:", optionen: ["どちら", "どれ", "どの", "どう"], richtig: 0, erkl: "どちら ist höflicher." },
+  "N1 や N2 (など)": {
+    "erklaerung_lang": "と zählt vollständig auf (A und B — sonst nichts), や nennt nur Beispiele (A, B und anderes). など am Ende betont, dass noch mehr dazugehört.",
+    "kontrast": [
+      {
+        "a": "A と B",
+        "b": "A や B",
+        "note": "と = vollständige Aufzählung, や = beispielhafte Aufzählung."
+      }
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "へやにソファ＿ランプがあります。（u. a.）",
+        "optionen": [
+          "や",
+          "を",
+          "で",
+          "へ"
+        ],
+        "richtig": 0,
+        "erkl": "や = beispielhafte Aufzählung."
+      }
+    ]
   },
-
-  "N は [Ort] です": {
-    erklaerung_lang: "Gibt an, wo sich eine Sache oder Person befindet: N は + Ortsangabe + です. Für „Woher kommen Sie?“ dient おくにはどちらですか.",
-    uebungen: [
-      { typ: "mc", frage: "ミラーさんは＿です。（im Büro）", optionen: ["事務所", "行きます", "そうです", "します"], richtig: 0, erkl: "Ortsangabe + です." },
-      { typ: "cloze", satz: "受付は2＿です。（zweite Etage）", luecke: "かい", erkl: "2かい = 2. Etage." },
-      { typ: "mc", frage: "おくには＿ですか。（Woher kommen Sie?）", optionen: ["どちら", "どこ", "なに", "だれ"], richtig: 0, erkl: "Höflich → どちら." },
+  "N を V-ます": {
+    "erklaerung_lang": "を wird „o“ gesprochen. Das Verb steht immer am Satzende; davor stehen Zeit, Ort und Objekt. Zeitangaben ohne Zahl (まい日, あした) brauchen keine Partikel.",
+    "fehler": [
+      "を wird „o“ gesprochen.",
+      "Das Verb steht am Ende des Satzes."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "パン＿たべます。",
+        "optionen": [
+          "を",
+          "に",
+          "へ",
+          "が"
+        ],
+        "richtig": 0,
+        "erkl": "Objekt → を."
+      },
+      {
+        "typ": "cloze",
+        "satz": "テレビ＿みます。",
+        "luecke": "を",
+        "erkl": "Was man sieht → を."
+      }
+    ]
   },
-
-  "今 ～時～分です": {
-    erklaerung_lang: "Uhrzeit: 今 [Zahl]時[Zahl]分です. Sonderlesungen: 4時=よじ, 7時=しちじ, 9時=くじ; 1分=いっぷん, 3分=さんぷん. Frage: 今何時ですか。",
-    fehler: ["4時 = „yoji“ (nicht „shiji“); 9時 = „kuji“.", "～分 wechselt zwischen ふん/ぷん (z. B. いっぷん, さんぷん)."],
-    uebungen: [
-      { typ: "mc", frage: "4時 liest man …", optionen: ["よじ", "しじ", "よんじ", "しちじ"], richtig: 0, erkl: "4時 = よじ." },
-      { typ: "cloze", satz: "今何＿ですか。（Wie spät ist es?）", luecke: "時", erkl: "何時 = wie viel Uhr." },
-      { typ: "mc", frage: "9時 liest man …", optionen: ["くじ", "きゅうじ", "ここのじ", "なじ"], richtig: 0, erkl: "9時 = くじ." },
+  "[Ort] へ 行きます": {
+    "erklaerung_lang": "Bei Bewegungsverben (いきます, きます, かえります) steht das Ziel mit へ oder に. へ betont die Richtung, に das Ziel — im Alltag sind beide richtig.",
+    "fehler": [
+      "へ wird „e“ gesprochen, nicht „he“."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "がっこう＿いきます。",
+        "optionen": [
+          "へ",
+          "を",
+          "で",
+          "が"
+        ],
+        "richtig": 0,
+        "erkl": "Richtung → へ (oder に)."
+      }
+    ]
   },
-
-  "V ます／ました": {
-    erklaerung_lang: "Die höfliche Verbform: Gegenwart/Zukunft bejaht ～ます, verneint ～ません; Vergangenheit bejaht ～ました, verneint ～ませんでした. Der ます-Stamm ist die Basis vieler weiterer Formen.",
-    fehler: ["Verneinte Vergangenheit: ～ませんでした (nicht „～ましたじゃない“)."],
-    kontrast: [{ a: "～ます", b: "～ました", note: "～ます = Gegenwart/Zukunft; ～ました = Vergangenheit." }],
-    uebungen: [
-      { typ: "mc", frage: "„ich habe gegessen“ (höflich):", optionen: ["たべました", "たべます", "たべません", "たべましょう"], richtig: 0, erkl: "Vergangenheit → ました." },
-      { typ: "cloze", satz: "きのうは行き＿でした。（bin nicht gegangen）", luecke: "ません", erkl: "ませんでした = verneinte Vergangenheit." },
-      { typ: "mc", frage: "„ich trinke nicht“ (höflich):", optionen: ["のみません", "のみます", "のみました", "のみましょう"], richtig: 0, erkl: "Verneinung → ません." },
-    ],
-  },
-
-  "[Zeit] に V": {
-    erklaerung_lang: "に markiert einen konkreten Zeitpunkt (Uhr, Wochentag, Datum): 7時に、月曜日に. Bei relativen Zeitangaben (きょう, あした, まいにち) und Tageszeiten ohne feste Zahl steht KEIN に.",
-    fehler: ["Kein に bei きょう/あした/まいあさ/今.", "Wochentag + に ist möglich, aber oft weggelassen."],
-    kontrast: [{ a: "7時に", b: "きょう", note: "Feste Uhrzeit/Datum → に; relative Zeit (きょう, あした) → ohne に." }],
-    uebungen: [
-      { typ: "mc", frage: "7時＿おきます。（um 7 Uhr）", optionen: ["に", "で", "を", "へ"], richtig: 0, erkl: "Zeitpunkt → に." },
-      { typ: "mc", frage: "Wobei steht KEIN に?", optionen: ["あした", "7時", "月曜日", "9時半"], richtig: 0, erkl: "Relative Zeit → ohne に." },
-      { typ: "cloze", satz: "日曜日＿どこも行きません。（am Sonntag）", luecke: "に", erkl: "Wochentag + に." },
-    ],
-  },
-
-  "～から ～まで": {
-    erklaerung_lang: "から = von/ab (Anfang), まで = bis (Ende). Für Zeit und Ort: 9時から5時まで、東京から大阪まで. から allein nennt nur den Anfang, まで allein nur das Ende.",
-    uebungen: [
-      { typ: "mc", frage: "9時＿5時まで（von 9 …）", optionen: ["から", "まで", "に", "で"], richtig: 0, erkl: "Anfang → から." },
-      { typ: "cloze", satz: "うちから駅＿あるきます。（bis zum Bahnhof）", luecke: "まで", erkl: "Ende → まで." },
-      { typ: "mc", frage: "„bis“ heißt …", optionen: ["まで", "から", "より", "ごろ"], richtig: 0, erkl: "まで = bis." },
-    ],
-  },
-
-  "～ね／～よ": {
-    erklaerung_lang: "Satzendpartikeln: ね sucht Zustimmung/Bestätigung („…, nicht wahr?“), よ teilt dem Hörer eine neue, betonte Information mit („ich sag dir …“).",
-    fehler: ["よ nicht überstrapazieren — es betont/informiert und kann sonst aufdringlich wirken."],
-    kontrast: [{ a: "ね", b: "よ", note: "ね = Zustimmung suchen; よ = neue Information geben/betonen." }],
-    uebungen: [
-      { typ: "mc", frage: "いいお天気です＿。（…, nicht wahr?）", optionen: ["ね", "よ", "か", "の"], richtig: 0, erkl: "Zustimmung → ね." },
-      { typ: "mc", frage: "この電車は東京へ行きます＿。（Info: ich sag dir）", optionen: ["よ", "ね", "か", "の"], richtig: 0, erkl: "Neue Info → よ." },
-      { typ: "cloze", satz: "そのケーキ、おいしいです＿。（Zustimmung erwartet）", luecke: "ね", erkl: "ね sucht Zustimmung." },
-    ],
-  },
-
-  "[Zeitdauer] V （ohne に）": {
-    erklaerung_lang: "Eine Zeitdauer (wie lange) steht OHNE Partikel direkt vor dem Verb: 2時間べんきょうします (zwei Stunden lernen). Unterscheide sie vom Zeitpunkt (mit に).",
-    fehler: ["Dauer bekommt kein に: „2時間に“ ist falsch — richtig „2時間べんきょうします“."],
-    kontrast: [{ a: "2時間 V", b: "2時に V", note: "Dauer (wie lange) → ohne に; Zeitpunkt (wann) → mit に." }],
-    uebungen: [
-      { typ: "mc", frage: "毎日2時間＿べんきょうします。（Dauer）", optionen: ["（nichts）", "に", "で", "を"], richtig: 0, erkl: "Dauer ohne Partikel." },
-      { typ: "mc", frage: "Was braucht に?", optionen: ["7時 (Zeitpunkt)", "2時間 (Dauer)", "3週間 (Dauer)", "1年 (Dauer)"], richtig: 0, erkl: "Nur der Zeitpunkt." },
-      { typ: "cloze", satz: "きのう3時間ねました。— „3時間“ ist eine ＿.（Begriff）", luecke: "Dauer", erkl: "Zeitdauer → ohne に." },
-    ],
-  },
-
-  "[Verkehrsmittel] で 行きます": {
-    erklaerung_lang: "で markiert das Verkehrsmittel/Beförderungsmittel: でんしゃで行きます (mit dem Zug fahren). „Zu Fuß“ ist die Ausnahme: あるいて行きます (kein で).",
-    fehler: ["„Zu Fuß“ heißt あるいて — kein で."],
-    uebungen: [
-      { typ: "mc", frage: "タクシー＿行きます。（mit dem Taxi）", optionen: ["で", "に", "へ", "を"], richtig: 0, erkl: "Verkehrsmittel → で." },
-      { typ: "cloze", satz: "ひこうき＿日本へ行きます。（mit dem Flugzeug）", luecke: "で", erkl: "Verkehrsmittel → で." },
-      { typ: "mc", frage: "„zu Fuß gehen“:", optionen: ["あるいて行きます", "あしで行きます", "あるくで行きます", "あるきで行きます"], richtig: 0, erkl: "Ausnahme: あるいて." },
-    ],
-  },
-
-  "[Person] と V": {
-    erklaerung_lang: "と verbindet die Person, mit der man etwas tut: ともだちと行きます (mit Freunden gehen). „Allein“ ist ひとりで.",
-    kontrast: [{ a: "と", b: "で", note: "[Person] と = zusammen mit jemandem; ひとりで = allein." }],
-    uebungen: [
-      { typ: "mc", frage: "かぞく＿レストランへ行きます。（mit der Familie）", optionen: ["と", "に", "で", "が"], richtig: 0, erkl: "mit Person → と." },
-      { typ: "mc", frage: "„allein“ heißt …", optionen: ["ひとりで", "ひとりと", "ひとりに", "ひとりを"], richtig: 0, erkl: "allein → ひとりで." },
-      { typ: "cloze", satz: "ミラーさん＿テニスをします。（mit Herrn Müller）", luecke: "と", erkl: "mit Person → と." },
-    ],
-  },
-
-  "～ませんか／～ましょう": {
-    erklaerung_lang: "～ませんか lädt höflich ein („Wollen wir nicht …?“). ～ましょう schlägt vor („Lass uns …“). ～ましょうか bietet Hilfe an oder fragt nach einem gemeinsamen Vorschlag.",
-    kontrast: [{ a: "～ませんか", b: "～ましょう", note: "ませんか = Einladung/Frage; ましょう = (bereits einiger) Vorschlag „lass uns“." }],
-    uebungen: [
-      { typ: "mc", frage: "いっしょにえいがを見＿か。（Einladung）", optionen: ["ません", "ましょう", "ました", "ます"], richtig: 0, erkl: "Einladung → ～ませんか." },
-      { typ: "mc", frage: "„Lass uns gehen!“:", optionen: ["行きましょう", "行きませんか", "行きます", "行きました"], richtig: 0, erkl: "Vorschlag → ～ましょう." },
-      { typ: "cloze", satz: "つかれましたね。少しやすみ＿。（lass uns ausruhen）", luecke: "ましょう", erkl: "Vorschlag → ましょう." },
-    ],
-  },
-
   "[Ort] で V": {
-    erklaerung_lang: "で markiert den Ort, AN DEM eine Handlung stattfindet: としょかんで本をよみます. Davon zu unterscheiden ist に (Existenzort/Ziel).",
-    kontrast: [{ a: "で", b: "に", note: "で = Ort der Handlung (etwas TUN); に = Existenzort (sein/da) oder Ziel." }],
-    uebungen: [
-      { typ: "mc", frage: "レストラン＿ばんごはんをたべます。（Handlungsort）", optionen: ["で", "に", "へ", "を"], richtig: 0, erkl: "Handlung am Ort → で." },
-      { typ: "cloze", satz: "うち＿べんきょうします。（zu Hause lernen）", luecke: "で", erkl: "Handlungsort → で." },
-      { typ: "mc", frage: "Wo steht で?", optionen: ["本をよむ場所", "いる場所", "ある場所", "行く目的地"], richtig: 0, erkl: "Handlungsort → で." },
+    "erklaerung_lang": "Merke: に (Ort des Seins: あります, います, すみます) und で (Ort des Tuns: たべます, かいます, はたらきます). すみます ist eine Ausnahme: ベルリンにすんでいます.",
+    "kontrast": [
+      {
+        "a": "へやに います",
+        "b": "へやで ねます",
+        "note": "に = wo etwas ist, で = wo etwas getan wird."
+      }
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "レストラン＿ばんごはんをたべます。",
+        "optionen": [
+          "で",
+          "に",
+          "を",
+          "へ"
+        ],
+        "richtig": 0,
+        "erkl": "Ort einer Handlung → で."
+      },
+      {
+        "typ": "mc",
+        "frage": "こうえん＿犬がいます。",
+        "optionen": [
+          "に",
+          "で",
+          "を",
+          "と"
+        ],
+        "richtig": 0,
+        "erkl": "Ort des Vorhandenseins → に."
+      }
+    ]
   },
-
-  "いっしょに V": {
-    erklaerung_lang: "いっしょに = „zusammen, gemeinsam“. Oft mit [Person]と kombiniert: ともだちといっしょに行きます.",
-    uebungen: [
-      { typ: "mc", frage: "Was bedeutet いっしょに?", optionen: ["zusammen", "allein", "oft", "bald"], richtig: 0, erkl: "いっしょに = gemeinsam." },
-      { typ: "cloze", satz: "ともだちと＿に行きます。（zusammen）", luecke: "いっしょ", erkl: "いっしょに = zusammen." },
-      { typ: "mc", frage: "„Lass uns zusammen essen.“:", optionen: ["いっしょにたべましょう", "ひとりでたべましょう", "いっしょにたべません", "いっしょをたべます"], richtig: 0, erkl: "いっしょに + ましょう." },
+  "[Person] と V": {
+    "erklaerung_lang": "と kann auch zwei Nomen vollständig verbinden („A und B“): パンとコーヒー. Mit einer Person vor einem Verb heißt es „mit“. Allein: ひとりで.",
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "かぞく＿りょこうします。",
+        "optionen": [
+          "と",
+          "を",
+          "が",
+          "は"
+        ],
+        "richtig": 0,
+        "erkl": "mit jemandem → と."
+      }
+    ]
+  },
+  "[Mittel] で V": {
+    "erklaerung_lang": "Wer zu Fuß geht, sagt あるいて (ohne で). Die Frage nach dem Mittel lautet なんで (womit?).",
+    "fehler": [
+      "„Zu Fuß“ ist あるいて, nicht あるいてで."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "じてん車＿がっこうへいきます。",
+        "optionen": [
+          "で",
+          "を",
+          "に",
+          "が"
+        ],
+        "richtig": 0,
+        "erkl": "Verkehrsmittel → で."
+      }
+    ]
   },
-
-  "[Werkzeug] で V": {
-    erklaerung_lang: "で markiert auch Werkzeug, Mittel oder Sprache: はしでたべます (mit Stäbchen essen), 日本語ではなします (auf Japanisch sprechen).",
-    kontrast: [{ a: "で (Werkzeug)", b: "で (Ort)", note: "Dieselbe Partikel で — der Kontext entscheidet: Mittel/Werkzeug vs. Handlungsort." }],
-    uebungen: [
-      { typ: "mc", frage: "はし＿たべます。（mit Stäbchen）", optionen: ["で", "を", "に", "へ"], richtig: 0, erkl: "Werkzeug → で." },
-      { typ: "cloze", satz: "日本語＿手紙を書きます。（auf Japanisch）", luecke: "で", erkl: "Sprache/Mittel → で." },
-      { typ: "mc", frage: "„mit dem Bleistift schreiben“:", optionen: ["えんぴつで書きます", "えんぴつを書きます", "えんぴつに書きます", "えんぴつへ書きます"], richtig: 0, erkl: "Werkzeug → で." },
+  "V ます／ました": {
+    "erklaerung_lang": "Alle Verben folgen demselben Muster: ます → ません → ました → ませんでした. Die Gegenwartsform drückt auch die Zukunft aus (あした行きます = ich gehe morgen).",
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "Vergangenheit von たべます:",
+        "optionen": [
+          "たべました",
+          "たべません",
+          "たべませんでした",
+          "たべましょう"
+        ],
+        "richtig": 0,
+        "erkl": "ます → ました."
+      },
+      {
+        "typ": "cloze",
+        "satz": "きのう、テレビを見＿。（nicht gesehen）",
+        "luecke": "ませんでした",
+        "erkl": "verneinte Vergangenheit → ませんでした."
+      }
+    ]
+  },
+  "い-Adj. / な-Adj. + です": {
+    "erklaerung_lang": "い-Adjektive enden auf い und werden selbst konjugiert (たかい → たかくない). な-Adjektive brauchen vor einem Nomen な (きれいな花) und werden über です verneint (きれいじゃありません). Achtung: きれい und ゆうめい sind な-Adjektive, obwohl sie auf い enden. いい wird zu よくない.",
+    "fehler": [
+      "きれい ist ein な-Adjektiv: きれいな花, nicht きれい花.",
+      "いい → よくないです (nicht いくないです)."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "Verneinung von たかいです:",
+        "optionen": [
+          "たかくないです",
+          "たかいじゃありません",
+          "たかくありませんでした",
+          "たかいません"
+        ],
+        "richtig": 0,
+        "erkl": "い-Adj.: い → くない."
+      },
+      {
+        "typ": "mc",
+        "frage": "きれい＿花",
+        "optionen": [
+          "な",
+          "の",
+          "い",
+          "—"
+        ],
+        "richtig": 0,
+        "erkl": "な-Adjektiv vor Nomen → な."
+      }
+    ]
   },
-
-  "N に あげます／もらいます": {
-    erklaerung_lang: "あげます = (jemandem) geben — der Empfänger steht mit に. もらいます = (von jemandem) bekommen — der Geber steht mit に oder から. くれます = (mir/uns) geben.",
-    fehler: ["Bei もらいます steht der Geber mit に/から, nicht mit が."],
-    kontrast: [{ a: "あげます", b: "もらいます", note: "あげます = ich gebe (Empfänger に); もらいます = ich bekomme (Geber に/から)." }],
-    uebungen: [
-      { typ: "mc", frage: "ともだち＿はなをあげます。（dem Freund geben）", optionen: ["に", "が", "を", "へ"], richtig: 0, erkl: "Empfänger → に." },
-      { typ: "cloze", satz: "わたしは母＿プレゼントをもらいました。（von der Mutter）", luecke: "に", erkl: "Geber → に/から." },
-      { typ: "mc", frage: "„(mir) geben“ heißt …", optionen: ["くれます", "あげます", "もらいます", "もちます"], richtig: 0, erkl: "An mich → くれます." },
+  "N が すき です": {
+    "erklaerung_lang": "すき ist ein な-Adjektiv („beliebt“). Deshalb: すきな人 (Person, die man mag), すきじゃありません (mag nicht). Das Gemochte steht mit が, nicht mit を.",
+    "fehler": [
+      "Nicht を: ねこがすきです (nicht ねこをすきです)."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "私はすし＿すきです。",
+        "optionen": [
+          "が",
+          "を",
+          "に",
+          "で"
+        ],
+        "richtig": 0,
+        "erkl": "Gemochtes → が."
+      }
+    ]
   },
-
-  "もう V ました ／ まだです": {
-    erklaerung_lang: "もう = „schon“ (mit ～ました). まだ = „noch nicht“ — Antwort: いいえ、まだです bzw. まだ ～ていません.",
-    kontrast: [{ a: "もう", b: "まだ", note: "もう ～ました = schon getan; まだです / まだ ～ていません = noch nicht." }],
-    uebungen: [
-      { typ: "mc", frage: "＿ひるごはんをたべましたか。（schon?）", optionen: ["もう", "まだ", "また", "もっと"], richtig: 0, erkl: "„schon“ → もう." },
-      { typ: "mc", frage: "いいえ、＿です。（noch nicht）", optionen: ["まだ", "もう", "また", "もっと"], richtig: 0, erkl: "„noch nicht“ → まだ." },
-      { typ: "cloze", satz: "＿しゅくだいをしていません。（noch nicht）", luecke: "まだ", erkl: "noch nicht → まだ." },
+  "N1 のほうが N2 より ～": {
+    "erklaerung_lang": "Beim Vergleich von zwei Dingen fragt man mit どちら (welches von beiden). In der Antwort steht der Gewinner mit のほうが, das Verglichene mit より. より allein reicht auch: 日本はかんこくより大きいです.",
+    "fehler": [
+      "より steht nach dem Verglichenen, nicht nach dem Gewinner."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "日本＿ほうがかんこくより大きいです。",
+        "optionen": [
+          "の",
+          "は",
+          "が",
+          "を"
+        ],
+        "richtig": 0,
+        "erkl": "N の ほうが …"
+      },
+      {
+        "typ": "cloze",
+        "satz": "ちゅうごくは日本＿大きいです。（größer als Japan）",
+        "luecke": "より",
+        "erkl": "より = als."
+      }
+    ]
   },
-
-  "い-Adj.／な-Adj. ＋ です": {
-    erklaerung_lang: "い-Adjektive enden auf い (たかい) und werden als Prädikat ～いです. な-Adjektive (きれい, しずか) stehen als Prädikat einfach mit です. Verneinung: い-Adj. ～くないです; な-Adj. ～じゃ／ではありません. いい ist unregelmäßig (Verneinung よくないです).",
-    fehler: ["い-Adjektiv-Verneinung: ～くないです (たかくないです), NICHT „たかいじゃない“.", "いい → よくない (unregelmäßig)."],
-    kontrast: [{ a: "い-Adj.", b: "な-Adj.", note: "い-Adj. endet auf い und flektiert (たかくない); な-Adj. verhält sich wie ein Nomen (しずかじゃない)." }],
-    uebungen: [
-      { typ: "mc", frage: "このカメラは＿。（ist teuer）", optionen: ["たかいです", "たかいだ", "たかな", "たかくです"], richtig: 0, erkl: "い-Adj. + です." },
-      { typ: "mc", frage: "Verneinung von „たかいです“:", optionen: ["たかくないです", "たかいじゃないです", "たかくです", "たかいくないです"], richtig: 0, erkl: "い-Adj.: ～くないです." },
-      { typ: "cloze", satz: "この町はしずか＿ありません。（な-Adj. verneint）", luecke: "じゃ", erkl: "な-Adj.: じゃありません." },
+  "N の 中で N が いちばん ～": {
+    "erklaerung_lang": "Der Rahmen steht mit の中で (unter …) oder einfach mit で (in Japan: 日本で). Danach folgt das Gewinner-Nomen mit が und いちばん + Adjektiv.",
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "くだものの中で、なに＿いちばんすきですか。",
+        "optionen": [
+          "が",
+          "を",
+          "は",
+          "に"
+        ],
+        "richtig": 0,
+        "erkl": "Fragewort + が bei いちばん."
+      }
+    ]
+  },
+  "なにも／どこへも／だれも + Verneinung": {
+    "erklaerung_lang": "Das Verb muss verneint sein — anders als im Deutschen gibt es eine doppelte Verneinung: なにも + ません. Mit へ／に: どこへも, mit Lebewesen: だれも.",
+    "fehler": [
+      "Das Verb muss verneint sein: なにもたべません (nicht なにもたべます)."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "デパートへいきました。でも、なにも＿。",
+        "optionen": [
+          "かいませんでした",
+          "かいました",
+          "かいます",
+          "かいましょう"
+        ],
+        "richtig": 0,
+        "erkl": "なにも + Verneinung."
+      },
+      {
+        "typ": "cloze",
+        "satz": "へやにだれ＿いません。",
+        "luecke": "も",
+        "erkl": "だれも + Verneinung = niemand."
+      }
+    ]
   },
-
-  "Adjektiv ＋ N": {
-    erklaerung_lang: "Vor einem Nomen steht das い-Adjektiv direkt (あたらしいくるま), das な-Adjektiv mit な (しずかなまち).",
-    fehler: ["な-Adjektiv braucht な vor dem Nomen: しずかなへや (nicht „しずかへや“)."],
-    uebungen: [
-      { typ: "mc", frage: "„ein ruhiges Zimmer“:", optionen: ["しずかなへや", "しずかへや", "しずくなへや", "しずかいへや"], richtig: 0, erkl: "な-Adj. + な + N." },
-      { typ: "mc", frage: "„ein neues Auto“:", optionen: ["あたらしいくるま", "あたらしなくるま", "あたらしくるま", "あたらしいなくるま"], richtig: 0, erkl: "い-Adj. direkt + N." },
-      { typ: "cloze", satz: "きれい＿はな（schöne Blume）", luecke: "な", erkl: "な-Adj. + な + N." },
+  "～ませんか／～ましょう": {
+    "erklaerung_lang": "Die verneinte Frage ませんか ist eine höfliche Einladung — die andere Person kann leicht absagen (ちょっと…). ましょう ist direkter: „Lass uns …“. Achtung: ましょうか (L4) bietet Hilfe an.",
+    "kontrast": [
+      {
+        "a": "のみませんか",
+        "b": "のみましょう",
+        "note": "ませんか = Einladung (Frage), ましょう = Vorschlag/Zusage."
+      }
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "いっしょにえいがを見＿。（Einladung）",
+        "optionen": [
+          "ませんか",
+          "ましょうか",
+          "ません",
+          "ました"
+        ],
+        "richtig": 0,
+        "erkl": "Einladung → ませんか."
+      }
+    ]
   },
-
-  "とても／あまり ＋ Adj.": {
-    erklaerung_lang: "とても = „sehr“ (mit bejahtem Adjektiv). あまり = „nicht besonders“ und verlangt eine Verneinung.",
-    fehler: ["あまり steht immer mit verneintem Adjektiv/Verb: あまり高くないです."],
-    kontrast: [{ a: "とても", b: "あまり", note: "とても + bejaht (sehr); あまり + verneint (nicht besonders)." }],
-    uebungen: [
-      { typ: "mc", frage: "＿たかくないです。（nicht besonders teuer）", optionen: ["あまり", "とても", "よく", "もっと"], richtig: 0, erkl: "あまり + Verneinung." },
-      { typ: "mc", frage: "＿きれいです。（sehr schön）", optionen: ["とても", "あまり", "まだ", "もう"], richtig: 0, erkl: "とても + bejaht." },
-      { typ: "cloze", satz: "この本は＿おもしろくないです。（nicht besonders）", luecke: "あまり", erkl: "あまり + Verneinung." },
+  "～から、～": {
+    "erklaerung_lang": "Im Japanischen steht der Grund vor der Folge: „teuer, weil — kaufe nicht“. Auf eine Frage mit どうして antwortet man mit ～から。. Das deutsche „deshalb“ entspricht derselben Struktur.",
+    "fehler": [
+      "Reihenfolge: Grund + から + Folge (nicht umgekehrt)."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "さむいです＿、まどをしめます。",
+        "optionen": [
+          "から",
+          "まで",
+          "より",
+          "が"
+        ],
+        "richtig": 0,
+        "erkl": "Grund + から."
+      },
+      {
+        "typ": "mc",
+        "frage": "„Warum?“ heißt …",
+        "optionen": [
+          "どうして",
+          "どこ",
+          "いつ",
+          "だれ"
+        ],
+        "richtig": 0,
+        "erkl": "どうして = warum."
+      }
+    ]
   },
-
-  "N1 は どんな N2 ですか": {
-    erklaerung_lang: "どんな + Nomen fragt nach Eigenschaften: „Was für ein …?“ Die Antwort enthält ein Adjektiv (きれいな町です).",
-    uebungen: [
-      { typ: "mc", frage: "京都は＿町ですか。（was für ein …?）", optionen: ["どんな", "どの", "どれ", "どこ"], richtig: 0, erkl: "Eigenschaft fragen → どんな." },
-      { typ: "cloze", satz: "ミラーさんは＿人ですか。（was für ein Mensch）", luecke: "どんな", erkl: "どんな + Nomen." },
-      { typ: "mc", frage: "Antwort auf „どんな町ですか“:", optionen: ["きれいな町です", "あそこです", "三つです", "そうです"], richtig: 0, erkl: "Mit Adjektiv antworten." },
+  "N1 に N2 を あげます／もらいます": {
+    "erklaerung_lang": "Bei あげます steht der Empfänger mit に, bei もらいます der Geber mit に oder から. Gibt jemand MIR etwas, sagt man くれます: ともだちが私にプレゼントをくれました.",
+    "kontrast": [
+      {
+        "a": "あげます",
+        "b": "もらいます",
+        "note": "あげます: ich → andere; もらいます: ich bekomme von anderen."
+      }
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "ともだち＿プレゼントをあげました。",
+        "optionen": [
+          "に",
+          "を",
+          "で",
+          "が"
+        ],
+        "richtig": 0,
+        "erkl": "Empfänger → に."
+      }
+    ]
   },
-
-  "～から (Grund)": {
-    erklaerung_lang: "から nach einem (höflichen oder einfachen) Satz bedeutet „weil/denn“: Grund + から、Folge. Die Frage nach dem Grund ist どうして.",
-    kontrast: [{ a: "から (Grund)", b: "から (von)", note: "Nach einem Satz = „weil“; nach einem Nomen/Zeit/Ort = „von/ab“." }],
-    uebungen: [
-      { typ: "mc", frage: "さむいです＿、行きません。（weil）", optionen: ["から", "まで", "より", "が"], richtig: 0, erkl: "Grund → から." },
-      { typ: "cloze", satz: "どうして来ませんか。— じかんがない＿です。（weil）", luecke: "から", erkl: "Grund → から." },
-      { typ: "mc", frage: "どうして fragt nach …", optionen: ["dem Grund", "dem Ort", "der Zeit", "der Menge"], richtig: 0, erkl: "どうして = warum." },
+  "Fragewörter": {
+    "erklaerung_lang": "Fragewörter verbinden sich mit Partikeln: だれと (mit wem), どこで (wo — Handlung), どこへ (wohin), なんで (womit). Vor einem Fragewort als Subjekt steht が, nie は: だれがきましたか.",
+    "fehler": [
+      "Nach Fragewort als Subjekt が, nicht は: だれがいますか."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "＿日本へ行きますか。…らいねん行きます。",
+        "optionen": [
+          "いつ",
+          "どこ",
+          "だれ",
+          "いくら"
+        ],
+        "richtig": 0,
+        "erkl": "Zeit → いつ."
+      },
+      {
+        "typ": "mc",
+        "frage": "＿とえいがを見ましたか。…ともだちと。",
+        "optionen": [
+          "だれ",
+          "なに",
+          "どこ",
+          "いつ"
+        ],
+        "richtig": 0,
+        "erkl": "mit wem → だれと."
+      }
+    ]
   },
-
-  "N が わかります／あります": {
-    erklaerung_lang: "わかります (verstehen) und あります (haben/es gibt) verlangen das Bezugsobjekt mit が, nicht mit を.",
-    fehler: ["Nach わかります/あります steht が, nicht を."],
-    uebungen: [
-      { typ: "mc", frage: "日本語＿わかります。（verstehen）", optionen: ["が", "を", "は", "に"], richtig: 0, erkl: "わかります verlangt が." },
-      { typ: "cloze", satz: "わたしは車＿あります。（habe ein Auto）", luecke: "が", erkl: "あります verlangt が." },
-      { typ: "mc", frage: "Was bedeutet わかります?", optionen: ["verstehen", "sprechen", "hören", "sehen"], richtig: 0, erkl: "わかります = verstehen." },
-    ],
-  },
-
-  "あります／います": {
-    erklaerung_lang: "Existenz: あります für Unbelebtes (Dinge, Pflanzen), います für Belebtes (Menschen, Tiere). „Es gibt …“ / „… ist da“.",
-    fehler: ["Menschen/Tiere → います; Dinge/Pflanzen → あります."],
-    kontrast: [{ a: "あります", b: "います", note: "あります = unbelebt; います = belebt (Menschen/Tiere)." }],
-    uebungen: [
-      { typ: "mc", frage: "つくえの上に本が＿。（Buch）", optionen: ["あります", "います", "です", "します"], richtig: 0, erkl: "Unbelebt → あります." },
-      { typ: "mc", frage: "きょうしつに学生が＿。（Studenten）", optionen: ["います", "あります", "です", "します"], richtig: 0, erkl: "Belebt → います." },
-      { typ: "cloze", satz: "にわに犬が＿。（Hund）", luecke: "います", erkl: "Tier → います." },
-    ],
-  },
-
-  "[Ort] に N が あります": {
-    erklaerung_lang: "Der Existenzort steht mit に, das Existierende mit が: つくえの上に本があります.",
-    kontrast: [{ a: "に (Existenz)", b: "で (Handlung)", note: "に = wo etwas IST; で = wo etwas getan wird." }],
-    uebungen: [
-      { typ: "mc", frage: "テーブルの上＿りんごがあります。（Ort）", optionen: ["に", "で", "へ", "を"], richtig: 0, erkl: "Existenzort → に." },
-      { typ: "cloze", satz: "へや＿テレビがあります。（im Zimmer）", luecke: "に", erkl: "Existenzort → に." },
-      { typ: "mc", frage: "Richtige Reihenfolge:", optionen: ["Ort に N が あります", "N に Ort が あります", "Ort で N を あります", "N を Ort に あります"], richtig: 0, erkl: "Ort に N が あります." },
-    ],
-  },
-
-  "Zahl ＋ Zählwort": {
-    erklaerung_lang: "Mengen mit Zähleinheiten: allgemein ひとつ…とお; Personen ～人 (ひとり, ふたり, さんにん…); flache Dinge ～まい; lange Dinge ～本; kleine Dinge ～こ. Das Zählwort steht meist ohne Partikel direkt vor dem Verb.",
-    fehler: ["1人 = ひとり, 2人 = ふたり (unregelmäßig)."],
-    uebungen: [
-      { typ: "mc", frage: "りんごを＿ください。（3 Stück, allgemein）", optionen: ["みっつ", "さんつ", "みつ", "さんまい"], richtig: 0, erkl: "3 (allgemein) → みっつ." },
-      { typ: "mc", frage: "学生が＿います。（2 Personen）", optionen: ["ふたり", "にひと", "にじん", "ふたつ"], richtig: 0, erkl: "2 Personen → ふたり." },
-      { typ: "cloze", satz: "きってを5＿ください。（5 flache Dinge）", luecke: "まい", erkl: "Flach → ～まい." },
-    ],
-  },
-
-  "[Dauer／Preis] かかります": {
-    erklaerung_lang: "かかります drückt aus, wie viel Zeit oder Geld etwas in Anspruch nimmt: 30分かかります、2000円かかります.",
-    uebungen: [
-      { typ: "mc", frage: "駅まで20分＿。（dauert）", optionen: ["かかります", "あります", "います", "します"], richtig: 0, erkl: "Zeit/Geld → かかります." },
-      { typ: "cloze", satz: "タクシーは2000円＿。（kostet）", luecke: "かかります", erkl: "Preis → かかります." },
-      { typ: "mc", frage: "かかります benutzt man für …", optionen: ["Zeit/Geld", "Ort", "Person", "Essen"], richtig: 0, erkl: "Dauer und Preis." },
-    ],
-  },
-
-  "[Zeitraum] に Zahl回 V": {
-    erklaerung_lang: "Häufigkeit: [Zeitraum]に [Zahl]回 — z. B. 1週間に2回 (zweimal pro Woche). に folgt dem Zeitraum.",
-    uebungen: [
-      { typ: "mc", frage: "1週間＿2回テニスをします。（pro Woche）", optionen: ["に", "で", "へ", "を"], richtig: 0, erkl: "Zeitraum + に." },
-      { typ: "cloze", satz: "1か月＿1回りょこうします。（einmal pro Monat）", luecke: "に", erkl: "Zeitraum + に." },
-      { typ: "mc", frage: "„dreimal“ heißt …", optionen: ["3回", "3本", "3まい", "3つ"], richtig: 0, erkl: "回 = Mal." },
-    ],
-  },
-
-  "N／Adj. — Vergangenheit": {
-    erklaerung_lang: "Vergangenheit von Nomen/な-Adjektiv: ～でした / ～じゃありませんでした. い-Adjektiv: ～かったです / ～くなかったです. いい ist unregelmäßig: よかったです.",
-    fehler: ["い-Adjektiv-Vergangenheit: たかかったです (NICHT „たかいでした“).", "いい → よかった."],
-    uebungen: [
-      { typ: "mc", frage: "„war teuer“ (い-Adj.):", optionen: ["たかかったです", "たかいでした", "たかでした", "たかくでした"], richtig: 0, erkl: "い-Adj.: ～かったです." },
-      { typ: "mc", frage: "„war Student“ (Nomen):", optionen: ["学生でした", "学生かったです", "学生いでした", "学生です"], richtig: 0, erkl: "Nomen: ～でした." },
-      { typ: "cloze", satz: "きのうは天気がよ＿です。（war gut, いい→）", luecke: "かった", erkl: "いい → よかった." },
-    ],
-  },
-
-  "N1 は N2 より ～です": {
-    erklaerung_lang: "Vergleich: N1 は N2 より [Adjektiv]です — „N1 ist [Adj]er als N2“. より = „als“.",
-    kontrast: [{ a: "より", b: "のほうが", note: "A は B より … (A ist …er als B); A のほうが B より … betont A („A ist eher …“)." }],
-    uebungen: [
-      { typ: "mc", frage: "東京は大阪＿大きいです。（als Osaka）", optionen: ["より", "から", "まで", "と"], richtig: 0, erkl: "Vergleich → より." },
-      { typ: "cloze", satz: "ひこうきは電車＿はやいです。（als der Zug）", luecke: "より", erkl: "Vergleich → より." },
-      { typ: "mc", frage: "より bedeutet …", optionen: ["als", "bis", "von", "auch"], richtig: 0, erkl: "より = als." },
-    ],
-  },
-
-  "～の中で ～が いちばん ～": {
-    erklaerung_lang: "Superlativ: [Gruppe]の中で [X]が いちばん [Adjektiv]です — „von allen … ist X am …“. いちばん = „am meisten / Nummer 1“.",
-    uebungen: [
-      { typ: "mc", frage: "くだもの＿中でなにがいちばんすきですか。", optionen: ["の", "に", "で", "が"], richtig: 0, erkl: "～の中で." },
-      { typ: "cloze", satz: "1年でなつ＿いちばんあついです。（der Sommer）", luecke: "が", erkl: "Das Spitzenelement → が." },
-      { typ: "mc", frage: "いちばん bedeutet …", optionen: ["am meisten", "ein wenig", "auch", "nicht"], richtig: 0, erkl: "いちばん = Nr. 1." },
-    ],
-  },
-
-  "N が ほしいです": {
-    erklaerung_lang: "ほしい (い-Adjektiv) = „(etwas) haben wollen“. Das Gewünschte steht mit が. Für Handlungen nutzt man ～たい.",
-    fehler: ["ほしい für DINGE; für HANDLUNGEN → ～たい.", "Das Gewünschte steht mit が, nicht を."],
-    uebungen: [
-      { typ: "mc", frage: "わたしは新しいくつ＿ほしいです。", optionen: ["が", "を", "に", "へ"], richtig: 0, erkl: "Gewünschtes → が." },
-      { typ: "cloze", satz: "なに＿ほしいですか。（was möchten Sie）", luecke: "が", erkl: "ほしい verlangt が." },
-      { typ: "mc", frage: "„etwas TUN wollen“ nutzt …", optionen: ["～たい", "ほしい", "すき", "あります"], richtig: 0, erkl: "Handlung → ～たい." },
-    ],
-  },
-
   "V たいです": {
-    erklaerung_lang: "～たい (am ます-Stamm) = „etwas tun wollen“. たい ist ein い-Adjektiv (Verneinung ～たくないです). Das Objekt kann が oder を nehmen.",
-    fehler: ["～たい flektiert wie ein い-Adjektiv: のみたくないです (nicht „のみたいじゃない“)."],
-    uebungen: [
-      { typ: "mc", frage: "日本へ行き＿です。（will gehen）", optionen: ["たい", "たく", "たくて", "たいだ"], richtig: 0, erkl: "ます-Stamm + たい." },
-      { typ: "cloze", satz: "なにを食べ＿ですか。（möchten essen）", luecke: "たい", erkl: "ます-Stamm + たい." },
-      { typ: "mc", frage: "„nicht trinken wollen“:", optionen: ["のみたくないです", "のみたいじゃない", "のまたいです", "のみたいないです"], richtig: 0, erkl: "～たくないです." },
+    "erklaerung_lang": "～たい verhält sich wie ein い-Adjektiv: たい → たくない → たかった → たくなかった. Es beschreibt nur den eigenen Wunsch (oder den des Gesprächspartners in einer Frage). Das Objekt kann mit を oder が stehen: すしを／がたべたいです.",
+    "fehler": [
+      "Nicht für Dritte benutzen: „Er möchte …“ wird anders ausgedrückt.",
+      "Verneinung: たくないです, nicht たいじゃありません."
     ],
+    "kontrast": [
+      {
+        "a": "V-たいです",
+        "b": "N が ほしいです",
+        "note": "たい = etwas TUN wollen, ほしい = etwas HABEN wollen."
+      }
+    ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "すしを＿たいです。",
+        "optionen": [
+          "たべ",
+          "たべます",
+          "たべて",
+          "たべる"
+        ],
+        "richtig": 0,
+        "erkl": "ます-Stamm + たい."
+      },
+      {
+        "typ": "mc",
+        "frage": "Verneinung von 行きたいです:",
+        "optionen": [
+          "行きたくないです",
+          "行きたいじゃありません",
+          "行きませんたい",
+          "行きたかったです"
+        ],
+        "richtig": 0,
+        "erkl": "たい → たくない."
+      },
+      {
+        "typ": "cloze",
+        "satz": "子どもの時、ピアノをならい＿。（wollte）",
+        "luecke": "たかったです",
+        "erkl": "Vergangenheit: たかったです."
+      }
+    ]
   },
-
-  "[Ort] へ V(ます-Stamm)に 行きます": {
-    erklaerung_lang: "Zweck einer Bewegung: ます-Stamm + に + 行きます/来ます/帰ります — „gehen, um zu …“ (映画を見に行きます).",
-    fehler: ["Vor に steht der ます-Stamm (見に), nicht die Wörterbuchform."],
-    uebungen: [
-      { typ: "mc", frage: "デパートへかばんを買い＿行きます。（um zu kaufen）", optionen: ["に", "で", "へ", "を"], richtig: 0, erkl: "Zweck → ます-Stamm + に." },
-      { typ: "cloze", satz: "レストランへ昼ごはんを食べ＿行きます。", luecke: "に", erkl: "Zweck → ます-Stamm + に." },
-      { typ: "mc", frage: "Vor に steht …", optionen: ["der ます-Stamm", "die Wörterbuchform", "die て-Form", "die ない-Form"], richtig: 0, erkl: "ます-Stamm + に." },
+  "N が ほしいです": {
+    "erklaerung_lang": "ほしい wird wie jedes い-Adjektiv konjugiert: ほしい → ほしくない → ほしかった → ほしくなかった. Wie bei すき steht das Gewünschte mit が. Für Handlungen nimmt man ～たい.",
+    "fehler": [
+      "Gewünschtes mit が, nicht を.",
+      "Für Handlungen nicht ほしい, sondern ～たい."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "新しいかばん＿ほしいです。",
+        "optionen": [
+          "が",
+          "を",
+          "に",
+          "で"
+        ],
+        "richtig": 0,
+        "erkl": "Gewünschtes → が."
+      },
+      {
+        "typ": "mc",
+        "frage": "„Ich wollte keinen Hund.“",
+        "optionen": [
+          "犬はほしくなかったです",
+          "犬がほしかったです",
+          "犬がほしくないです",
+          "犬をほしいです"
+        ],
+        "richtig": 0,
+        "erkl": "verneinte Vergangenheit → ほしくなかったです."
+      }
+    ]
   },
-
-  "V て ください": {
-    erklaerung_lang: "～てください (von der て-Form) ist die höfliche Bitte/Aufforderung: „Bitte tun Sie …“.",
-    uebungen: [
-      { typ: "mc", frage: "ここに名前を書い＿ください。", optionen: ["て", "た", "ない", "ます"], richtig: 0, erkl: "て-Form + ください." },
-      { typ: "cloze", satz: "ちょっとまっ＿ください。（warten Sie）", luecke: "て", erkl: "まつ → まって." },
-      { typ: "mc", frage: "„Bitte hören Sie“:", optionen: ["聞いてください", "聞きてください", "聞くください", "聞いたください"], richtig: 0, erkl: "聞く → 聞いて." },
-    ],
+  "子どもの 時、～": {
+    "erklaerung_lang": "Die Zeit des Hauptsatzes richtet sich nach dem Satzende: 子どもの時、～ました. Weitere Beispiele: 休みの時 (in den Ferien), びょうきの時 (wenn man krank ist).",
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "子ども＿時、ピアノをならいました。",
+        "optionen": [
+          "の",
+          "は",
+          "が",
+          "に"
+        ],
+        "richtig": 0,
+        "erkl": "N の 時."
+      }
+    ]
   },
-
-  "V て います (Verlauf)": {
-    erklaerung_lang: "～ています an der て-Form drückt eine gerade ablaufende Handlung aus: 今、本を読んでいます (lese gerade).",
-    kontrast: [{ a: "ています (Verlauf)", b: "ています (Zustand)", note: "Verlauf: gerade dabei; Zustand: dauerhaft (住んでいます, 知っています)." }],
-    uebungen: [
-      { typ: "mc", frage: "今、ごはんを食べ＿います。（gerade）", optionen: ["て", "た", "ない", "ます"], richtig: 0, erkl: "て-Form + います." },
-      { typ: "cloze", satz: "父は今しんぶんを読＿います。（liest gerade, よむ→）", luecke: "んで", erkl: "よむ → よんで." },
-      { typ: "mc", frage: "„Was machst du gerade?“ → 何をし＿いますか。", optionen: ["て", "た", "ない", "ましょう"], richtig: 0, erkl: "Verlauf → て + います." },
+  "Verbgruppen I / II / III": {
+    "erklaerung_lang": "Faustregel: Steht vor ます ein Laut auf -e (たべ, あけ, しめ), ist es Gruppe II. Steht dort ein -i-Laut (のみ, かき, まち), ist es meistens Gruppe I — aber einige häufige Verben sind Ausnahmen und gehören zu Gruppe II: みます, ねます, おきます (aufstehen), います, あびます, かります, きます (anziehen). Gruppe III sind nur します (auch べんきょうします usw.) und きます (kommen).",
+    "fehler": [
+      "おきます (aufstehen) ist Gruppe II, おきます (hinlegen) ist Gruppe I — gleiche Kana, verschiedene Verben.",
+      "みます und ねます sind Gruppe II, obwohl vor ます ein i-Laut steht."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "Zu welcher Gruppe gehört まちます?",
+        "optionen": [
+          "I",
+          "II",
+          "III"
+        ],
+        "richtig": 0,
+        "erkl": "-i-ます, keine Ausnahme → Gruppe I."
+      },
+      {
+        "typ": "mc",
+        "frage": "Zu welcher Gruppe gehört みます?",
+        "optionen": [
+          "II",
+          "I",
+          "III"
+        ],
+        "richtig": 0,
+        "erkl": "みます ist eine Ausnahme → Gruppe II."
+      },
+      {
+        "typ": "mc",
+        "frage": "Zu welcher Gruppe gehört そうじします?",
+        "optionen": [
+          "III",
+          "I",
+          "II"
+        ],
+        "richtig": 0,
+        "erkl": "N + します → Gruppe III."
+      }
+    ]
   },
-
-  "V ましょうか": {
-    erklaerung_lang: "～ましょうか bietet Hilfe an („Soll ich …?“) oder schlägt etwas gemeinsam vor.",
-    uebungen: [
-      { typ: "mc", frage: "にもつを持ち＿。（Soll ich tragen?）", optionen: ["ましょうか", "ませんか", "ました", "たいです"], richtig: 0, erkl: "Hilfe anbieten → ましょうか." },
-      { typ: "cloze", satz: "あついですね。まどをあけ＿。（Soll ich öffnen?）", luecke: "ましょうか", erkl: "～ましょうか." },
-      { typ: "mc", frage: "～ましょうか bedeutet …", optionen: ["Hilfe anbieten", "verbieten", "fragen ob erlaubt", "Vergangenheit"], richtig: 0, erkl: "Angebot/Vorschlag." },
+  "V て-Form": {
+    "erklaerung_lang": "Merksatz für Gruppe I nach dem Laut vor ます: い・ち・り → って, み・び・に → んで, き → いて, ぎ → いで, し → して. Einzige Ausnahme: いきます → いって. Gruppe II ist einfach: ます durch て ersetzen. Gruppe III: して / きて.",
+    "fehler": [
+      "いきます → いって (nicht いいて).",
+      "Gruppe-II-Verben nicht wie Gruppe I behandeln: みます → みて (nicht みって)."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "て-Form von まちます:",
+        "optionen": [
+          "まって",
+          "まちて",
+          "まんで",
+          "まいて"
+        ],
+        "richtig": 0,
+        "erkl": "ち-ます → って."
+      },
+      {
+        "typ": "mc",
+        "frage": "て-Form von よみます:",
+        "optionen": [
+          "よんで",
+          "よって",
+          "よみて",
+          "よいて"
+        ],
+        "richtig": 0,
+        "erkl": "み-ます → んで."
+      },
+      {
+        "typ": "mc",
+        "frage": "て-Form von いきます:",
+        "optionen": [
+          "いって",
+          "いいて",
+          "いきて",
+          "いんで"
+        ],
+        "richtig": 0,
+        "erkl": "Ausnahme: いって."
+      },
+      {
+        "typ": "cloze",
+        "satz": "いそぎます → いそ＿",
+        "luecke": "いで",
+        "erkl": "ぎ-ます → いで."
+      }
+    ]
   },
-
-  "V ても いいです": {
-    erklaerung_lang: "～てもいいです (von der て-Form) drückt eine Erlaubnis aus: „du darfst …“. Frage: ～てもいいですか.",
-    kontrast: [{ a: "てもいいです", b: "てはいけません", note: "てもいいです = Erlaubnis; てはいけません = Verbot." }],
-    uebungen: [
-      { typ: "mc", frage: "ここでしゃしんをとっ＿いいですか。", optionen: ["ても", "ては", "ないで", "たら"], richtig: 0, erkl: "Erlaubnis → てもいい." },
-      { typ: "cloze", satz: "えんぴつで書い＿いいです。（darf）", luecke: "ても", erkl: "Erlaubnis → てもいい." },
-      { typ: "mc", frage: "～てもいいです bedeutet …", optionen: ["Erlaubnis", "Verbot", "Pflicht", "Wunsch"], richtig: 0, erkl: "Erlaubnis." },
+  "N を ください": {
+    "erklaerung_lang": "ください steht nach dem Objekt mit を. Mit すみません davor klingt es höflicher. Für Handlungen benutzt man die て-Form: ～てください.",
+    "kontrast": [
+      {
+        "a": "N を ください",
+        "b": "V-て ください",
+        "note": "N を ください = etwas geben lassen; V-て ください = jemanden bitten, etwas zu tun."
+      }
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "ビール＿ください。",
+        "optionen": [
+          "を",
+          "が",
+          "に",
+          "で"
+        ],
+        "richtig": 0,
+        "erkl": "N を ください."
+      }
+    ]
   },
-
-  "V ては いけません": {
-    erklaerung_lang: "～てはいけません (von der て-Form) ist ein Verbot: „du darfst nicht …“.",
-    kontrast: [{ a: "てはいけません", b: "なくてもいいです", note: "てはいけません = darf nicht; なくてもいいです = muss nicht." }],
-    uebungen: [
-      { typ: "mc", frage: "ここでたばこをすっ＿いけません。", optionen: ["ては", "ても", "ないで", "たら"], richtig: 0, erkl: "Verbot → てはいけません." },
-      { typ: "cloze", satz: "ここに入っ＿いけません。（darf nicht）", luecke: "ては", erkl: "Verbot → てはいけません." },
-      { typ: "mc", frage: "～てはいけません bedeutet …", optionen: ["Verbot", "Erlaubnis", "Wunsch", "Vorschlag"], richtig: 0, erkl: "Verbot." },
+  "V-て ください": {
+    "erklaerung_lang": "～てください ist eine höfliche Bitte oder Anweisung. Mit すみません davor klingt es weicher. Die Verneinung („bitte nicht“) kommt in Lektion 13: ～ないでください.",
+    "fehler": [
+      "て-Form richtig bilden: まちます → まって (nicht まちて)."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "でんきを＿ください。",
+        "optionen": [
+          "つけて",
+          "つけます",
+          "つける",
+          "つけ"
+        ],
+        "richtig": 0,
+        "erkl": "て-Form + ください."
+      },
+      {
+        "typ": "cloze",
+        "satz": "ちょっとまっ＿ください。",
+        "luecke": "て",
+        "erkl": "まちます → まって."
+      },
+      {
+        "typ": "mc",
+        "frage": "„Bitte helfen Sie mir!“",
+        "optionen": [
+          "てつだってください",
+          "てつだいてください",
+          "てつだってくださいか",
+          "てつだいます"
+        ],
+        "richtig": 0,
+        "erkl": "てつだいます → てつだって."
+      }
+    ]
   },
-
-  "V ています (Zustand)": {
-    erklaerung_lang: "～ています beschreibt auch einen dauerhaften Zustand, eine Gewohnheit oder den Beruf: 大阪に住んでいます、結婚しています、知っています、銀行ではたらいています.",
-    fehler: ["„kennen/wissen“ = 知っています; die Verneinung ist 知りません (nicht „知っていません“)."],
-    uebungen: [
-      { typ: "mc", frage: "わたしは大阪に住ん＿います。（wohne）", optionen: ["で", "て", "た", "ない"], richtig: 0, erkl: "すむ → すんで." },
-      { typ: "cloze", satz: "兄は銀行ではたらい＿います。（arbeitet）", luecke: "て", erkl: "Zustand → て + います." },
-      { typ: "mc", frage: "„kennen/wissen“:", optionen: ["知っています", "知ています", "知ります", "知ってます"], richtig: 0, erkl: "Zustand → 知っています." },
-    ],
+  "～から、V-て ください": {
+    "erklaerung_lang": "Wie bei allen から-Sätzen steht der Grund vorn. Das Satzende (～てください) bestimmt, dass es eine Bitte ist.",
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "あついです＿、エアコンをつけてください。",
+        "optionen": [
+          "から",
+          "まで",
+          "より",
+          "や"
+        ],
+        "richtig": 0,
+        "erkl": "Grund + から."
+      }
+    ]
   },
-
-  "V1 て、V2 / V1 てから V2": {
-    erklaerung_lang: "Die て-Form reiht Handlungen in zeitlicher Folge: あさ起きて、ごはんを食べます. ～てから betont „erst nachdem …, dann …“.",
-    uebungen: [
-      { typ: "mc", frage: "あさ起き＿、かおをあらいます。", optionen: ["て", "た", "ない", "ます"], richtig: 0, erkl: "Reihung → て-Form." },
-      { typ: "cloze", satz: "ばんごはんを食べ＿から、テレビを見ます。（nachdem）", luecke: "て", erkl: "～てから." },
-      { typ: "mc", frage: "„nachdem“ betont …", optionen: ["てから", "ても", "ては", "たり"], richtig: 0, erkl: "てから = nachdem." },
+  "V-ましょうか": {
+    "erklaerung_lang": "ましょうか ist ein Angebot (Soll ich …?). ましょう (ohne か) ist ein gemeinsamer Vorschlag (Lass uns …). Die Antwort auf ein Angebot ist oft ～てください oder お願いします.",
+    "kontrast": [
+      {
+        "a": "もちましょうか",
+        "b": "もってください",
+        "note": "ましょうか = ich biete an; てください = ich bitte dich."
+      },
+      {
+        "a": "いきましょう",
+        "b": "いきましょうか",
+        "note": "ましょう = Lass uns gehen; ましょうか = Sollen wir / soll ich gehen?"
+      }
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "„Soll ich das Fenster öffnen?“",
+        "optionen": [
+          "まどをあけましょうか",
+          "まどをあけてください",
+          "まどをあけたいです",
+          "まどをあけませんか"
+        ],
+        "richtig": 0,
+        "erkl": "Angebot → ましょうか."
+      },
+      {
+        "typ": "cloze",
+        "satz": "にもつをもち＿。…はい、お願いします。",
+        "luecke": "ましょうか",
+        "erkl": "Hilfe anbieten → ましょうか."
+      }
+    ]
   },
-
-  "い-Adj.くて／な-Adj.で (Reihung)": {
-    erklaerung_lang: "Eigenschaften verbinden: い-Adjektiv → ～くて (やすくて), な-Adjektiv/Nomen → ～で (しずかで). いい → よくて.",
-    fehler: ["い-Adjektiv: ～くて (おおきくて); な-Adjektiv/Nomen: ～で (べんりで)."],
-    uebungen: [
-      { typ: "mc", frage: "このへやはひろ＿、きれいです。（い-Adj.: groß und …）", optionen: ["くて", "いで", "くで", "いて"], richtig: 0, erkl: "い-Adj. → ～くて." },
-      { typ: "cloze", satz: "この町はしずか＿、いいです。（な-Adj.）", luecke: "で", erkl: "な-Adj. → ～で." },
-      { typ: "mc", frage: "„billig und gut“:", optionen: ["やすくていいです", "やすいでいいです", "やすくでいいです", "やすいくていいです"], richtig: 0, erkl: "やすい → やすくて." },
+  "V-て います (Verlauf)": {
+    "erklaerung_lang": "Die て-Form + います entspricht dem englischen -ing: Die Handlung ist im Gange. Verneinung: ～ていません, Vergangenheit: ～ていました (war gerade dabei).",
+    "fehler": [
+      "て-Form richtig bilden: よみます → よんでいます."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "今、テレビを＿います。",
+        "optionen": [
+          "見て",
+          "見ます",
+          "見",
+          "見る"
+        ],
+        "richtig": 0,
+        "erkl": "て-Form + います."
+      },
+      {
+        "typ": "cloze",
+        "satz": "やまださんは今、本をよん＿います。",
+        "luecke": "で",
+        "erkl": "よみます → よんで."
+      }
+    ]
   },
-
-  "どうやって": {
-    erklaerung_lang: "どうやって fragt nach der Methode/dem Weg: „Wie / auf welche Weise?“ Die Antwort beschreibt den Vorgang (oft mit て-Form gereiht).",
-    uebungen: [
-      { typ: "mc", frage: "駅まで＿行きますか。（wie?）", optionen: ["どうやって", "どこ", "いつ", "だれ"], richtig: 0, erkl: "Methode → どうやって." },
-      { typ: "cloze", satz: "このりょうりは＿作りますか。（wie macht man）", luecke: "どうやって", erkl: "どうやって = wie." },
-      { typ: "mc", frage: "どうやって fragt nach …", optionen: ["der Methode", "dem Grund", "dem Ort", "der Zeit"], richtig: 0, erkl: "Methode/Weg." },
+  "V-て います (Gewohnheit)": {
+    "erklaerung_lang": "Mit Häufigkeitswörtern (まいにち, まいしゅう …) oder bei Berufen beschreibt ～ています einen andauernden Zustand des Lebens: „ich arbeite (zurzeit) bei …“. Frage nach dem Beruf: どこではたらいていますか。",
+    "kontrast": [
+      {
+        "a": "今、はたらいています",
+        "b": "ソニーではたらいています",
+        "note": "Mit 今 = gerade jetzt; mit Firma/Häufigkeit = regelmäßig/beruflich."
+      }
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "どこで＿いますか。…ソニーで。",
+        "optionen": [
+          "はたらいて",
+          "はたらきて",
+          "はたらいで",
+          "はたらって"
+        ],
+        "richtig": 0,
+        "erkl": "はたらきます → はたらいて."
+      },
+      {
+        "typ": "mc",
+        "frage": "„jeden Monat“ heißt …",
+        "optionen": [
+          "まいつき",
+          "まいとし",
+          "まいしゅう",
+          "まいあさ"
+        ],
+        "richtig": 0,
+        "erkl": "まいつき = jeden Monat."
+      }
+    ]
   },
-
-  "どの N／どれ が いちばん ～": {
-    erklaerung_lang: "Auswahl aus drei oder mehr: どれが／どの N が いちばん [Adjektiv]ですか. Bei zwei Dingen nimmt man どちら.",
-    kontrast: [{ a: "どれ (3+)", b: "どちら (2)", note: "どれ/どの N bei drei oder mehr; どちら bei genau zwei." }],
-    uebungen: [
-      { typ: "mc", frage: "3つの中で＿がいちばんいいですか。", optionen: ["どれ", "どちら", "どんな", "なに"], richtig: 0, erkl: "3+ → どれ." },
-      { typ: "cloze", satz: "＿スポーツがいちばんすきですか。（welcher von vielen）", luecke: "どの", erkl: "どの + Nomen." },
-      { typ: "mc", frage: "Bei genau ZWEI Dingen fragt man …", optionen: ["どちら", "どれ", "どの", "どんな"], richtig: 0, erkl: "2 → どちら." },
+  "V-て います (Zustand)": {
+    "erklaerung_lang": "けっこんします heißt „heiraten“ (ein Moment), けっこんしています „verheiratet sein“ (Zustand). Genauso: すみます (sich niederlassen) → すんでいます (wohnen), もちます (in die Hand nehmen) → もっています (besitzen), かぜをひきます (sich erkälten) → ひいています (erkältet sein).",
+    "fehler": [
+      "„Ich bin verheiratet“ ist けっこんしています, nicht けっこんします."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "„Ich bin verheiratet.“",
+        "optionen": [
+          "けっこんしています",
+          "けっこんします",
+          "けっこんしました",
+          "けっこんしたいです"
+        ],
+        "richtig": 0,
+        "erkl": "Zustand → ～ています."
+      },
+      {
+        "typ": "cloze",
+        "satz": "私はベルリンにすん＿います。",
+        "luecke": "で",
+        "erkl": "すみます → すんで."
+      }
+    ]
   },
-
-  "V ないで ください": {
-    erklaerung_lang: "～ないでください (von der ない-Form) ist die höfliche Bitte, etwas NICHT zu tun.",
-    uebungen: [
-      { typ: "mc", frage: "ここで写真をとら＿ください。（bitte nicht）", optionen: ["ないで", "ないと", "なくて", "なく"], richtig: 0, erkl: "Bitte nicht → ないでください." },
-      { typ: "cloze", satz: "しんぱいし＿ください。（machen Sie sich keine Sorgen）", luecke: "ないで", erkl: "～ないでください." },
-      { typ: "mc", frage: "„Bitte nicht rauchen“:", optionen: ["たばこをすわないでください", "たばこをすいないでください", "たばこをすわなくてください", "たばこをすわなくでください"], richtig: 0, erkl: "すう → すわない." },
+  "しって います／しりません": {
+    "erklaerung_lang": "Eine Besonderheit: Die Bejahung lautet しっています, die Verneinung aber しりません. しっていません klingt falsch.",
+    "fehler": [
+      "Verneinung: しりません, nicht しっていません."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "あの人をしっていますか。…いいえ、＿。",
+        "optionen": [
+          "しりません",
+          "しっていません",
+          "しりませんでした",
+          "しっています"
+        ],
+        "richtig": 0,
+        "erkl": "Verneinung → しりません."
+      }
+    ]
   },
-
-  "V なければ なりません": {
-    erklaerung_lang: "～なければなりません (von der ない-Form: ～ない → ～なければ) = „müssen / notwendig sein“.",
-    fehler: ["Von der ない-Form: 飲まない → 飲まなければなりません."],
-    kontrast: [{ a: "なければなりません", b: "なくてもいいです", note: "müssen ↔ nicht müssen." }],
-    uebungen: [
-      { typ: "mc", frage: "くすりを飲ま＿なりません。（muss）", optionen: ["なければ", "なくては", "ないで", "なくても"], richtig: 0, erkl: "müssen → なければなりません." },
-      { typ: "cloze", satz: "あした早く起き＿なりません。（muss aufstehen）", luecke: "なければ", erkl: "～なければなりません." },
-      { typ: "mc", frage: "～なければなりません bedeutet …", optionen: ["müssen", "dürfen", "nicht müssen", "wollen"], richtig: 0, erkl: "Notwendigkeit." },
-    ],
+  "N を むかえに いきます／きます": {
+    "erklaerung_lang": "Die abgeholte Person steht mit を, der Ort mit へ oder に. いきます = man geht hin, きます = jemand kommt zu mir.",
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "えきへともだちを＿いきます。",
+        "optionen": [
+          "むかえに",
+          "むかえて",
+          "むかえ",
+          "むかえを"
+        ],
+        "richtig": 0,
+        "erkl": "むかえに いきます."
+      }
+    ]
   },
-
-  "V なくても いいです": {
-    erklaerung_lang: "～なくてもいいです (von der ない-Form) = „nicht tun müssen“.",
-    uebungen: [
-      { typ: "mc", frage: "あした来＿いいです。（musst nicht kommen）", optionen: ["なくても", "なければ", "ないで", "ても"], richtig: 0, erkl: "nicht müssen → なくてもいい." },
-      { typ: "cloze", satz: "お金をはらわ＿いいです。（müssen nicht zahlen）", luecke: "なくても", erkl: "～なくてもいいです." },
-      { typ: "mc", frage: "～なくてもいいです bedeutet …", optionen: ["nicht müssen", "müssen", "nicht dürfen", "dürfen"], richtig: 0, erkl: "keine Pflicht." },
+  "N を もって いきます／きます": {
+    "erklaerung_lang": "Die Richtung entscheidet: von hier weg → もっていきます, zu mir her → もってきます. Beide werden wie いきます bzw. きます konjugiert.",
+    "kontrast": [
+      {
+        "a": "もっていきます",
+        "b": "もってきます",
+        "note": "いきます = von mir weg (mitnehmen), きます = zu mir her (mitbringen)."
+      }
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "„Bitte bring Wasser mit!“",
+        "optionen": [
+          "水をもってきてください",
+          "水をもっていってください",
+          "水をもちてください",
+          "水をもってください"
+        ],
+        "richtig": 0,
+        "erkl": "zu mir her → もってきます."
+      }
+    ]
   },
-
-  "V (辞書形) ことが できます": {
-    erklaerung_lang: "Wörterbuchform + ことができます drückt Fähigkeit/Möglichkeit aus: „können / möglich sein“.",
-    fehler: ["Vor ことができます steht die WÖRTERBUCHFORM, nicht die ます-Form."],
-    uebungen: [
-      { typ: "mc", frage: "わたしは日本語を話す＿ができます。", optionen: ["こと", "もの", "の", "ところ"], richtig: 0, erkl: "～ことができます." },
-      { typ: "cloze", satz: "ピアノをひく＿ができます。（kann spielen）", luecke: "こと", erkl: "～ことができます." },
-      { typ: "mc", frage: "Vor ことができます steht …", optionen: ["die Wörterbuchform", "die ます-Form", "die て-Form", "die ない-Form"], richtig: 0, erkl: "Wörterbuchform." },
+  "V1-て、V2-て、V3-ます": {
+    "erklaerung_lang": "Die て-Form selbst hat keine Zeit. Erst das Verb am Ende sagt, ob es Gegenwart (ます), Vergangenheit (ました), Verneinung (ません), Bitte (てください) oder Wunsch (たいです) ist. Die Reihenfolge der Verben ist die Reihenfolge der Handlungen.",
+    "fehler": [
+      "Nicht jedes Verb in der Vergangenheit: おきて、行って、のみました (nur das letzte!)."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "朝ごはんを＿、がっこうへ行きます。",
+        "optionen": [
+          "たべて",
+          "たべます",
+          "たべました",
+          "たべたい"
+        ],
+        "richtig": 0,
+        "erkl": "Verben in der Kette → て-Form."
+      },
+      {
+        "typ": "mc",
+        "frage": "„Ich bin aufgestanden und habe geduscht.“",
+        "optionen": [
+          "おきて、シャワーをあびました",
+          "おきました、シャワーをあびて",
+          "おきて、シャワーをあびて",
+          "おきます、シャワーをあびました"
+        ],
+        "richtig": 0,
+        "erkl": "Nur das letzte Verb trägt die Zeit."
+      },
+      {
+        "typ": "cloze",
+        "satz": "ローマへ行っ＿、ピザをたべたいです。",
+        "luecke": "て",
+        "erkl": "いきます → いって."
+      }
+    ]
   },
-
-  "趣味は V(辞書形)ことです": {
-    erklaerung_lang: "Hobby ausdrücken: 趣味は [Wörterbuchform]ことです — „Mein Hobby ist, … zu …“.",
-    uebungen: [
-      { typ: "mc", frage: "わたしの趣味は音楽を聞く＿です。", optionen: ["こと", "もの", "の", "ところ"], richtig: 0, erkl: "～ことです." },
-      { typ: "cloze", satz: "趣味は写真をとる＿です。", luecke: "こと", erkl: "Wörterbuchform + ことです." },
-      { typ: "mc", frage: "Was steht vor こと?", optionen: ["Wörterbuchform", "ます-Form", "て-Form", "Nomen"], richtig: 0, erkl: "Wörterbuchform." },
+  "い-Adj. Vergangenheit": {
+    "erklaerung_lang": "Die vier Formen: たかいです (ist teuer) · たかくないです (ist nicht teuer) · たかかったです (war teuer) · たかくなかったです (war nicht teuer). Ausnahme いい: よくないです, よかったです, よくなかったです.",
+    "fehler": [
+      "Nicht たかいでした — die Vergangenheit steckt im Adjektiv: たかかったです.",
+      "いい → よかった (nicht いかった)."
     ],
+    "kontrast": [
+      {
+        "a": "たかかったです",
+        "b": "しずかでした",
+        "note": "い-Adj.: Vergangenheit im Adjektiv; な-Adj.: Vergangenheit über でした."
+      }
+    ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "Vergangenheit von さむいです:",
+        "optionen": [
+          "さむかったです",
+          "さむいでした",
+          "さむくなかったです",
+          "さむでした"
+        ],
+        "richtig": 0,
+        "erkl": "い → かったです."
+      },
+      {
+        "typ": "mc",
+        "frage": "Vergangenheit von いいです:",
+        "optionen": [
+          "よかったです",
+          "いかったです",
+          "いいでした",
+          "よくないです"
+        ],
+        "richtig": 0,
+        "erkl": "Ausnahme: いい → よかった."
+      },
+      {
+        "typ": "cloze",
+        "satz": "ケーキはあま＿。（war nicht süß）",
+        "luecke": "くなかったです",
+        "erkl": "verneinte Vergangenheit: くなかったです."
+      }
+    ]
   },
-
-  "V(辞書形)／Nの／Zahl ＋ まえに": {
-    erklaerung_lang: "まえに = „vor / bevor“: [Wörterbuchform]まえに (寝るまえに), [Nomen]のまえに (食事のまえに), [Zeit]まえに (3年まえに).",
-    fehler: ["Verb: Wörterbuchform + まえに. Nomen: Nomen + の + まえに."],
-    uebungen: [
-      { typ: "mc", frage: "寝る＿に歯をみがきます。（vor dem Schlafen）", optionen: ["まえ", "あと", "とき", "ながら"], richtig: 0, erkl: "vor → まえに." },
-      { typ: "cloze", satz: "食事＿まえに手をあらいます。（Nomen + ? + まえに）", luecke: "の", erkl: "Nomen + の + まえに." },
-      { typ: "mc", frage: "„vor 3 Jahren“:", optionen: ["3年まえに", "3年のまえに", "3年まえで", "3年あとに"], richtig: 0, erkl: "Zahl + まえに." },
+  "な-Adj. Vergangenheit": {
+    "erklaerung_lang": "Die vier Formen: しずかです · しずかじゃありません · しずかでした · しずかじゃありませんでした. Genauso bei Nomen: 学生でした (war Student). Achtung bei きれい, ゆうめい, しんせつ — sie sind な-Adjektive.",
+    "fehler": [
+      "きれい ist ein な-Adjektiv: きれいでした (nicht きれかったです)."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "Vergangenheit von べんりです:",
+        "optionen": [
+          "べんりでした",
+          "べんりかったです",
+          "べんりくなかったです",
+          "べんりいでした"
+        ],
+        "richtig": 0,
+        "erkl": "な-Adj. → でした."
+      },
+      {
+        "typ": "mc",
+        "frage": "„Die Stadt war nicht belebt.“",
+        "optionen": [
+          "まちはにぎやかじゃありませんでした",
+          "まちはにぎやかくなかったです",
+          "まちはにぎやかでした",
+          "まちはにぎやかじゃありません"
+        ],
+        "richtig": 0,
+        "erkl": "な-Adj. verneinte Vergangenheit."
+      }
+    ]
   },
-
-  "V た-Form": {
-    erklaerung_lang: "Die た-Form ist die einfache Vergangenheit. Sie wird wie die て-Form gebildet, nur mit た／だ statt て／で: かいて→かいた, よんで→よんだ. Gruppe II: ます-Stamm + た (たべた); Gruppe III: した, きた. Sie ist Basis für ～たことがあります, ～たり, ～たら.",
-    fehler: ["む・ぶ・ぬ → んだ (よんだ, あそんだ, しんだ).", "行く ist Ausnahme: 行った."],
-    uebungen: [
-      { typ: "mc", frage: "のみます → ?（た-Form）", optionen: ["のんだ", "のみた", "のった", "のんで"], richtig: 0, erkl: "む → んだ." },
-      { typ: "mc", frage: "行きます → ?（た-Form）", optionen: ["行った", "行いた", "行きた", "行んだ"], richtig: 0, erkl: "Ausnahme 行く → 行った." },
-      { typ: "cloze", satz: "たべます → ＿（た-Form）", luecke: "たべた", erkl: "Gruppe II: ます-Stamm + た." },
-    ],
+  "N1 か N2": {
+    "erklaerung_lang": "Am Satzende macht か eine Frage, zwischen zwei Nomen bedeutet es „oder“.",
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "コーヒー＿おちゃをのみます。（oder）",
+        "optionen": [
+          "か",
+          "と",
+          "や",
+          "も"
+        ],
+        "richtig": 0,
+        "erkl": "か = oder."
+      }
+    ]
   },
-
-  "V た ことが あります": {
-    erklaerung_lang: "～たことがあります (た-Form + ことがあります) = „schon einmal getan haben“ (Erfahrung).",
-    kontrast: [{ a: "たことがあります", b: "ています", note: "たことがあります = Erfahrung (schon mal); ています = Verlauf/Zustand." }],
-    uebungen: [
-      { typ: "mc", frage: "日本へ行っ＿ことがあります。", optionen: ["た", "て", "ない", "る"], richtig: 0, erkl: "た-Form + ことがあります." },
-      { typ: "cloze", satz: "すしを食べた＿があります。（Erfahrung）", luecke: "こと", erkl: "～たことがあります." },
-      { typ: "mc", frage: "～たことがあります drückt aus …", optionen: ["Erfahrung", "Pflicht", "Verlauf", "Wunsch"], richtig: 0, erkl: "schon einmal getan." },
+  "い-Adj.-くて、～": {
+    "erklaerung_lang": "Wie bei Verben trägt nur das letzte Glied die Zeit: あまくて、おいしかったです (war süß und lecker). Statt そして kann man so mehrere Eigenschaften in einem Satz nennen.",
+    "fehler": [
+      "いい → よくて (nicht いくて).",
+      "Nur das letzte Adjektiv trägt die Vergangenheit."
     ],
+    "kontrast": [
+      {
+        "a": "やすくて",
+        "b": "しずかで",
+        "note": "い-Adj. → くて, な-Adj./Nomen → で."
+      }
+    ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "このへやはひろ＿、あかるいです。",
+        "optionen": [
+          "くて",
+          "で",
+          "いで",
+          "いくて"
+        ],
+        "richtig": 0,
+        "erkl": "い-Adj. → くて."
+      },
+      {
+        "typ": "mc",
+        "frage": "„gut und billig“",
+        "optionen": [
+          "よくて、やすい",
+          "いくて、やすい",
+          "いいで、やすい",
+          "よいで、やすい"
+        ],
+        "richtig": 0,
+        "erkl": "いい → よくて."
+      }
+    ]
   },
-
-  "V たり、V たり します": {
-    erklaerung_lang: "～たり、～たりします (た-Form + り) zählt beispielhaft mehrere Tätigkeiten auf (nicht abschließend, ohne feste Reihenfolge).",
-    uebungen: [
-      { typ: "mc", frage: "日曜日は本を読ん＿、音楽を聞いたりします。", optionen: ["だり", "たり", "たら", "ても"], richtig: 0, erkl: "読む → 読んだり." },
-      { typ: "cloze", satz: "公園で走っ＿、あそんだりします。", luecke: "たり", erkl: "た-Form + り." },
-      { typ: "mc", frage: "～たり～たり drückt aus …", optionen: ["Aufzählung von Beispielen", "feste Reihenfolge", "Verbot", "Pflicht"], richtig: 0, erkl: "beispielhafte Aufzählung." },
-    ],
+  "な-Adj./N で、～": {
+    "erklaerung_lang": "Die Formen lassen sich mischen: にぎやかで (な) + おもしろくて (い) + よかったです. Das Satzende bestimmt Zeit und Verneinung.",
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "この町はしずか＿、きれいです。",
+        "optionen": [
+          "で",
+          "くて",
+          "な",
+          "に"
+        ],
+        "richtig": 0,
+        "erkl": "な-Adj. → で."
+      },
+      {
+        "typ": "cloze",
+        "satz": "ふじ山はゆうめい＿、きれいです。",
+        "luecke": "で",
+        "erkl": "ゆうめい ist ein な-Adjektiv → で."
+      }
+    ]
   },
-
-  "～く／～に なります": {
-    erklaerung_lang: "なります = „werden“ (Zustandsänderung): い-Adjektiv → ～く なります (おおきくなります), な-Adjektiv/Nomen → ～に なります (きれいになります、25さいになります).",
-    fehler: ["い-Adjektiv: ～く なります (さむくなる); な-Adj./Nomen: ～に なります (べんりになる)."],
-    kontrast: [{ a: "くなります", b: "になります", note: "い-Adjektiv → く; な-Adjektiv/Nomen → に." }],
-    uebungen: [
-      { typ: "mc", frage: "さむ＿なりました。（い-Adj.: kalt geworden）", optionen: ["く", "に", "で", "と"], richtig: 0, erkl: "い-Adj. → く." },
-      { typ: "cloze", satz: "日本語が上手＿なりました。（な-Adj.）", luecke: "に", erkl: "な-Adj. → に." },
-      { typ: "mc", frage: "„es wird warm“ (あたたかい):", optionen: ["あたたかくなります", "あたたかになります", "あたたかいになります", "あたたかくになります"], richtig: 0, erkl: "い-Adj. → く + なります." },
+  "V-て も いいです": {
+    "erklaerung_lang": "Wörtlich: „Auch wenn ich … tue, ist es gut.“ Antwort bei Ja: はい、いいですよ／どうぞ. Bei Nein höflich: すみません、ちょっと… oder streng: いいえ、～てはいけません.",
+    "fehler": [
+      "て-Form richtig: すいます → すって, すわります → すわって."
     ],
+    "kontrast": [
+      {
+        "a": "V-てもいいです",
+        "b": "V-てはいけません",
+        "note": "もいいです = dürfen, はいけません = nicht dürfen."
+      }
+    ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "ここでタバコをすって＿いいですか。",
+        "optionen": [
+          "も",
+          "は",
+          "を",
+          "が"
+        ],
+        "richtig": 0,
+        "erkl": "Erlaubnis → ても いいです."
+      },
+      {
+        "typ": "mc",
+        "frage": "„Darf ich hier sitzen?“",
+        "optionen": [
+          "ここにすわってもいいですか",
+          "ここにすわってはいけません",
+          "ここにすわってください",
+          "ここにすわりましょうか"
+        ],
+        "richtig": 0,
+        "erkl": "Erlaubnis fragen → てもいいですか."
+      },
+      {
+        "typ": "cloze",
+        "satz": "このでんわをつかっ＿もいいですか。",
+        "luecke": "て",
+        "erkl": "つかいます → つかって."
+      }
+    ]
   },
-
-  "普通形 (Plain-/Umgangsform)": {
-    erklaerung_lang: "Das 普通形 (Plain-Form) ist die einfache Form: ～ます ↔ Wörterbuchform, ～ません ↔ ～ない, ～ました ↔ ～た. Nomen/な-Adjektiv: ～です → ～だ. い-Adjektiv bleibt (たかい). Wird unter Vertrauten und in Tagebüchern/Notizen genutzt.",
-    fehler: ["Nomen plain: 学生だ (nicht „学生です“); im Casual oft nur 学生."],
-    kontrast: [{ a: "丁寧形 (です/ます)", b: "普通形 (plain)", note: "ます-Form höflich (Fremde); plain (普通形) unter Freunden/Familie." }],
-    uebungen: [
-      { typ: "mc", frage: "行きます → 普通形?", optionen: ["行く", "行き", "行った", "行って"], richtig: 0, erkl: "ます → Wörterbuchform." },
-      { typ: "mc", frage: "学生です → 普通形?", optionen: ["学生だ", "学生", "学生である", "学生です"], richtig: 0, erkl: "です → だ." },
-      { typ: "cloze", satz: "たべません → ＿（普通形, „esse nicht“）", luecke: "たべない", erkl: "ません → ない." },
+  "V-て は いけません": {
+    "erklaerung_lang": "は wird hier „wa“ gesprochen. ～てはいけません ist ein klares, eher strenges Verbot (Schilder, Regeln). Höflicher bittet man mit ～ないでください (Lektion 13).",
+    "fehler": [
+      "は wird „wa“ gesprochen.",
+      "Nicht ～てもいけません — Verbot ist ～ては いけません."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "ここでしゃしんをとって＿いけません。",
+        "optionen": [
+          "は",
+          "も",
+          "を",
+          "が"
+        ],
+        "richtig": 0,
+        "erkl": "Verbot → ては いけません."
+      },
+      {
+        "typ": "mc",
+        "frage": "„Du darfst den Hund nicht anfassen.“",
+        "optionen": [
+          "犬にさわってはいけません",
+          "犬にさわってもいいです",
+          "犬にさわってください",
+          "犬にさわりたいです"
+        ],
+        "richtig": 0,
+        "erkl": "Verbot → てはいけません."
+      }
+    ]
   },
-
-  "くだけた会話 (Casual)": {
-    erklaerung_lang: "Im lockeren Gespräch (くだけた会話) fällt die Höflichkeit weg: Fragen ohne か (nur Intonation), Nomen-Frage oft ohne だ, ～ている → ～てる. Nur unter engen Freunden/Familie passend.",
-    fehler: ["Casual nur unter Vertrauten — gegenüber Fremden/Vorgesetzten bleibt die ます/です-Form."],
-    uebungen: [
-      { typ: "mc", frage: "höflich „行きますか“ → casual?", optionen: ["行く？", "行くか？", "行きますか", "行ったか"], richtig: 0, erkl: "Casual: nur Intonation, kein か." },
-      { typ: "mc", frage: "„元気ですか“ → casual?", optionen: ["元気？", "元気だか", "元気ますか", "元気でしたか"], richtig: 0, erkl: "Nomen/な-Adj.-Frage ohne だ." },
-      { typ: "cloze", satz: "„そうですね“ → casual: ＿だね。", luecke: "そう", erkl: "そうだね." },
-    ],
+  "ちょっと…": {
+    "erklaerung_lang": "Ein direktes いいえ klingt im Japanischen oft unhöflich. Man sagt stattdessen すみません + ちょっと… und lässt den Satz offen; der Gesprächspartner versteht die Absage.",
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "Wie sagt man höflich ab?",
+        "optionen": [
+          "すみません、ちょっと…",
+          "いいえ、いきません",
+          "はい、いきましょう",
+          "いいですよ"
+        ],
+        "richtig": 0,
+        "erkl": "ちょっと… = höfliche Absage."
+      }
+    ]
   },
-
-  "普通形 ＋ と思います": {
-    erklaerung_lang: "～と思います = „ich denke/glaube, dass …“. Vor と steht die Plain-Form (普通形).",
-    fehler: ["Vor と思います steht die Plain-Form: 来ると思います (nicht „来ますと思います“)."],
-    uebungen: [
-      { typ: "mc", frage: "あした雨が降る＿思います。", optionen: ["と", "って", "に", "を"], richtig: 0, erkl: "～と思います." },
-      { typ: "cloze", satz: "ミラーさんは来ない＿思います。（denke, kommt nicht）", luecke: "と", erkl: "Plain-Form + と思います." },
-      { typ: "mc", frage: "Vor と思います steht …", optionen: ["die Plain-Form", "die ます-Form", "die て-Form", "ein Nomen allein"], richtig: 0, erkl: "普通形 + と思います." },
+  "V ない-Form": {
+    "erklaerung_lang": "Bei Gruppe I wird der i-Laut vor ます zum a-Laut: か(き)→か, の(み)→ま, ま(ち)→た. Endet der Stamm auf い, wird daraus わ (かいます → かわない, あいます → あわない). Gruppe II: einfach ます → ない. Gruppe III unregelmäßig: しない, こない.",
+    "fehler": [
+      "かいます → かわない (nicht かあない).",
+      "きます (kommen) → こない (nicht きない).",
+      "おきます (aufstehen, Gr. II) → おきない."
     ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "ない-Form von のみます:",
+        "optionen": [
+          "のまない",
+          "のみない",
+          "のんない",
+          "のまらない"
+        ],
+        "richtig": 0,
+        "erkl": "Gruppe I: み → ま."
+      },
+      {
+        "typ": "mc",
+        "frage": "ない-Form von かいます:",
+        "optionen": [
+          "かわない",
+          "かあない",
+          "かいない",
+          "かない"
+        ],
+        "richtig": 0,
+        "erkl": "い → わ."
+      },
+      {
+        "typ": "mc",
+        "frage": "ない-Form von きます (kommen):",
+        "optionen": [
+          "こない",
+          "きない",
+          "かない",
+          "くない"
+        ],
+        "richtig": 0,
+        "erkl": "Gruppe III: こない."
+      },
+      {
+        "typ": "cloze",
+        "satz": "たべます → たべ＿",
+        "luecke": "ない",
+        "erkl": "Gruppe II: ます → ない."
+      }
+    ]
   },
-
-  "普通形 ＋ と言いました": {
-    erklaerung_lang: "～と言いました = „hat gesagt, dass …“ (Zitat). Vor と steht die Plain-Form; ein wörtliches Zitat steht in 「 」.",
-    uebungen: [
-      { typ: "mc", frage: "田中さんはあした休む＿言いました。", optionen: ["と", "って", "を", "に"], richtig: 0, erkl: "～と言いました." },
-      { typ: "cloze", satz: "「行きます」＿言いました。（wörtliches Zitat）", luecke: "と", erkl: "Zitat + と言いました." },
-      { typ: "mc", frage: "～と言いました drückt aus …", optionen: ["ein Zitat", "eine Vermutung", "einen Wunsch", "eine Pflicht"], richtig: 0, erkl: "Wiedergabe einer Aussage." },
+  "V-ないで ください": {
+    "erklaerung_lang": "Gegenstück zu ～てください. Höflicher als ～てはいけません, weil es eine Bitte und kein Verbot ist. Mit から davor nennt man den Grund.",
+    "kontrast": [
+      {
+        "a": "あけてください",
+        "b": "あけないでください",
+        "note": "てください = bitte tun, ないでください = bitte nicht tun."
+      },
+      {
+        "a": "すわないでください",
+        "b": "すってはいけません",
+        "note": "ないでください = höfliche Bitte, てはいけません = Verbot."
+      }
     ],
-  },
-
-  "～でしょう？": {
-    erklaerung_lang: "～でしょう？ mit steigender Intonation sucht Zustimmung/Bestätigung zu einer Vermutung: „… oder?/nicht wahr?“. Ohne Intonation drückt でしょう eine Vermutung aus.",
-    uebungen: [
-      { typ: "mc", frage: "あした晴れる＿。（wohl, oder?）", optionen: ["でしょう", "ましょう", "ですか", "ません"], richtig: 0, erkl: "Vermutung/Rückfrage → でしょう." },
-      { typ: "cloze", satz: "この問題はむずかしい＿？（schwer, oder?）", luecke: "でしょう", erkl: "～でしょう？." },
-      { typ: "mc", frage: "～でしょう？ bedeutet …", optionen: ["Vermutung/Rückfrage", "Befehl", "Erlaubnis", "Verbot"], richtig: 0, erkl: "„… oder?“." },
-    ],
-  },
-
-  "[Satz im 普通形] ＋ N": {
-    erklaerung_lang: "Nomen-Modifikation (Relativsatz): ein Satz in der Plain-Form steht DIREKT vor dem Nomen, das er näher bestimmt: わたしが作った料理 (das Essen, das ich gekocht habe).",
-    fehler: ["Das Verb im Relativsatz steht in der Plain-Form, nicht in ～ます."],
-    uebungen: [
-      { typ: "mc", frage: "きのう買っ＿本（das Buch, das ich gestern kaufte）", optionen: ["た", "て", "る", "ます"], richtig: 0, erkl: "た-Form modifiziert das Nomen." },
-      { typ: "cloze", satz: "ミラーさんが住ん＿いる町（die Stadt, wo er wohnt）", luecke: "で", erkl: "住んでいる + 町." },
-      { typ: "mc", frage: "Im Relativsatz steht das Verb in der …", optionen: ["Plain-Form", "ます-Form", "て-Form", "Wunschform"], richtig: 0, erkl: "普通形 + Nomen." },
-    ],
-  },
-
-  "V(辞書形) 時間／約束 が あります": {
-    erklaerung_lang: "Wörterbuchform + Nomen wie 時間 (Zeit), 約束 (Verabredung), 用事 (etwas zu erledigen): 食事をする時間がありません — „keine Zeit zum Essen“.",
-    uebungen: [
-      { typ: "mc", frage: "ごはんを食べる＿がありません。（keine Zeit）", optionen: ["時間", "こと", "もの", "の"], richtig: 0, erkl: "Wörterbuchform + 時間." },
-      { typ: "cloze", satz: "友だちに会う約束＿あります。（Verabredung）", luecke: "が", erkl: "約束 + が + あります." },
-      { typ: "mc", frage: "Vor 時間／約束 steht …", optionen: ["die Wörterbuchform", "die た-Form", "die て-Form", "die ます-Form"], richtig: 0, erkl: "Wörterbuchform." },
-    ],
-  },
-
-  "～とき、～": {
-    erklaerung_lang: "～とき = „wenn/als“ (Zeitpunkt). Davor: Wörterbuchform (gleichzeitig/zukünftig), た-Form (danach/vergangen), Nomen + の, Adjektiv. 子どものとき = „als Kind“.",
-    fehler: ["Nomen + の + とき (子どものとき), nicht „子どもとき“."],
-    uebungen: [
-      { typ: "mc", frage: "日本へ行く＿、カメラを買います。（wenn ich gehe）", optionen: ["とき", "まえ", "あと", "ながら"], richtig: 0, erkl: "Zeitpunkt → とき." },
-      { typ: "cloze", satz: "子ども＿とき、よく遊びました。（als Kind: Nomen + ?）", luecke: "の", erkl: "Nomen + の + とき." },
-      { typ: "mc", frage: "„als ich jung war“:", optionen: ["若いとき", "若いのとき", "若なとき", "若くとき"], richtig: 0, erkl: "い-Adjektiv direkt + とき." },
-    ],
-  },
-
-  "V(辞書形) と、～": {
-    erklaerung_lang: "Wörterbuchform + と drückt eine automatische/natürliche Folge aus: „immer wenn …, dann (zwangsläufig) …“ (このボタンをおすと、ドアがあきます).",
-    kontrast: [{ a: "と (automatisch)", b: "たら (Bedingung)", note: "と = unweigerliche Folge/Naturgesetz; たら = einmalige Bedingung „wenn/falls“." }],
-    uebungen: [
-      { typ: "mc", frage: "このボタンをおす＿、ドアがあきます。", optionen: ["と", "たら", "ば", "なら"], richtig: 0, erkl: "automatische Folge → と." },
-      { typ: "cloze", satz: "春になる＿、さくらがさきます。（wenn Frühling wird）", luecke: "と", erkl: "Wörterbuchform + と." },
-      { typ: "mc", frage: "～と (Wörterbuchform + と) drückt aus …", optionen: ["automatische Folge", "einen Wunsch", "Vergangenheit", "ein Verbot"], richtig: 0, erkl: "„immer wenn …, dann …“." },
-    ],
-  },
-
-  "V て あげます／くれます／もらいます": {
-    erklaerung_lang: "Gefälligkeiten mit der て-Form: ～てあげます (ich tue etwas für jemanden), ～てくれます (jemand tut etwas für mich/uns), ～てもらいます (ich lasse/bitte jemanden etwas für mich tun).",
-    fehler: ["～てくれます: der Nutznießer bin ich/mein Kreis.", "～てもらいます: der Geber der Handlung steht mit に."],
-    kontrast: [{ a: "てくれます", b: "てもらいます", note: "てくれます: andere tun (von sich aus) für mich; てもらいます: ich erhalte die Handlung (oft auf Bitte)." }],
-    uebungen: [
-      { typ: "mc", frage: "友だちが手伝っ＿くれました。（für mich）", optionen: ["て", "た", "ない", "で"], richtig: 0, erkl: "て-Form + くれます." },
-      { typ: "cloze", satz: "わたしは妹に本を読ん＿あげました。（für sie, よむ→）", luecke: "で", erkl: "よむ → よんで + あげます." },
-      { typ: "mc", frage: "„jemand tut etwas für MICH“:", optionen: ["～てくれます", "～てあげます", "～てもらいます", "～ています"], richtig: 0, erkl: "für mich → てくれます." },
-    ],
-  },
-
-  "～たら、～": {
-    erklaerung_lang: "～たら (た-Form + ら) = „wenn/falls …, (dann) …“ (einmalige Bedingung): 雨が降ったら、行きません. Auch bei Adjektiven/Nomen: 安かったら, ひまだったら.",
-    kontrast: [{ a: "たら", b: "と", note: "たら = einmalige Bedingung „wenn/falls“; と = automatische, immer geltende Folge." }],
-    uebungen: [
-      { typ: "mc", frage: "雨が降っ＿、行きません。（wenn es regnet）", optionen: ["たら", "たり", "ても", "から"], richtig: 0, erkl: "Bedingung → たら." },
-      { typ: "cloze", satz: "お金があっ＿、車を買います。（wenn ich Geld habe）", luecke: "たら", erkl: "た-Form + ら." },
-      { typ: "mc", frage: "～たら wird gebildet aus …", optionen: ["た-Form + ら", "ます-Stamm + ら", "Wörterbuchform + ら", "ない + ら"], richtig: 0, erkl: "た-Form + ら." },
-    ],
-  },
-
-  "～ても、～": {
-    erklaerung_lang: "～ても (て-Form + も) = „auch wenn / selbst wenn …“: 雨が降っても、行きます. Adjektive: 高くても, 便利でも.",
-    kontrast: [{ a: "ても", b: "たら", note: "ても = „auch wenn“ (Gegensatz); たら = „wenn/falls“ (erwartete Folge)." }],
-    uebungen: [
-      { typ: "mc", frage: "雨が降っ＿、行きます。（auch wenn es regnet）", optionen: ["ても", "たら", "から", "と"], richtig: 0, erkl: "auch wenn → ても." },
-      { typ: "cloze", satz: "高く＿、買います。（auch wenn teuer, 高い→）", luecke: "ても", erkl: "高い → 高くても." },
-      { typ: "mc", frage: "～ても bedeutet …", optionen: ["auch wenn", "weil", "wenn (dann immer)", "bevor"], richtig: 0, erkl: "„selbst wenn“." },
-    ],
-  },
-
-  "N は いくらですか": {
-    erklaerung_lang: "いくら fragt nach dem Preis: „Wie viel kostet …?“. Antwort: [Betrag]円です. 円 (Yen) liest man えん.",
-    uebungen: [
-      { typ: "mc", frage: "このとけいは＿ですか。（Preis erfragen）", optionen: ["いくら", "いつ", "どこ", "だれ"], richtig: 0, erkl: "Preis → いくら." },
-      { typ: "cloze", satz: "これは3000＿です。（Yen）", luecke: "円", erkl: "Preis: ～円です." },
-      { typ: "mc", frage: "いくら fragt nach …", optionen: ["dem Preis", "der Zeit", "dem Ort", "der Menge an Personen"], richtig: 0, erkl: "いくら = wie viel (Geld)." },
-    ],
-  },
-
-  "N1 と N2 と どちらが ～": {
-    erklaerung_lang: "Vergleich zweier Dinge: N1 と N2 と どちらが [Adj]ですか — „Welches von beiden ist …er?“ In der Antwort steht のほうが ([X]のほうが [Adj]です).",
-    kontrast: [{ a: "どちらが (2)", b: "どれが (3+)", note: "どちら bei genau zwei; どれ/どの bei drei oder mehr." }],
-    uebungen: [
-      { typ: "mc", frage: "コーヒーと紅茶と＿がいいですか。（welches von zweien）", optionen: ["どちら", "どれ", "どこ", "なに"], richtig: 0, erkl: "Zwei → どちら." },
-      { typ: "cloze", satz: "電車の＿がバスより速いです。（Antwort: eher der Zug）", luecke: "ほう", erkl: "Antwort mit のほうが." },
-      { typ: "mc", frage: "Bei drei oder mehr Dingen fragt man …", optionen: ["どれが", "どちらが", "どんなが", "いくらが"], richtig: 0, erkl: "3+ → どれが." },
-    ],
-  },
-
-  "N1 は N2 が ～（Adj.）": {
-    erklaerung_lang: "Doppeltes Subjekt: N1 は (Thema) + N2 が (worauf sich die Eigenschaft bezieht) + Adjektiv. „Was N1 betrifft, ist N2 …“ — z. B. 東京は人が多いです (In Tokio gibt es viele Menschen).",
-    uebungen: [
-      { typ: "mc", frage: "東京は人＿多いです。", optionen: ["が", "を", "に", "へ"], richtig: 0, erkl: "Bezug der Eigenschaft → が." },
-      { typ: "cloze", satz: "日本は電車＿便利です。（praktisch）", luecke: "が", erkl: "N2 が + Adjektiv." },
-      { typ: "mc", frage: "Im Muster „N1 は N2 が Adj.“ markiert は …", optionen: ["das Thema", "das Objekt", "den Ort", "das Werkzeug"], richtig: 0, erkl: "は = Thema (N1)." },
-    ],
-  },
-  "N1 のほうが N2 より ～です": {
-    erklaerung_lang: "のほうが wählt aus zwei Möglichkeiten die aus, auf die das Adjektiv stärker zutrifft. Wörtlich: „die Seite von N1“ (ほう = Seite, Richtung). Deshalb ist es die natürliche Antwort auf eine どちらが-Frage. Der Vergleichspartner mit より darf wegfallen, wenn er schon genannt wurde.",
-    kontrast: [
-      { a: "N1 は N2 より ～です", b: "N1 のほうが N2 より ～です", note: "Beide vergleichen; のほうが betont N1 als die zutreffendere Seite („eher N1“) und antwortet auf どちらが." },
-      { a: "のほうが", b: "の中でいちばん", note: "のほうが vergleicht ZWEI Dinge, の中で～いちばん wählt aus DREI oder mehr aus." },
-    ],
-    fehler: [
-      "のほうが braucht の: nicht ×「夏ほうが」, sondern 夏のほうが.",
-      "Nach のほうが steht kein は: nicht ×「夏のほうがは」.",
-      "Bei drei oder mehr Dingen nicht のほうが, sondern の中で ～が いちばん ～.",
-    ],
-    uebungen: [
-      { typ: "mc", frage: "夏＿ほうが冬より暑いです。", optionen: ["の", "が", "は", "を"], richtig: 0, erkl: "ほう ist ein Nomen — davor steht の: 夏のほうが." },
-      { typ: "cloze", satz: "コーヒーと紅茶とどちらがいいですか。… コーヒー＿ほうがいいです。", luecke: "の", erkl: "Antwort auf どちらが: N のほうが ～です." },
-      { typ: "mc", frage: "Was betont のほうが?", optionen: ["die zutreffendere von zwei Seiten", "den Ort", "die Uhrzeit", "den Grund"], richtig: 0, erkl: "ほう = Seite/Richtung → „eher diese Seite“." },
-      { typ: "mc", frage: "Drei Restaurants vergleichen — welche Struktur?", optionen: ["この中でここがいちばん安いです", "ここのほうが安いです", "ここはより安いです", "ここがほうが安いです"], richtig: 0, erkl: "Ab drei Dingen: ～の中で ～が いちばん ～." },
-    ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "ここでしゃしんを＿ください。（bitte nicht）",
+        "optionen": [
+          "とらないで",
+          "とって",
+          "とらなくて",
+          "とりないで"
+        ],
+        "richtig": 0,
+        "erkl": "ない-Form + でください."
+      },
+      {
+        "typ": "mc",
+        "frage": "„Bitte vergiss deinen Schirm nicht!“",
+        "optionen": [
+          "かさをわすれないでください",
+          "かさをわすれてください",
+          "かさをわすれてはいけません",
+          "かさをわすれませんか"
+        ],
+        "richtig": 0,
+        "erkl": "negative Bitte → ないでください."
+      },
+      {
+        "typ": "cloze",
+        "satz": "まどをあけ＿ください。さむいですから。",
+        "luecke": "ないで",
+        "erkl": "Gr. II: あけない + でください."
+      }
+    ]
   },
 };

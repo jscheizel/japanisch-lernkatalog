@@ -131,13 +131,12 @@ describe('Grammatik dediziert: generierte Drills in der Registry', () => {
     expect(ex.frage).toContain('て-Form');
   });
 
-  it('auch das 辞書形-Muster hat jetzt einen generierten Drill', () => {
-    const g = win.GRAMMATIK.find((x) => x.pattern === 'V 辞書形 (Wörterbuchform)');
+  it('auch das ない-Form-Muster hat einen generierten Drill', () => {
+    const g = win.GRAMMATIK.find((x) => x.pattern === 'V ない-Form');
     const fac = Ex.exercisesFor({ id: 'g:' + g.pattern, type: 'grammar', data: g });
     const ex = fac[0]();
-    expect(ex.srsId).toBe('g:V 辞書形 (Wörterbuchform)');
-    expect(ex.frage).toContain('Wörterbuchform');
-    // richtige Option ist die Wörterbuchform des abgefragten Verbs
+    expect(ex.srsId).toBe('g:V ない-Form');
+    expect(ex.frage).toContain('ない-Form');
     expect(ex.optionen[ex.richtig]).toBeTruthy();
   });
 

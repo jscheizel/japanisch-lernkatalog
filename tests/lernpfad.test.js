@@ -28,38 +28,37 @@ function masterLesson(L) {
 }
 
 describe('Kanji-Stufe → Lektion-Mapping', () => {
-  it('mappt alle sechs Stufen auf eine Lektion', () => {
-    ['A1.2', 'A1.3', 'A1.4', 'A1.5', 'A1.6', 'A1.7'].forEach((lv) => {
-      expect(typeof SRS.kanjiLessonOf(lv)).toBe('number');
-    });
-    expect(SRS.kanjiLessonOf('A1.2')).toBe(6);
-    expect(SRS.kanjiLessonOf('A1.7')).toBe(20);
+  it('mappt die Stufen „L0"–„L13" auf ihre Lektion; Unbekanntes auf null', () => {
+    for (let L = 0; L <= 13; L++) expect(SRS.kanjiLessonOf('L' + L)).toBe(L);
+    expect(SRS.kanjiLessonOf('A1.2')).toBe(null);
+    expect(SRS.kanjiLessonOf(undefined)).toBe(null);
   });
   it('lessonCore enthält Vokabeln, Grammatik und die zugeordneten Kanji', () => {
-    const core = SRS.lessonCore(6);
+    const core = SRS.lessonCore(5);
     const types = core.reduce((a, c) => ((a[c.type] = (a[c.type] || 0) + 1), a), {});
     expect(types.vocab).toBeGreaterThan(0);
     expect(types.grammar).toBeGreaterThan(0);
-    expect(types.kanji).toBeGreaterThan(0); // A1.2-Kanji hängen an L6
+    expect(types.kanji).toBeGreaterThan(0); // Kanji der Stufe „L5" hängen an L5
   });
 });
 
 describe('Default-Gating', () => {
-  it('nur Lektion 1 ist freigeschaltet', () => {
+  it('nur Lektion 0 (vorausgesetzt) und Lektion 1 sind freigeschaltet', () => {
+    expect(SRS.lessonState(0).unlocked).toBe(true);
     expect(SRS.lessonState(1).unlocked).toBe(true);
     expect(SRS.lessonState(2).unlocked).toBe(false);
     expect(SRS.maxUnlockedLesson()).toBe(1);
   });
   it('buildQueue mit maxLesson liefert keine Items aus gesperrten Lektionen', () => {
     const q = SRS.buildQueue({ maxLesson: 1, newLimit: 100, reviewLimit: 100 });
-    const lessons = [...new Set(q.map((x) => SRS.__test.itemLesson(x.type, x.data)))];
-    expect(lessons).toEqual([1]);
+    const lessons = [...new Set(q.map((x) => SRS.__test.itemLesson(x.type, x.data)))].sort((a, b) => a - b);
+    expect(lessons).toEqual([0, 1]);
   });
 });
 
 describe('Mastery einheitlich über den 0–100-Score', () => {
   it('Kanji ist bei Score ≥ MASTER_AT beherrscht (Schreiben treibt den Score, kein Extra-Gate)', () => {
-    const k = SRS.lessonCore(6).find((c) => c.type === 'kanji');
+    const k = SRS.lessonCore(5).find((c) => c.type === 'kanji');
     SRS.__test.setScore(k.id, 60);
     expect(SRS.isMastered(k.id)).toBe(false); // unter 80
     SRS.__test.setScore(k.id, 100);
@@ -96,8 +95,8 @@ describe('Freischalten: Kern beherrschen + Test bestehen', () => {
 
   it('unlockAll öffnet alle Lektionen des Pfads', () => {
     SRS.unlockAll();
-    expect(SRS.lessonState(25).unlocked).toBe(true);
-    expect(SRS.maxUnlockedLesson()).toBe(25);
+    expect(SRS.lessonState(13).unlocked).toBe(true);
+    expect(SRS.maxUnlockedLesson()).toBe(13);
   });
 });
 

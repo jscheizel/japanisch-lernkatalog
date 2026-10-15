@@ -104,7 +104,7 @@ describe('vtPair — beide Richtungen', () => {
   });
 
   it('ist die Wörterbuchform noch gesperrt, wird auf ます ausgewichen', () => {
-    win.SRS._useStorage(fakeStorage()); // frischer Lernpfad → dict (L18) zu
+    win.SRS._useStorage(fakeStorage()); // frischer Lernpfad → dict (erst mit ganzem Lernpfad) zu
     expect(win.Exercises.formUnlocked('dict')).toBe(false);
     expect(K.vtPartner('te')).toBe('masu');
   });
@@ -161,10 +161,12 @@ describe('vtTask — Aufgabenbau', () => {
 });
 
 describe('Keine Waisen-IDs im Lernstand', () => {
-  it('jede Form zeigt auf ein echtes Grammatikmuster', () => {
+  it('jede Form zeigt auf ein echtes Grammatikmuster — oder auf keins, wenn der Kurs sie noch nicht hat', () => {
     const patterns = win.GRAMMATIK.map((g) => g.pattern);
+    const NOCH_NICHT_IM_KURS = ['dict', 'ta', 'nakatta'];
     ALL_FORMS.forEach((f) => {
       const p = win.Exercises.formPattern(f);
+      if (NOCH_NICHT_IM_KURS.indexOf(f) !== -1) { expect(p, f).toBe(null); return; }
       expect(p, f).toBeTruthy();
       expect(patterns, f).toContain(p);
     });

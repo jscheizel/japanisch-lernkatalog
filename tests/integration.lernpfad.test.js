@@ -28,18 +28,19 @@ function click(elm) { elm.dispatchEvent(new win.Event('click', { bubbles: true }
 function cards() { return [...win.document.querySelectorAll('.lp-card')]; }
 
 describe('Lernpfad-Seite', () => {
-  it('rendert 25 Lektionskarten; L1 offen, L2 gesperrt', () => {
-    // init() hat beim Laden bereits mit dem Default-Store gezeichnet (L1 frei, Rest gesperrt).
+  it('rendert 14 Lektionskarten (L0–13); L0 und L1 offen, L2 gesperrt', () => {
+    // init() hat beim Laden bereits mit dem Default-Store gezeichnet (L0/L1 frei, Rest gesperrt).
     const c = cards();
-    expect(c.length).toBe(25);
+    expect(c.length).toBe(14);
     expect(c[0].classList.contains('lp-locked')).toBe(false);
-    expect(c[1].classList.contains('lp-locked')).toBe(true);
+    expect(c[1].classList.contains('lp-locked')).toBe(false);
+    expect(c[2].classList.contains('lp-locked')).toBe(true);
     // L1 hat einen „Teil lernen"-Link.
-    expect(c[0].querySelector('a.lp-learn')).toBeTruthy();
+    expect(c[1].querySelector('a.lp-learn')).toBeTruthy();
   });
 
   it('L1 zeigt eine Teil-Leiste; Teil 1 ist verlinkt, gesperrte Teile nicht', () => {
-    const c = cards()[0];
+    const c = cards()[1];
     const learn = c.querySelector('a.lp-learn');
     expect(learn.textContent).toContain('Teil 1 lernen');
     expect(learn.getAttribute('href')).toContain('lesson=1&teil=1');
@@ -55,7 +56,7 @@ describe('Lernpfad-Seite', () => {
   it('nach markPartDone(1,1) ist Teil 2 freigeschaltet (verlinkt)', () => {
     win.SRS.markPartDone(1, 1);
     click(win.document.getElementById('lp-unlockall')); // neu zeichnen
-    const c = cards()[0];
+    const c = cards()[1];
     const links = [...c.querySelectorAll('a.lp-part')];
     expect(links.length).toBeGreaterThanOrEqual(2); // Teil 1 + Teil 2 jetzt klickbar
   });
@@ -63,8 +64,8 @@ describe('Lernpfad-Seite', () => {
   it('„Alle freischalten" entsperrt sichtbar alle Lektionen', () => {
     click(win.document.getElementById('lp-unlockall'));
     const c = cards();
-    expect(c[1].classList.contains('lp-locked')).toBe(false);
-    expect(c[19].classList.contains('lp-locked')).toBe(false);
+    expect(c[2].classList.contains('lp-locked')).toBe(false);
+    expect(c[13].classList.contains('lp-locked')).toBe(false);
   });
 
   it('nach Kern-Mastery erscheint „Test starten" und öffnet das Test-Modal', () => {
@@ -72,7 +73,7 @@ describe('Lernpfad-Seite', () => {
     win.SRS.lessonCore(1).forEach((it) => { win.SRS.__test.setScore(it.id, 100); });
     // Redraw über unlockAll (zeichnet die Karten neu).
     click(win.document.getElementById('lp-unlockall'));
-    const l1 = cards()[0];
+    const l1 = cards()[1];
     const testBtn = l1.querySelector('.lp-test-btn');
     expect(testBtn).toBeTruthy();
     click(testBtn);

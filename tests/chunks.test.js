@@ -15,7 +15,7 @@ beforeEach(() => {
 
 describe('lessonChunks (Teil-Lektionen)', () => {
   it('decken lessonCore lückenlos und in gleicher Reihenfolge ab', () => {
-    for (const L of [1, 5, 12, 24]) {
+    for (const L of [0, 1, 5, 12]) {
       const core = win.SRS.lessonCore(L).map((c) => c.id);
       const flat = win.SRS.lessonChunks(L).flat().map((c) => c.id);
       expect(flat).toEqual(core);
@@ -23,13 +23,13 @@ describe('lessonChunks (Teil-Lektionen)', () => {
   });
 
   it('großes L → viele Teile, kleines L → wenige', () => {
-    expect(win.SRS.lessonChunks(5).length).toBeGreaterThanOrEqual(6);
-    expect(win.SRS.lessonChunks(24).length).toBeLessThanOrEqual(3);
-    expect(win.SRS.lessonChunks(24).length).toBeGreaterThanOrEqual(2);
+    expect(win.SRS.lessonChunks(0).length).toBeGreaterThanOrEqual(6);
+    expect(win.SRS.lessonChunks(11).length).toBeLessThanOrEqual(3);
+    expect(win.SRS.lessonChunks(11).length).toBeGreaterThanOrEqual(2);
   });
 
   it('kein Mini-Restteil: jeder Teil hat genug Inhalt', () => {
-    for (let L = 1; L <= 25; L++) {
+    for (let L = 0; L <= 13; L++) {
       const parts = win.SRS.lessonChunks(L);
       if (parts.length > 1) expect(parts[parts.length - 1].length).toBeGreaterThanOrEqual(2);
     }
@@ -45,8 +45,8 @@ describe('lessonChunks (Teil-Lektionen)', () => {
   });
 
   it('nextPart wird auf die Teil-Anzahl geklammert', () => {
-    const n = win.SRS.lessonChunks(24).length;
-    win.SRS.markPartDone(24, n + 5);
-    expect(win.SRS.nextPart(24)).toBe(n);
+    const n = win.SRS.lessonChunks(11).length;
+    win.SRS.markPartDone(11, n + 5);
+    expect(win.SRS.nextPart(11)).toBe(n);
   });
 });

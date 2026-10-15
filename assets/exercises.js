@@ -476,7 +476,9 @@
 
   /* ---------- Verb-Übungen für Lernlisten & Wiederholung: Wörterbuchform + weitere Formen ----------
      „Freigeschaltet" = die Lektion, in der die Form eingeführt wird (aus GRAMMATIK abgeleitet:
-     て L14 · ない L17 · 辞書形 L18 · た L19), ist über den Lernpfad erreicht. Alle Übungen
+     て L3 · ない L13), ist über den Lernpfad erreicht. 辞書形 und た-Form kommen im Kurs noch
+     nicht vor (kein Grammatikmuster): sie öffnen erst, wenn der ganze Lernpfad frei ist, und
+     werden ohne eigene Grammatik-ID geübt (keine Waisen im Lernstand). Alle Übungen
      benoten die kanonische Vokabel-ID (v:kana|lesson) → Fortschritt bleibt global. */
   /* Jede Verbform zeigt auf ein ECHTES Muster aus window.GRAMMATIK. Das ist zweierlei Grundlage:
      (a) die Freischaltung über den Lernpfad und (b) die SRS-ID der Verbform-Übungen. Eine
@@ -489,15 +491,21 @@
     te: 'V て-Form', nai: 'V ない-Form', dict: 'V 辞書形 (Wörterbuchform)', ta: 'V た-Form',
     nakatta: '普通形 (Plain-/Umgangsform)'
   };
-  var VERB_FORM_FALLBACK_LESSON = { masu: 4, masen: 4, mashita: 4, mashou: 6, tai: 13,
-    te: 14, nai: 17, dict: 18, ta: 19, nakatta: 20 };
+  var VERB_FORM_FALLBACK_LESSON = { masu: 0, masen: 0, mashita: 0, mashou: 0, tai: 1, te: 3, nai: 13 };
   var VERB_FORM_GATED = { te: 1, nai: 1, dict: 1, ta: 1 };
-  function formPattern(form) { return VERB_FORM_INTRO[form] || null; }
+  // Nur Muster, die es im Katalog wirklich gibt — sonst null (Form noch nicht im Kurs).
+  function formPattern(form) {
+    var pat = VERB_FORM_INTRO[form];
+    return pat && (window.GRAMMATIK || []).some(function (x) { return x.pattern === pat; }) ? pat : null;
+  }
   function formGated(form) { return !!VERB_FORM_GATED[form]; }
   function formLesson(form) {
     var pat = VERB_FORM_INTRO[form];
     var g = (window.GRAMMATIK || []).filter(function (x) { return x.pattern === pat; })[0];
-    return (g && g.lesson) || VERB_FORM_FALLBACK_LESSON[form] || 99;
+    if (g) return g.lesson;
+    if (form in VERB_FORM_FALLBACK_LESSON) return VERB_FORM_FALLBACK_LESSON[form];
+    // Noch nicht im Kurs: frei, sobald der ganze Lernpfad freigeschaltet ist.
+    return (window.SRS && window.SRS.MAX_GATED_LESSON) || 13;
   }
   function formUnlocked(form) {
     if (!VERB_FORM_GATED[form]) return true; // ます/ましょう/たい/なかった: kein eigenes Gate
@@ -588,7 +596,7 @@
      Fragt die im Katalog hinterlegten (= häufigen) Lesungen ab. Eine Spalte entfällt, wenn die
      Lesungsliste leer ist (11 Kanji haben keine Kun-Lesung). */
   function stripOku(r) { return String(r).replace(/-/g, ''); }
-  // Distraktoren derselben Lesungsart anderer Kanji — bevorzugt gleiche Stufe (A1.7 hat nur wenige Kanji
+  // Distraktoren derselben Lesungsart anderer Kanji — bevorzugt gleiche Lektion (manche Lektionen haben nur wenige Kanji
   // → Gesamtbestand als Rückfall) und gleiche Okurigana-Form, damit das Format nichts verrät.
   // Ausgeschlossen sind Lesungen, die ohne Okurigana mit einer Lösung zusammenfallen (み vs. み-る).
   function readingDistractors(k, kind, need, pool) {

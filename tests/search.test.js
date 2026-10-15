@@ -97,11 +97,11 @@ describe('Vokabelsuche findet Verben über beide Formen', () => {
 });
 
 describe('Kanji-Suche: Kun-Lesung ohne Trennstrich', () => {
-  it('„みる" findet 見 (Katalog schreibt „み-る")', () => {
+  it('„やすむ" findet 休 (Katalog schreibt „やす-む")', () => {
     const win = page(KANJI_BODY, ['assets/data/kanji.js', 'assets/srs.js', 'assets/app.js']);
-    search(win, 'みる');
+    search(win, 'やすむ');
     const cards = visibleRows(win, '.kanji-card.item');
-    expect(cards.some((c) => c.querySelector('.kanji-char').textContent === '見')).toBe(true);
+    expect(cards.some((c) => c.querySelector('.kanji-char').textContent === '休')).toBe(true);
   });
 });
 
@@ -177,10 +177,10 @@ describe('Grammatik: Rōmaji ohne Beispieltext', () => {
 
   it('ein Wort aus einem Beispielsatz findet das Muster nicht mehr', () => {
     const g = win.GRAMMATIK.find((x) => x.pattern.indexOf('のほうが') !== -1);
-    // „Sommer“ steht nur in der Übersetzung eines Beispielsatzes, nicht im Muster/Titel
-    const w = g.beispiele.map((b) => b.de).join(' ').match(/Sommer/);
+    // „Korea“ steht nur in der Übersetzung eines Beispielsatzes, nicht im Muster/Titel
+    const w = g.beispiele.map((b) => b.de).join(' ').match(/Korea/);
     expect(w).toBeTruthy();
-    search(win, 'Sommer');
+    search(win, 'Korea');
     expect(visibleRows(win, '.gp.item').includes(card)).toBe(false);
   });
 });

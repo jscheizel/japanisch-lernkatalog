@@ -1,6 +1,7 @@
 // Integrität der Sidecar-Daten: alle Schlüssel verweisen auf echte Katalog-Einträge.
 import { describe, it, expect, beforeAll } from 'vitest';
-import { loadWithData } from './helpers/load.js';
+import { existsSync } from 'node:fs';
+import { loadWithData, repoPath } from './helpers/load.js';
 
 let win, patterns, vocabIds;
 beforeAll(() => {
@@ -54,76 +55,65 @@ describe('VOKABULAR_TAGS', () => {
   });
 });
 
-describe('Vokabel-Kanji stammen aus dem Katalog', () => {
-  let kanjiWin, catalog;
-  beforeAll(() => {
-    kanjiWin = loadWithData(['assets/data/vokabular.js', 'assets/data/kanji.js']);
-    catalog = new Set((kanjiWin.KANJI || []).map((k) => k.k));
+describe('Kursinhalt: Lektionen 0–13 aus den Unterrichts-PDFs', () => {
+  let kw;
+  beforeAll(() => { kw = loadWithData(['assets/data/vokabular.js', 'assets/data/kanji.js', 'assets/data/grammatik.js']); });
+
+  it('jede Lektion 0–13 hat Vokabeln — und es gibt keine anderen Lektionen', () => {
+    const lessons = new Set(kw.VOKABULAR.map((v) => v.lesson));
+    for (let L = 0; L <= 13; L++) expect(lessons.has(L), 'Lektion ' + L).toBe(true);
+    expect([...lessons].every((L) => L >= 0 && L <= 13)).toBe(true);
   });
 
-  // Diese Lücken-Korrekturen wurden ergänzt — ausschließlich Kanji aus dem Katalog
-  // (Nutzer-Vorgabe). Bestand-Vokabeln dürfen weiterhin Kanji außerhalb des Katalogs nutzen.
-  const ERGAENZT = [
-    ['わたし', 1, '私'], ['ほん', 2, '本'], ['いま', 4, '今'], ['がっこう', 5, '学校'],
-    ['ひとり', 5, '一人'], ['みっか', 5, '三日'], ['みせ', 6, '店'], ['なに', 6, '何'],
-    ['うえ', 10, '上'], ['そと', 10, '外'], ['ひとり', 11, '一人'], ['とお', 11, '十'],
-    ['ふたり', 11, '二人'], ['がいこく', 11, '外国'],
-  ];
+  it('keine ID-Kollision (v:kana|lesson ist eindeutig)', () => {
+    const ids = kw.VOKABULAR.map((v) => v.kana + '|' + v.lesson);
+    expect(ids.length).toBe(new Set(ids).size);
+  });
 
-  it('jedes ergänzte Kanji-Zeichen kommt im Katalog vor', () => {
-    const bad = [];
-    ERGAENZT.forEach(([, , kanji]) => {
-      [...kanji].forEach((ch) => { if (!catalog.has(ch)) bad.push(`${kanji}: ${ch}`); });
+  it('jede Vokabel hat alle Felder; Verben stehen in der ます-Form', () => {
+    kw.VOKABULAR.forEach((v) => {
+      ['kanji', 'kana', 'romaji', 'de', 'pos', 'lesson'].forEach((f) => expect(v, v.kana + '.' + f).toHaveProperty(f));
+      expect(v.de.length, v.kana).toBeGreaterThan(0);
+      if (/^V\./.test(v.pos)) expect(v.kana, v.kana).toMatch(/ます$/);
     });
-    expect(bad).toEqual([]);
   });
 
-  it('jede ergänzte Schreibweise steht im Vokabular', () => {
-    const bad = [];
-    ERGAENZT.forEach(([kana, lesson, kanji]) => {
-      const v = (kanjiWin.VOKABULAR || []).find((x) => x.kana === kana && x.lesson === lesson);
-      if (!v || v.kanji !== kanji) bad.push(`${kana}|${lesson} → ${kanji}`);
+  it('Kanji sind nach Lektion gruppiert (level = "L<n>") und kommen je einmal vor', () => {
+    const K = kw.KANJI;
+    K.forEach((k) => expect(k.level, k.k).toMatch(/^L(\d|1[0-3])$/));
+    expect(K.length).toBe(new Set(K.map((k) => k.k)).size);
+  });
+
+  it('die neuen Kanji der Kanji-Buch-Lektionen stehen in der richtigen Kurslektion', () => {
+    const lv = (c) => (kw.KANJI.find((k) => k.k === c) || {}).level;
+    [...'百千万年'].forEach((c) => expect(lv(c), c).toBe('L2'));
+    [...'上下中大小本半分力何'].forEach((c) => expect(lv(c), c).toBe('L5'));
+    [...'明休体好男林森間畑岩石'].forEach((c) => expect(lv(c), c).toBe('L7'));
+    [...'目耳手足雨竹米貝糸'].forEach((c) => expect(lv(c), c).toBe('L10'));
+    [...'花茶肉文字物牛馬鳥魚'].forEach((c) => expect(lv(c), c).toBe('L12'));
+    [...'一二三十日月火水木金土山川田口門人子女先生学私車円'].forEach((c) => expect(lv(c), c).toBe('L0'));
+  });
+
+  it('jedes Kanji hat Lesungen, Strichzahl, Beispiele (w/r/m) und eine Strichreihenfolge-Datei', () => {
+    kw.KANJI.forEach((k) => {
+      expect(k.on.length + k.kun.length, k.k).toBeGreaterThan(0);
+      expect(k.strokes, k.k).toBeGreaterThan(0);
+      expect(k.examples.length, k.k).toBeGreaterThanOrEqual(2);
+      k.examples.forEach((e) => ['w', 'r', 'm'].forEach((f) => expect(e[f], k.k + '.' + f).toBeTruthy()));
+      const file = 'assets/kanjivg/' + k.k.codePointAt(0).toString(16).padStart(5, '0') + '.svg';
+      expect(existsSync(repoPath(file)), file).toBe(true);
     });
-    expect(bad).toEqual([]);
   });
 
-  it('Spot-Checks bestätigter Schreibweisen', () => {
-    const find = (kana, lesson) => (kanjiWin.VOKABULAR || []).find((v) => v.kana === kana && v.lesson === lesson);
-    expect(find('ほん', 2).kanji).toBe('本');
-    expect(find('みせ', 6).kanji).toBe('店');
-    expect(find('わたし', 1).kanji).toBe('私');
-    expect(find('がっこう', 5).kanji).toBe('学校');
-    // Homophone bleiben bewusst kana-only (kein falsches Kanji).
-    expect(find('はい', 1).kanji).toBe('');
-    expect(find('せき', 17).kanji).toBe('');
-  });
-});
-
-describe('Kanji 強 „stark"', () => {
-  let kw, K;
-  beforeAll(() => { kw = loadWithData(['assets/data/kanji.js', 'assets/data/vokabular.js']); K = kw.KANJI || []; });
-
-  it('steht genau einmal im Katalog, auf der Stufe seiner Vokabel', () => {
-    const hits = K.filter((k) => k.k === '強');
-    expect(hits).toHaveLength(1);
-    // 強い ist eine L19-Vokabel; A1.7 deckt L17–20 ab (KANJI_LEVEL_LESSON in srs.js).
-    expect(hits[0].level).toBe('A1.7');
-    expect(kw.VOKABULAR.some((v) => v.kanji === '強い' && v.lesson === 19)).toBe(true);
-  });
-
-  it('hat die Felder, die Karte und Lesungsübung brauchen', () => {
-    const k = K.find((x) => x.k === '強');
-    ['on', 'kun'].forEach((f) => { expect(Array.isArray(k[f]), f).toBe(true); expect(k[f].length, f).toBeGreaterThan(0); });
-    expect(k.meaning).toContain('stark');
-    expect(k.strokes).toBe(11);
-    expect(k.examples.length).toBeGreaterThanOrEqual(3);
-    // Okurigana-Striche wie im übrigen Katalog — die Suche entfernt sie beim Normalisieren.
-    expect(k.kun).toContain('つよ-い');
-  });
-
-  it('seine Beispielwörter stehen in derselben Form wie überall (w/r/m)', () => {
-    const k = K.find((x) => x.k === '強');
-    k.examples.forEach((e, i) => ['w', 'r', 'm'].forEach((f) => expect(e[f], 'examples[' + i + '].' + f).toBeTruthy()));
+  it('Grammatik der Unterrichtsstunden steht in der richtigen Lektion', () => {
+    const les = (p) => (kw.GRAMMATIK.find((g) => g.pattern === p) || {}).lesson;
+    expect(les('V たいです')).toBe(1);
+    expect(les('N が ほしいです')).toBe(1);
+    expect(les('V て-Form')).toBe(3);
+    expect(les('V-ましょうか')).toBe(4);
+    expect(les('V-て も いいです')).toBe(11);
+    expect(les('V ない-Form')).toBe(13);
+    expect(les('V-ないで ください')).toBe(13);
   });
 });
 
@@ -148,56 +138,27 @@ describe('Kanji 力 „Kraft, Stärke"', () => {
     expect(chikara.meaning).not.toBe(kyuu.meaning);
   });
 
-  it('seine Beispielwörter haben w/r/m und binden 強 mit ein', () => {
+  it('seine Beispielwörter haben w/r/m', () => {
     const k = K.find((x) => x.k === '力');
     k.examples.forEach((e, i) => ['w', 'r', 'm'].forEach((f) => expect(e[f], 'examples[' + i + '].' + f).toBeTruthy()));
-    expect(k.examples.some((e) => e.w.indexOf('強') !== -1)).toBe(true);
   });
 });
 
-describe('Alltagswortschatz-Ergänzungen', () => {
-  // Vier Wörter, die im Kurs fehlten; zwei davon wurden in Inhalten schon benutzt
-  // (歯をみがきます in grammatik_plus, むすこ in einem Beispielsatz).
-  const NEU = [
-    ['バスてい', 5, 'N.'], ['おきゃくさん', 6, 'N.'],
-    ['むすこ', 11, 'N.'], ['むすめ', 11, 'N.'], ['みがきます', 16, 'V. I'],
-  ];
+describe('„Zähne putzen" (L5)', () => {
   const find = (kana, lesson) => (win.VOKABULAR || []).filter((v) => v.kana === kana && v.lesson === lesson);
 
-  it('alle vier sind angelegt, genau einmal, mit den erwarteten Feldern', () => {
-    NEU.forEach(([kana, lesson, pos]) => {
-      const hits = find(kana, lesson);
-      expect(hits, kana).toHaveLength(1);          // keine ID-Kollision (v:kana|lesson)
-      const v = hits[0];
-      expect(v.pos, kana).toBe(pos);
-      ['kanji', 'kana', 'romaji', 'de', 'pos', 'lesson'].forEach((f) => expect(v, kana + '.' + f).toHaveProperty(f));
-      expect(v.romaji, kana).toMatch(/^[a-zāīūēō ]+$/);
-      expect(v.de.length, kana).toBeGreaterThan(0);
-    });
-  });
-
-  it('kana-only — die Zeichen 磨・息・娘・客・停 stehen nicht im Kanji-Katalog', () => {
-    const catalog = new Set((win.KANJI || []).map((k) => k.k));
-    [...'磨息娘客停'].forEach((ch) => expect(catalog.has(ch), ch).toBe(false));
-    NEU.forEach(([kana, lesson]) => expect(find(kana, lesson)[0].kanji, kana).toBe(''));
-  });
-
-  it('„Zähne putzen" folgt der Hausregel: Verb + Objekt-Hinweis im de-Feld', () => {
-    const v = find('みがきます', 16)[0];
+  it('folgt der Hausregel: Verb + Objekt-Hinweis im de-Feld', () => {
+    const v = find('みがきます', 5)[0];
+    expect(v.pos).toBe('V. I');
     expect(v.de).toContain('歯を～');
   });
 
   it('„Zähne" findet das Verb — der Begriff steht im de-Feld, nicht nur im Beispielsatz', () => {
-    // Beispielsätze werden bewusst NICHT durchsucht; stünde „Zähne" nur dort, wäre das Verb
-    // über das deutsche Stichwort unauffindbar.
-    const v = find('みがきます', 16)[0];
-    expect(v.de.toLowerCase()).toContain('zähne');
+    expect(find('みがきます', 5)[0].de.toLowerCase()).toContain('zähne');
   });
 
-  it('歯 „der Zahn" war schon da und wurde nicht dupliziert', () => {
+  it('歯 „der Zahn" steht genau einmal im Vokabular', () => {
     const ha = (win.VOKABULAR || []).filter((v) => v.kana === 'は' && v.de.indexOf('Zahn') !== -1);
-    expect(ha.length).toBeGreaterThan(0);
-    expect(new Set(ha.map((v) => v.lesson)).size).toBe(ha.length); // je Lektion höchstens einmal
+    expect(ha).toHaveLength(1);
   });
 });
-

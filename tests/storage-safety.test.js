@@ -4,7 +4,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { loadWithData, loadScripts, repoPath } from './helpers/load.js';
 
-const KEY = 'katalog_srs_v1';
+const KEY = 'katalog_srs_v2';
 
 function fakeStorage(seed) {
   const d = { ...(seed || {}) };

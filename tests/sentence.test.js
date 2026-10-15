@@ -26,7 +26,7 @@ describe('Tag-Index', () => {
 
 describe('fillTemplate()', () => {
   it('füllt Slots deterministisch und baut jp + de', () => {
-    const tpl = win.SATZ_TEMPLATES['N を V'][0];
+    const tpl = win.SATZ_TEMPLATES['N を V-ます'][0];
     const f = Ex.fillTemplate(tpl, { pick: pickFirst });
     expect(f.jp).toContain(f.chosen.subj.jp);
     expect(f.jp).toContain(f.chosen.obj.jp);
@@ -38,7 +38,7 @@ describe('fillTemplate()', () => {
 
   it('nutzt nur Vokabeln mit dem geforderten Tag', () => {
     const idx = Ex.buildTagIndex();
-    const tpl = win.SATZ_TEMPLATES['N を V'][0];
+    const tpl = win.SATZ_TEMPLATES['N を V-ます'][0];
     const f = Ex.fillTemplate(tpl, { pick: pickFirst });
     const objKanaList = idx[tpl.slots.obj.tag].map((v) => v.kana);
     expect(objKanaList).toContain(f.chosen.obj.kana);
@@ -47,17 +47,17 @@ describe('fillTemplate()', () => {
 
 describe('Übungstypen aus Vorlage', () => {
   it('Partikel-MC: korrekte Option ist die geblankte Partikel', () => {
-    const tpl = win.SATZ_TEMPLATES['N を V'][0];
+    const tpl = win.SATZ_TEMPLATES['N を V-ます'][0];
     const f = Ex.fillTemplate(tpl, { pick: pickFirst });
     const ex = Ex.particleExercise(f);
     expect(ex.typ).toBe('mc');
     expect(ex.optionen[ex.richtig]).toBe('を');
     expect(ex.frage).toContain('＿');
-    expect(ex.srsId).toBe('g:N を V');
+    expect(ex.srsId).toBe('g:N を V-ます');
   });
 
   it('Order: Lösung in Reihenfolge ergibt wieder den Satz', () => {
-    const tpl = win.SATZ_TEMPLATES['N を V'][0];
+    const tpl = win.SATZ_TEMPLATES['N を V-ます'][0];
     const f = Ex.fillTemplate(tpl, { pick: pickFirst });
     const ex = Ex.orderExercise(f);
     expect(ex.typ).toBe('order');

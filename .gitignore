@@ -17,3 +17,6 @@ android/
 
 # OS
 .DS_Store
+
+# Python-Cache der Daten-Generatoren
+__pycache__/

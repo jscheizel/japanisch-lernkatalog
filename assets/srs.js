@@ -10,7 +10,7 @@
 (function () {
   'use strict';
 
-  var KEY = 'katalog_srs_v1';
+  var KEY = 'katalog_srs_v2'; // v2: neuer Kursinhalt (L0–13) — Lernstand startet frisch, v1 bleibt unangetastet liegen
   var VERSION = 1;
   var MAX_HISTORY = 20;
   var DEFAULT_EASE = 2.5;
@@ -20,9 +20,8 @@
   var LESSON_TEST_PASS = 0.8;  // Bestehensgrenze des Lektionstests
   var LESSON_READY_AT = 40;    // Lektion „erfüllt"/test-bereit, wenn jedes Kern-Item Score ≥ 40 hat
   var LESSON_TEST_N = 10;      // Aufgaben pro Lektionstest
-  var MAX_GATED_LESSON = 25;   // Lernpfad umfasst alle Lektionen L1–25
-  // Kanji-Stufe → Test-Lektion (Default: letzte Lektion des jeweiligen Stufenblocks)
-  var KANJI_LEVEL_LESSON = { 'A1.2': 6, 'A1.3': 9, 'A1.4': 12, 'A1.5': 14, 'A1.6': 17, 'A1.7': 20 };
+  var MIN_LESSON = 0;          // Lektion 0 = vorausgesetzter Grundstoff
+  var MAX_GATED_LESSON = 13;   // Lernpfad umfasst alle Lektionen L0–13 (je Unterrichts-PDF eine)
 
   /* ---------- Lernpunktzahl 0–100 (ersetzt SM-2); sanfte, justierbare Defaults ---------- */
   var GAIN = 20;             // Punkte pro richtiger Antwort
@@ -297,7 +296,8 @@
   }
 
   /* ---------- Mastery / Lektions-Zuordnung ---------- */
-  function kanjiLessonOf(level) { return KANJI_LEVEL_LESSON[level] || null; }
+  // Kanji-Stufe "L<n>" → Lektion n
+  function kanjiLessonOf(level) { var m = /^L(\d+)$/.exec(String(level || '')); return m ? +m[1] : null; }
   function itemLesson(type, data) {
     if (type === 'kanji') return kanjiLessonOf(data.level);
     return data.lesson;
@@ -322,7 +322,7 @@
   }
 
   /* ---------- Registries aus den Daten ---------- */
-  // Alle Lektionen sind aktiv (L1–25); kein Vorschau-Filter mehr.
+  // Alle Lektionen sind aktiv (L0–13); kein Vorschau-Filter mehr.
   function registry(source) {
     var out = [];
     if (source === 'kanji') {
@@ -661,14 +661,14 @@
   }
   function maxUnlockedLesson() {
     var L = 1;
-    for (var l = 1; l <= MAX_GATED_LESSON; l++) { if (lessonState(l).unlocked) L = l; else break; }
+    for (var l = MIN_LESSON; l <= MAX_GATED_LESSON; l++) { if (lessonState(l).unlocked) L = l; else break; }
     return L;
   }
   // Aktuelle Lektion: die niedrigste freigeschaltete, deren Kern noch nicht vollständig gemeistert ist.
   // „Heute" führt neue Items aus genau dieser Lektion ein → Üben füllt sichtbar deren Lernpfad-Fortschritt.
   function currentLesson() {
     var max = maxUnlockedLesson();
-    for (var l = 1; l <= max; l++) { if (coreProgress(l).fraction < 1) return l; }
+    for (var l = MIN_LESSON; l <= max; l++) { if (coreProgress(l).fraction < 1) return l; }
     return max;
   }
   function canTakeTest(lesson) { var s = lessonState(lesson); return s.unlocked && (s.coreReady || s.learned); }
@@ -691,7 +691,7 @@
   }
   function unlockAll() {
     store.lessons = store.lessons || {};
-    for (var l = 1; l <= MAX_GATED_LESSON; l++) { var r = store.lessons[l] || {}; r.unlocked = true; store.lessons[l] = r; }
+    for (var l = MIN_LESSON; l <= MAX_GATED_LESSON; l++) { var r = store.lessons[l] || {}; r.unlocked = true; store.lessons[l] = r; }
     save();
   }
   function resetLessons() { store.lessons = {}; save(); }
@@ -858,6 +858,7 @@
     lessonChunks: lessonChunks, partsInfo: partsInfo, nextPart: nextPart, markPartDone: markPartDone,
     markLessonLearned: markLessonLearned,
     lessonState: lessonState, maxUnlockedLesson: maxUnlockedLesson, currentLesson: currentLesson,
+    MIN_LESSON: MIN_LESSON, MAX_GATED_LESSON: MAX_GATED_LESSON,
     canTakeTest: canTakeTest, recordLessonTest: recordLessonTest,
     unlockAll: unlockAll, resetLessons: resetLessons,
     // Persönliche Vokabellisten

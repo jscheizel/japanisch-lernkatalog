@@ -115,7 +115,8 @@ describe('Freischaltung', () => {
     page();
     const locked = forms().filter((b) => b.disabled).map((b) => b.dataset.form);
     expect(locked.sort()).toEqual(['dict', 'nai', 'ta', 'te']);
-    expect(formBtn('te').title).toContain('Lektion 14');
+    expect(formBtn('te').title).toContain('Lektion 3');
+    expect(formBtn('dict').title).toContain('noch nicht vor');
     expect(formBtn('masu').disabled).toBe(false);
   });
 
@@ -146,7 +147,9 @@ describe('Endlos-Trainer', () => {
     answer(true);
     expect(ov().querySelector('.ex-feedback').classList.contains('ok')).toBe(true);
     const pat = win.Exercises.formPattern(info.to);
-    expect(win.SRS.scoreOf('g:' + pat)).toBeGreaterThan(0);
+    // Formen, die der Kurs noch nicht hat (z. B. Wörterbuchform), haben kein Muster → keine ID.
+    if (pat) expect(win.SRS.scoreOf('g:' + pat)).toBeGreaterThan(0);
+    else expect(['dict', 'ta', 'nakatta']).toContain(info.to);
     // keine einzige Vokabel-ID hat einen Lernstand bekommen
     const vocabScored = win.VOKABULAR.filter((v) => win.SRS.scoreOf('v:' + v.kana + '|' + v.lesson) > 0);
     expect(vocabScored).toHaveLength(0);

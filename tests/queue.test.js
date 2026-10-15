@@ -34,17 +34,18 @@ describe('buildQueue()', () => {
     expect(q.filter((x) => x.reason === 'new').length).toBe(2);
   });
 
-  it('alle Lektionen sind aktiv (L21–25 enthalten); maxLesson gated', () => {
+  it('alle Lektionen sind aktiv (bis L13 enthalten); maxLesson gated', () => {
     const all = SRS.buildQueue({ sources: ['vocab'], newLimit: 9999, reviewLimit: 0, today: '2026-06-23' });
     const lessons = (arr) => arr.map((x) => x.data.lesson);
-    expect(Math.max(...lessons(all))).toBeGreaterThan(20); // L21–25 dabei
+    expect(Math.max(...lessons(all))).toBe(13); // letzte Kurslektion dabei
+    expect(Math.min(...lessons(all))).toBe(0);  // Lektion 0 (vorausgesetzt) dabei
     const gated = SRS.buildQueue({ sources: ['vocab'], newLimit: 9999, reviewLimit: 0, today: '2026-06-23', maxLesson: 5 });
     expect(Math.max(...lessons(gated))).toBeLessThanOrEqual(5);
   });
 
   it('balanciert neue Items über Quellen (Kanji, Vokabeln & Grammatik)', () => {
     // alles freigeschaltet → neue Items sollen alle drei Quellen abdecken
-    const q = SRS.buildQueue({ newLimit: 6, reviewLimit: 0, maxLesson: 25 });
+    const q = SRS.buildQueue({ newLimit: 6, reviewLimit: 0, maxLesson: 13 });
     const types = new Set(q.map((x) => x.type));
     expect(types.has('kanji')).toBe(true);
     expect(types.has('vocab')).toBe(true);
@@ -55,7 +56,7 @@ describe('buildQueue()', () => {
   });
 
   it('newLesson beschränkt NEUE Items auf genau diese Lektion (Fokus aktuelle Lektion)', () => {
-    const q = SRS.buildQueue({ sources: ['vocab'], newLimit: 20, reviewLimit: 0, newLesson: 3, maxLesson: 25 });
+    const q = SRS.buildQueue({ sources: ['vocab'], newLimit: 20, reviewLimit: 0, newLesson: 3, maxLesson: 13 });
     expect(q.length).toBeGreaterThan(0);
     expect(q.every((x) => x.reason === 'new')).toBe(true);
     expect(q.every((x) => x.data.lesson === 3)).toBe(true);

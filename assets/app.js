@@ -9,20 +9,16 @@
 
   /* ---------- Lektion-Metadaten ---------- */
   const LESSON = {
-    1:{thema:'Begrüßung & sich vorstellen'},2:{thema:'Gegenstände (これ/それ/あれ)'},
-    3:{thema:'Orte & Einkaufen (ここ/そこ)'},4:{thema:'Uhrzeit & Tagesablauf'},
-    5:{thema:'Bewegung & Verkehrsmittel'},6:{thema:'Tätigkeiten, を, Essen & Trinken'},
-    7:{thema:'Geben & Bekommen, Werkzeuge'},8:{thema:'Adjektive (い-/な-Adjektive)'},
-    9:{thema:'Vorlieben & Können (すきです)'},10:{thema:'Existenz & Ort (あります/います)'},
-    11:{thema:'Mengen & Zähleinheiten'},12:{thema:'Vergangenheit & Vergleich'},
-    13:{thema:'Wünsche (〜たい / 〜に行きます)'},14:{thema:'て-Form & Bitten (〜てください)'},
-    15:{thema:'Erlaubnis & Zustände (〜ています)'},16:{thema:'Handlungsabfolge (〜てから、〜て)'},
-    17:{thema:'ない-Form, Pflicht & Verbot'},18:{thema:'Wörterbuchform & Fähigkeit'},
-    19:{thema:'た-Form, Erfahrung & 〜たり'},20:{thema:'Plain-/Umgangsform (普通形)'},
-    21:{thema:'〜と思います / 〜と言いました'},22:{thema:'Relativsätze (Nomen-Modifikation)'},
-    23:{thema:'〜とき / 〜と (wenn)'},24:{thema:'Geben & Bekommen von Handlungen'},25:{thema:'〜たら / 〜ても'}
+    0:{thema:'Grundwortschatz (vorausgesetzt)'},1:{thema:'～たい / ～がほしい (möchten)'},
+    2:{thema:'Neue Verben (helfen, öffnen, zeigen …)'},3:{thema:'て-Form & Bitten (～てください)'},
+    4:{thema:'Angebote (～ましょうか)'},5:{thema:'～ています (gerade / regelmäßig)'},
+    6:{thema:'～ています (Zustand), kennen'},7:{thema:'Wiederholung & Kanji (明 休 体 …)'},
+    8:{thema:'Handlungsfolge (V-て、V-て)'},9:{thema:'Adjektive: Vergangenheit & Verneinung'},
+    10:{thema:'Adjektive verbinden (～くて / ～で)'},11:{thema:'dürfen / nicht dürfen'},
+    12:{thema:'Wiederholung & Kanji (花 茶 肉 …)'},13:{thema:'ない-Form & ～ないでください'}
   };
-  const LEVEL_ORDER = ['A1.2','A1.3','A1.4','A1.5','A1.6','A1.7'];
+  const MIN_LESSON = 0, MAX_LESSON = 13;  // Lektion 0 = vorausgesetzt, 1–13 = je Unterrichts-PDF
+  const LEVEL_ORDER = Array.from({length:MAX_LESSON-MIN_LESSON+1},(_,i)=>'L'+(MIN_LESSON+i));
 
   /* ---------- Helfer ---------- */
   function el(tag, cls, html){ const e=document.createElement(tag); if(cls)e.className=cls; if(html!=null)e.innerHTML=html; return e; }
@@ -209,7 +205,7 @@
   }
 
   /* ============================================================
-     VERB-KONJUGATOR (Minna no Nihongo Gruppen I/II/III)
+     VERB-KONJUGATOR (Verbgruppen I/II/III)
      ============================================================ */
   const I2U = {'い':'う','き':'く','ぎ':'ぐ','し':'す','ち':'つ','に':'ぬ','ひ':'ふ','び':'ぶ','み':'む','り':'る'};
   const U2A = {'う':'わ','く':'か','ぐ':'が','す':'さ','つ':'た','ぬ':'な','ぶ':'ば','む':'ま','る':'ら'};
@@ -289,7 +285,7 @@
       if(!/^V\./.test(v.pos)||verbGroup(v.pos)<=0)return false;
       const c=conjugate(v.kana,verbGroup(v.pos)); return !!(c&&c[form]);
     });
-    const max=(window.SRS&&window.SRS.maxUnlockedLesson)?window.SRS.maxUnlockedLesson():25;
+    const max=(window.SRS&&window.SRS.maxUnlockedLesson)?window.SRS.maxUnlockedLesson():MAX_LESSON;
     const within=conjugable.filter(v=>v.lesson<=max);
     return within.length>=4?within:conjugable;
   }
@@ -359,7 +355,7 @@
     if(src!=='all')return out;
     // Freigeschaltete Lektionen bevorzugen — aber erst NACH dem Verbfilter zählen: die frühen
     // Lektionen enthalten kaum Verben, und ein leerer Trainer wäre schlechter als ein weiter Pool.
-    const max=(window.SRS&&window.SRS.maxUnlockedLesson)?window.SRS.maxUnlockedLesson():25;
+    const max=(window.SRS&&window.SRS.maxUnlockedLesson)?window.SRS.maxUnlockedLesson():MAX_LESSON;
     const within=out.filter(o=>o.v.lesson<=max);
     return within.length>=4?within:out;
   }
@@ -458,7 +454,8 @@
     LEVEL_ORDER.forEach(lv=>{
       const arr=byLevel[lv]; if(!arr||!arr.length)return;
       const group=el('section','group'); group.dataset.group=lv;
-      group.appendChild(groupHead(lv,'Kanji dieser Kursstufe',arr.length));
+      const L=+lv.slice(1);
+      group.appendChild(groupHead('Lektion '+L,(L===0?'vorausgesetzte Kanji':(LESSON[L]||{}).thema||''),arr.length));
       const grid=el('div','kanji-grid'); arr.forEach(k=>grid.appendChild(kanjiCard(k)));
       group.appendChild(grid); content.appendChild(group);
     });
@@ -1419,7 +1416,7 @@
       // Lernpfad-Fortschritt: Status + Kern-Fortschritt + Test-Score je Lektion.
       const lp=document.getElementById('f-lessons');
       if(lp){ let html='';
-        for(let L=1;L<=25;L++){ const st=window.SRS.lessonState(L);
+        for(let L=MIN_LESSON;L<=MAX_LESSON;L++){ const st=window.SRS.lessonState(L);
           const cls=st.testPassed?'lp-done':(st.unlocked?'lp-open':'lp-locked');
           const pct=Math.round(st.coreProgress.fraction*100);
           html+='<div class="lp-bar '+cls+'" title="Lektion '+L+' — beherrscht '+st.coreProgress.mastered+'/'+st.coreProgress.total+(st.testPassed?(', Test '+Math.round(st.bestScore*100)+'%'):'')+'">'+
@@ -1543,7 +1540,7 @@
     }
     function draw(){
       const grid=el('div','lp-grid');
-      for(let L=1;L<=25;L++)grid.appendChild(lessonCard(L));
+      for(let L=MIN_LESSON;L<=MAX_LESSON;L++)grid.appendChild(lessonCard(L));
       root.innerHTML=''; root.appendChild(grid);
     }
     let lpRestart=null;
@@ -1936,7 +1933,7 @@
     let src=lsGet(VT_SRC_KEY)||'all', forms=vtLoadForms();
 
     function sources(){
-      const max=window.SRS.maxUnlockedLesson?window.SRS.maxUnlockedLesson():25;
+      const max=window.SRS.maxUnlockedLesson?window.SRS.maxUnlockedLesson():MAX_LESSON;
       const out=[{id:'all',label:'Alle Verben',hint:'bis L'+max,n:vtVerbs('all').length}];
       (window.SRS.lists()||[]).forEach(l=>out.push({id:l.id,label:l.name,hint:'Liste',n:vtVerbs(l.id).length}));
       return out;
@@ -1981,7 +1978,8 @@
           (sample?'<span class="vt-form-ja ja">'+esc(sample.kana[f])+'</span>':'')+
           (open?'':'<span class="msi vt-lock" aria-hidden="true">lock</span>');
         if(!open){ b.disabled=true;
-          b.title='Ab Lektion '+window.Exercises.formLesson(f)+' — im Lernpfad freischalten.'; }
+          b.title=window.Exercises.formPattern(f)?'Ab Lektion '+window.Exercises.formLesson(f)+' — im Lernpfad freischalten.'
+            :'Kommt im Kurs noch nicht vor — frei, sobald alle Lektionen freigeschaltet sind.'; }
         else b.addEventListener('click',()=>{
           const i=forms.indexOf(f);
           if(i===-1)forms.push(f); else if(forms.length>1)forms.splice(i,1); // eine Form muss bleiben

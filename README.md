@@ -1,6 +1,6 @@
 # Go! Nihongo
 
-Lern-App für Japanisch (Minna no Nihongo 初級 I, Lektionen 1–25).
+Lern-App für Japanisch — Inhalte aus den Unterrichts-PDFs des Kurses (Lektion 0 = vorausgesetzt, Lektionen 1–13 = je Unterrichtsstunde; Quellen und Auswertung unter `quellen/`).
 Läuft als **Offline-Website / PWA** und als **Android-APK** — derselbe Code-Stand.
 
 ## Funktionen
@@ -8,7 +8,7 @@ Läuft als **Offline-Website / PWA** und als **Android-APK** — derselbe Code-S
 - **Nachschlagen** — Grammatik, Vokabular, Kanji und Verben (Auto-Konjugator) mit Suche, Filtern und Furigana.
 - **Heute** — tägliche, gemischte Lernrunde aus fälligen Wiederholungen und neuen Inhalten
   (Spaced Repetition, SM-2-light); an den Lernpfad gekoppelt.
-- **Lernpfad** — Lektionen L1–25 freispielen: Kern beherrschen (Kanji ab einem Level auch
+- **Lernpfad** — Lektionen L0–13 freispielen: Kern beherrschen (Kanji ab einem Level auch
   schreiben) + Lektionstest bestehen.
 - **Listen** — eigene Vokabellisten als Karteikarten in beide Richtungen (日本語↔Deutsch) trainieren.
 - **Dynamische Satzbildung** — generierte Übungen (Partikel-MC, Wörter ordnen, Übersetzen)
@@ -20,7 +20,7 @@ Läuft als **Offline-Website / PWA** und als **Android-APK** — derselbe Code-S
 UI: gruppierte Tab-Navigation (Browser) bzw. untere Tab-Leiste (App), Material-Icons als
 **selbst gehostete Font** (offline) — keine externen Requests.
 
-Der Lernstand wird lokal im Browser (`localStorage`, Schlüssel `katalog_srs_v1`) gespeichert
+Der Lernstand wird lokal im Browser (`localStorage`, Schlüssel `katalog_srs_v2`) gespeichert
 und kann als JSON exportiert/importiert werden.
 
 ## Architektur

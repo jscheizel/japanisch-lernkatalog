@@ -70,8 +70,8 @@ describe('Grammatik-Seite', () => {
     expect(exShown || trShown).toBe(true);
   });
 
-  it('Lektion 12 hat ein eigenes のほうが-Muster — auch per Rōmaji auffindbar', () => {
-    const g = win.GRAMMATIK.filter((x) => x.lesson === 12);
+  it('Lektion 0 hat ein eigenes のほうが-Muster — auch per Rōmaji auffindbar', () => {
+    const g = win.GRAMMATIK.filter((x) => x.lesson === 0);
     const hou = g.find((x) => x.pattern.indexOf('のほうが') !== -1);
     expect(hou).toBeTruthy();
     expect(hou.beispiele.length).toBeGreaterThan(2);
