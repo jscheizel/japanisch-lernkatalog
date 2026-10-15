@@ -1,0 +1,31 @@
+{
+  "lektion": 8,
+  "quelle": "2026-08-26 12-46.pdf",
+  "seiten": 19,
+  "status": "gelesen",
+  "abschnitte": [
+    {"seite":1,"art":"Neu","titel":"New: コーヒーにミルクをいれます, おふろにはいります, おてら, お金をはらいます, え, もっていきます, もってきます, さんぽします"},
+    {"seite":"2-4","art":"Wiederholung","titel":"Gelernte Verben-Liste (50), Wortschatz (54), Bild-Wortbank"},
+    {"seite":"5-8","art":"Neu","titel":"Verbverbindung mit て-Form: V1-て、V2-て、V3-ます (Genki 朝起きて、コーヒーを飲みます)"},
+    {"seite":"9-10","art":"Neu","titel":"て-Verbindung + Bitte / Vergangenheit / Negation / Modalverb (Endung bestimmt Zeit)"},
+    {"seite":"11-15","art":"Übung","titel":"Reisepläne (Rom, London …), Übersicht Satzmuster (Warum, deshalb, Einladung, Soll ich, Bitte, möchten, wollen, Verb+Verb), Verbverbindung + Modalverben, せんしゅうまつ"},
+    {"seite":17,"art":"Lesen","titel":"Katakana-Übung Italienreise"},
+    {"seite":"17-19","art":"Kanji","titel":"Kanji-Leseliste (50) und Kanji-Sätze (11)"}
+  ],
+  "vokabeln_neu": [
+    ["いれます","入れます","hineintun","V. II"],["ミルク","","Milch","N."],["おふろにはいります","お風呂に入ります","baden","V. I"],
+    ["はいります","入ります","hineingehen","V. I"],["おふろ","お風呂","Bad (Badewanne)","N."],["おてら","お寺","Tempel","N."],
+    ["はらいます","払います","bezahlen","V. I"],["おんせん","温泉","heiße Quelle (Onsen)","N."],["デートします","","ein Date haben","V. III"],
+    ["ひるごはん","昼ご飯","Mittagessen","N."],["ばんごはん","晩ご飯","Abendessen","N."],["けさ","今朝","heute Morgen","N."],["こんばん","今晩","heute Abend","N."],
+    ["しょっぴんぐ","","Shopping","N."],["ショッピングします","","shoppen","V. III"],["バー","","Bar","N."],["ローマ","","Rom","N."],["ロンドン","","London","N."],["パリ","","Paris","N."],
+    ["イタリア","","Italien","N."],["クレープ","","Crêpe","N."],["ホットチョコレート","","heiße Schokolade","N."],
+    ["あさおきます","朝起きます","morgens aufstehen","V. II"],["あるいて","歩いて","zu Fuß","Adv."],["タクシー","","Taxi","N."]
+  ],
+  "grammatik_neu": [
+    {"pattern":"V1-て、V2-て、V3-ます","titel":"Handlungsfolge mit der て-Form (und dann …)","bildung":"Alle Verben außer dem letzten in て-Form; das letzte Verb bestimmt Zeit, Negation, Bitte oder Wunsch.","beispiele":["朝起きて、コーヒーを飲みます。","わたしはおきて、かいしゃへいって、かいしゃでコーヒーをのみます。","わたしはきのうおきて、かいしゃへいって、かいしゃでコーヒーをのみました。","私はテレビをみて、ピザをたべたいです。"]}
+  ],
+  "kanji_neu": [],
+  "kanji_leseliste": ["山の上","大きい石","まい日","明日","明るい","森の中","大きい男の人","明日","林さん","森さん","好き","休みます","力","山と山の間","火","畑","何","なつ休み","石","岩","体","分かります","十分","男の人","男の子","百円","千円","何万円","大学生","中学生","小学生","先生","女の人","女の子","水","お金","木と木の間","日本が好きです","小さい体","明るい日","畑の土","大好き","日本の車","休みの日","川","口","山田さん","月よう日","土よう日","火よう日"],
+  "kanji_saetze": ["今年の夏休みは七月三十日から八月十五日までです。","あの子は体が大きいが、小学生です。","明日の四時にあいましょう。","学生たちは山田先生が好きです。","森の中に大きい岩があります。","畑で男の人がはたらいています。","林と山の間に小さい川があります。","明るい日にまどから富士山をみます。","私はあの男の子が好きです。","あの子は体は小さいですが、十三さいです。","好きな本をおしえて下さい。"],
+  "grammatik_vorausgesetzt": ["V-ましょう (あいましょう)","～が、～ (aber)"]
+}
