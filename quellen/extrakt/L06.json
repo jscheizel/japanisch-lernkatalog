@@ -1,0 +1,42 @@
+{
+  "lektion": 6,
+  "quelle": "2026-08-12 13-09.pdf",
+  "seiten": 22,
+  "status": "gelesen",
+  "abschnitte": [
+    {"seite":1,"art":"Neu","titel":"New: けっこんします, かぜをひきます, がっこうにかよいます, かばんをうります, しります, なつやすみ, バスてい, 子どもをむかえにいきます, 私をむかえにきます, 水をもっていきます, 水をもってきます"},
+    {"seite":"2-6","art":"Wiederholung","titel":"Wortschatz Deutsch (27, 24, 54), Bild-Verben, Wortschatz erweitern"},
+    {"seite":"7-12","art":"Wiederholung","titel":"Fragen, Brief マリアさん (ています), Genki 第7課-2 ～ている, Zusammenfassung, Gewohnheit"},
+    {"seite":"13-18","art":"Neu","titel":"te-imasu 3: Zustand (けっこんしています, かぜをひいています, もっています, しっています/しりません, すんでいます)"},
+    {"seite":"19-20","art":"Übung","titel":"te-imasu 1/2/3 Mix; ミラーさんをしっていますか"},
+    {"seite":21,"art":"Lesen","titel":"Katakana-Übung Weihnachten"},
+    {"seite":22,"art":"Kanji","titel":"Kanji-Lesesätze bis Lektion 4 (1–15)"}
+  ],
+  "vokabeln_neu": [
+    ["かぜをひきます","風邪を引きます","sich erkälten","V. I"],["かぜ","風邪","Erkältung","N."],
+    ["かよいます","通います","pendeln, regelmäßig hingehen","V. I"],["うります","売ります","verkaufen","V. I"],
+    ["しります","知ります","kennenlernen; しっています = kennen, wissen","V. I"],
+    ["むかえにきます","迎えに来ます","jemanden abholen kommen","V. III"],
+    ["もっていきます","持って行きます","mitnehmen (hin)","V. I"],["もってきます","持って来ます","mitbringen (her)","V. III"],
+    ["ジム","","Fitnessstudio","N."],["トイレ","","Toilette","N."],["ぶんか","文化","Kultur","N."],
+    ["ちゅうがっこう","中学校","Mittelschule","N."],["あか","赤","Rot","N."],["あおい","青い","blau","i-Adj."],["あかい","赤い","rot","i-Adj."],
+    ["おそい","遅い","langsam, spät","i-Adj."],["どうりょう","同僚","Kollege","N."],["かぞく","家族","Familie","N."],
+    ["おばさん","","Tante","N."],["おじいさん","","Großvater, Opa","N."],["にわ","庭","Garten","N."],["ところ","所","Ort","N."],
+    ["デパート","","Kaufhaus","N."],["あさ","朝","Morgen","N."],["ばん","晩","Abend","N."],["まいあさ","毎朝","jeden Morgen","N."],
+    ["まいばん","毎晩","jeden Abend","N."],["あさごはん","朝ご飯","Frühstück","N."],["じてんしゃ","自転車","Fahrrad","N."],
+    ["アパート","","Wohnung","N."],["ホテル","","Hotel","N."],["まんが","漫画","Manga","N."],["ほんや","本屋","Buchladen","N."],
+    ["げんき","元気","gesund, munter","na-Adj."],["メール","","E-Mail","N."],["とり","鳥","Vogel","N."],
+    ["クリスマスマーケット","","Weihnachtsmarkt","N."],["ホットワイン","","Glühwein","N."],["クリスマスツリー","","Weihnachtsbaum","N."],
+    ["キャンドル","","Kerze","N."],["クリスマスカード","","Weihnachtskarte","N."],["フィンランド","","Finnland","N."],["スイス","","Schweiz","N."]
+  ],
+  "grammatik_neu": [
+    {"pattern":"V-て います (Zustand)","titel":"Zustand / Ergebnis","beispiele":["私はけっこんしています。","ミラーさんは大阪に住んでいます。","かぜをひいています。","ミラーさんは車を持っていますか。…いいえ、持っていません。"]},
+    {"pattern":"しっています / しりません","titel":"kennen, wissen","hinweis":"Verneinung ist しりません (nicht しっていません)","beispiele":["ミラーさんを知っていますか。…はい、知っています。","いいえ、しりません。"]},
+    {"pattern":"N を むかえに いきます／きます","titel":"jemanden abholen (gehen/kommen)","beispiele":["子どもをむかえにいきます。","わたしはあなたたちを車でえきへむかえにいきますよ。"]},
+    {"pattern":"N を もって いきます／きます","titel":"etwas mitnehmen / mitbringen","beispiele":["水をもっていきます。","ビールをもってきてください。"]}
+  ],
+  "verwendet_jp": ["マリアさん","げんき","まいにち","あつい","たろう","いちろう","りょうしん","うち","うみ","ちかく","おみやげ","かれ","ともだち","らいしゅうまつ","つり","ジョゼ","テレーザ","あそびましょう","えき","メール","山田友子","山田太郎","山田一郎","書きました","毎日","泳ぎます","週末","両親","来ます","駅","迎えに","行きます","知って","持って","結婚して","大阪","住んで","自転車","住所","木の上","とり","小学生","六さい","十二さい","子ども","日本ご","むずかしい","まい日","六じ半","おきています","車の中","女の子","大きいパン","五百円","小さいパン","三百円","私の大学","あそこ","車の下","ねこ","大学から","えきまで","十分","あの女の子","何さい","中ごく人","らい月","中ごく","かえります","日本人","先生","水よう日","木よう日","学こう","かばんの中","お金","十年","日本ご","五千ユーロ"],
+  "kanji_neu": [],
+  "kanji_verwendet": ["友","子","太","郎","一","書","毎","日","泳","週","末","両","親","来","駅","迎","行","知","持","結","婚","大","阪","住","自","転","車","所","木","上","小","学","生","六","十","二","本","中","女","半","円","五","百","三","私","下","分","何","人","先","水","木","千","年","金"],
+  "hinweis": "Viele Kanji im Brieftext tragen Furigana (書, 泳, 週, 両, 親, 駅, 迎, 知, 持, 結, 婚, 阪, 住, 転, 所) → nur als Wortschreibweise nutzen, nicht als Lern-Kanji."
+}
