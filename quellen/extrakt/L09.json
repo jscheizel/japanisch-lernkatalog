@@ -1,0 +1,41 @@
+{
+  "lektion": 9,
+  "quelle": "2026-09-16 08-25.pdf",
+  "seiten": 25,
+  "status": "gelesen",
+  "abschnitte": [
+    {"seite":1,"art":"Neu","titel":"Neu: あかい, あおい, あまい, おおい, ひろい, ながい, べんり, もってきます, もっていきます, まち, はをみがきます"},
+    {"seite":"2-6","art":"Wiederholung","titel":"Wortschatz (58), gelernte Satzbau (22), Lesen & Übersetzen, Übersetzung ins Jap."},
+    {"seite":7,"art":"Lesen","titel":"Leseübung ① 横浜 (Pendeln); A oder B (か)"},
+    {"seite":"8-15","art":"Wiederholung","titel":"Verbliste ②, て-Form Konjugation, Bitte, Sollen/Bitte, Verben-Verbindungsform, Gewohnheit"},
+    {"seite":"16-25","art":"Neu","titel":"Adjektive: gelernte A1-Adjektive (23), Vergangenheit/Negation (い/な), neue Adjektive (23), Übersetzen, Bild-Wortbank"}
+  ],
+  "vokabeln_neu": [
+    ["あまい","甘い","süß","i-Adj."],["おおい","多い","viel(e)","i-Adj."],["すくない","少ない","wenig(e)","i-Adj."],
+    ["ひろい","広い","geräumig, weit","i-Adj."],["せまい","狭い","eng","i-Adj."],["ながい","長い","lang","i-Adj."],["みじかい","短い","kurz","i-Adj."],
+    ["べんり","便利","praktisch","na-Adj."],["ふべん","不便","unpraktisch","na-Adj."],["まち","町","Stadt","N."],
+    ["あかるい","明るい","hell","i-Adj."],["くらい","暗い","dunkel","i-Adj."],["あたたかい","暖かい","warm","i-Adj."],["すずしい","涼しい","kühl","i-Adj."],
+    ["ひくい","低い","niedrig","i-Adj."],["からい","辛い","scharf","i-Adj."],["ふとい","太い","dick","i-Adj."],["ほそい","細い","dünn","i-Adj."],
+    ["まるい","丸い","rund","i-Adj."],["しかくい","四角い","eckig","i-Adj."],["かわいい","","süß, niedlich","i-Adj."],
+    ["にぎやか","","belebt, lebhaft","na-Adj."],["しんせつ","親切","freundlich","na-Adj."],["つまらない","","langweilig","i-Adj."],
+    ["ふく","服","Kleidung","N."],["かみ","髪","Haar","N."],["スープ","","Suppe","N."],["テスト","","Test","N."],["コンサート","","Konzert","N."],
+    ["パーティー","","Party","N."],["クラス","","Klasse, Kurs","N."],["てんき","天気","Wetter","N."],["かいもの","買い物","Einkauf","N."],
+    ["アニメ","","Anime","N."],["バイク","","Motorrad","N."],["ごがつ","五月","Mai","N."],["ろくがつ","六月","Juni","N."],
+    ["どようび","土曜日","Samstag","N."],["きんようび","金曜日","Freitag","N."],["いちじかん","一時間","eine Stunde","N."],
+    ["ひとりで","一人で","allein","Adv."],["よこはま","横浜","Yokohama","N."],["おきなわ","沖縄","Okinawa","N."],["さんがつ","三月","März","N."],
+    ["きたない","汚い","schmutzig, eklig","i-Adj."],["ふくざつ","複雑","kompliziert","na-Adj."],["うるさい","","laut","i-Adj."]
+  ],
+  "vokabeln_wiederholung_L0": [
+    ["たかい","高い","teuer; hoch","i-Adj."],["やすい","安い","billig","i-Adj."],["あたらしい","新しい","neu","i-Adj."],["ふるい","古い","alt","i-Adj."],
+    ["おいしい","","lecker","i-Adj."],["まずい","","eklig, schlecht schmeckend","i-Adj."],["むずかしい","難しい","schwer, schwierig","i-Adj."],["やさしい","優しい","nett; einfach","i-Adj."],
+    ["きれい","","schön","na-Adj."],["ハンサム","","gutaussehend","na-Adj."],["ゆうめい","有名","berühmt","na-Adj."],["おもしろい","面白い","interessant","i-Adj."]
+  ],
+  "grammatik_neu": [
+    {"pattern":"い-Adj. Vergangenheit","titel":"い-Adjektive in der Vergangenheit","bildung":"～い → ～かったです; Verneinung ～くなかったです; いい → よかったです","beispiele":["きのうはすずしかったです。","きのうのパーティーはおもしろかったですか。…いいえ、おもしろくなかったです。","きのう、てんきはわるかったです。"]},
+    {"pattern":"な-Adj. Vergangenheit","titel":"な-Adjektive in der Vergangenheit","bildung":"～です → ～でした; Verneinung ～ではありませんでした","beispiele":["きょうとはきれいでした。","先生はしんせつではありませんでした。"]},
+    {"pattern":"い-Adj.-くて / な-Adj.-で","titel":"Adjektive verbinden (und)","beispiele":["あのデパートはひろくて、きれいです。"]},
+    {"pattern":"N1 か N2","titel":"oder (A oder B)","beispiele":["すしかラーメンをたべたいです。","まいにちあるいてかじてんしゃでかいしゃへいきたいです。"]}
+  ],
+  "kanji_neu": [],
+  "kanji_verwendet": ["私","東","京","働","横","浜","住","高","近","町","毎","日","通","電","車","時","間","便","利","家","会","社","朝","夜","多","好","歩","自","転","行","先","月","生","土","山","子"]
+}
