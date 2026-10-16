@@ -18,6 +18,7 @@
     12:{thema:'Wiederholung & Kanji (花 茶 肉 …)'},13:{thema:'ない-Form & ～ないでください'}
   };
   const MIN_LESSON = 0, MAX_LESSON = 13;  // Lektion 0 = vorausgesetzt, 1–13 = je Unterrichts-PDF
+  const ALL_LESSONS = Array.from({length:MAX_LESSON-MIN_LESSON+1},(_,i)=>MIN_LESSON+i);
   const LEVEL_ORDER = Array.from({length:MAX_LESSON-MIN_LESSON+1},(_,i)=>'L'+(MIN_LESSON+i));
 
   /* ---------- Helfer ---------- */
@@ -452,14 +453,14 @@
     const data=window.KANJI||[], byLevel={};
     data.forEach(k=>{(byLevel[k.level]=byLevel[k.level]||[]).push(k);});
     LEVEL_ORDER.forEach(lv=>{
-      const arr=byLevel[lv]; if(!arr||!arr.length)return;
+      const arr=byLevel[lv], L=+lv.slice(1);
+      if(!arr||!arr.length){ content.appendChild(emptyLessonGroup(L,lv,'keine neuen Kanji')); return; }
       const group=el('section','group'); group.dataset.group=lv;
-      const L=+lv.slice(1);
       group.appendChild(groupHead('Lektion '+L,(L===0?'vorausgesetzte Kanji':(LESSON[L]||{}).thema||''),arr.length));
       const grid=el('div','kanji-grid'); arr.forEach(k=>grid.appendChild(kanjiCard(k)));
       group.appendChild(grid); content.appendChild(group);
     });
-    buildChips(LEVEL_ORDER.filter(lv=>byLevel[lv]), v=>v);
+    buildChips(LEVEL_ORDER, v=>v);
     initKanjiClicks(content);
   }
   function kanjiCard(k){
@@ -491,8 +492,9 @@
     const data=window.VOKABULAR||[], byLesson={};
     const listsOn=!!window.SRS;
     data.forEach(w=>{(byLesson[w.lesson]=byLesson[w.lesson]||[]).push(w);});
-    Object.keys(byLesson).map(Number).sort((a,b)=>a-b).forEach(L=>{
+    ALL_LESSONS.forEach(L=>{
       const arr=byLesson[L];
+      if(!arr||!arr.length){ content.appendChild(emptyLessonGroup(L,String(L),'keine neuen Vokabeln')); return; }
       const group=el('section','group'); group.dataset.group=String(L);
       const head=groupHead('Lektion '+L,(LESSON[L]||{}).thema||'',arr.length);
       if(window.SRS)head.appendChild(lessonRepsBadge(L,'vocab'));
@@ -501,7 +503,7 @@
       const list=el('div','vocab-list'); arr.forEach(w=>list.appendChild(vocabRow(w,listsOn)));
       group.appendChild(list); content.appendChild(group);
     });
-    buildChips(Object.keys(byLesson).map(Number).sort((a,b)=>a-b), L=>'L'+L);
+    buildChips(ALL_LESSONS, L=>'L'+L);
     buildTypeChips();
     initVocabClicks(content,listsOn);
   }
@@ -600,8 +602,9 @@
   function renderGrammar(content){
     const data=window.GRAMMATIK||[], byLesson={};
     data.forEach(g=>{(byLesson[g.lesson]=byLesson[g.lesson]||[]).push(g);});
-    Object.keys(byLesson).map(Number).sort((a,b)=>a-b).forEach(L=>{
+    ALL_LESSONS.forEach(L=>{
       const arr=byLesson[L];
+      if(!arr||!arr.length){ content.appendChild(emptyLessonGroup(L,String(L),'keine neue Grammatik')); return; }
       const group=el('section','group'); group.dataset.group=String(L);
       const head=groupHead('Lektion '+L,(LESSON[L]||{}).thema||'',arr.length);
       if(window.SRS)head.appendChild(lessonRepsBadge(L,'grammar'));
@@ -609,7 +612,7 @@
       arr.forEach(g=>group.appendChild(grammarCard(g,L)));
       content.appendChild(group);
     });
-    buildChips(Object.keys(byLesson).map(Number).sort((a,b)=>a-b), L=>'L'+L);
+    buildChips(ALL_LESSONS, L=>'L'+L);
     initCollapse(content);
   }
   // Klick auf den Karten-Kopf (.card-toggle) klappt die Karte auf/zu.
@@ -929,6 +932,14 @@
   }
 
   /* ---------- gemeinsame Bausteine ---------- */
+  // Lektion ohne Einträge dieser Art: trotzdem anzeigen, mit Hinweis — eine fehlende oder leere
+  // Lektion sähe wie ein Fehler aus. filterVal = Wert des Lektions-Chips (Kanji „L5", sonst „5").
+  function emptyLessonGroup(L,filterVal,what){
+    const group=el('section','group group-empty'); group.dataset.group=filterVal; group.dataset.emptyFor=filterVal;
+    group.appendChild(groupHead('Lektion '+L,(LESSON[L]||{}).thema||'',0));
+    group.appendChild(el('p','lesson-empty','In dieser Lektion gab es '+esc(what)+'.'));
+    return group;
+  }
   function groupHead(title,theme,n){
     const h=el('div','group-head');
     h.innerHTML='<h2>'+esc(title)+'</h2>'+(theme?'<span class="theme">'+esc(theme)+'</span>':'')+'<span class="gcount">'+n+'</span>';
@@ -1036,10 +1047,14 @@
       const okQ=searchHit(idx,q,qs);
       const okT=activeType==='all'||it.dataset.type===activeType;
       const vis=okF&&okQ&&okT; it.classList.toggle('hidden',!vis); if(vis)shown++; });
-    groups.forEach(g=>{ const n=g.querySelectorAll('.item:not(.hidden)').length; g.classList.toggle('hidden',n===0);
+    let notes=0; // sichtbare „keine neuen …"-Hinweise (nur ohne Suche/Wortart-Filter)
+    groups.forEach(g=>{
+      if(g.dataset.emptyFor!=null){ const vis=!q&&activeType==='all'&&(activeFilter==='all'||activeFilter===g.dataset.emptyFor);
+        g.classList.toggle('hidden',!vis); if(vis)notes++; return; }
+      const n=g.querySelectorAll('.item:not(.hidden)').length; g.classList.toggle('hidden',n===0);
       const gc=g.querySelector('.gcount'); if(gc)gc.textContent=n; });
     const c=document.getElementById('count'); if(c)c.textContent='Zeige '+shown+' von '+items.length+' Einträgen';
-    const empty=document.getElementById('empty'); if(empty)empty.classList.toggle('hidden',shown!==0);
+    const empty=document.getElementById('empty'); if(empty)empty.classList.toggle('hidden',shown!==0||notes>0);
   }
 
   /* ============================================================  SCHALTER  */
