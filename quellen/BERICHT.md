@@ -8,21 +8,21 @@ alles, was in den PDFs als „Wiederholung" geübt oder ohne Einführung benutzt
 
 | L | Datum | Thema | Vokabeln | Grammatik | Kanji |
 |---|---|---|---|---|---|
-| 0 | – | Grundwortschatz (vorausgesetzt) | 243 | 21 | 31 |
-| 1 | 24.06. | ～たい / ～がほしい | 23 | 3 | – |
-| 2 | 15.07. | Neue Verben | 33 | – | 4 (百千万年) |
+| 0 | – | Grundwortschatz (vorausgesetzt) | 257 | 21 | 31 |
+| 1 | 24.06. | ～たい / ～がほしい | 21 | 3 | – |
+| 2 | 15.07. | Neue Verben | 29 | – | 4 (百千万年) |
 | 3 | 22.07. | て-Form & ～てください | 16 | 5 | – |
 | 4 | 29.07. | ～ましょうか | 8 | 1 | – |
-| 5 | 05.08. | ～ています (gerade / regelmäßig) | 36 | 2 | 10 (上下中大小本半分力何) |
-| 6 | 12.08. | ～ています (Zustand), kennen | 37 | 4 | – |
-| 7 | 19.08. | Wiederholung & Kanji | 24 | – | 11 (明休体好男林森間畑岩石) |
-| 8 | 26.08. | V-て、V-て (Handlungsfolge) | 20 | 1 | – |
-| 9 | 16.09. | Adjektive: Vergangenheit & Verneinung | 41 | 3 | – |
-| 10 | 23.09. | Adjektive verbinden (～くて / ～で) | 16 | 2 | 9 (目耳手足雨竹米貝糸) |
-| 11 | 30.09. | dürfen / nicht dürfen | 14 | 2 | – |
-| 12 | 07.10. | Wiederholung & Kanji | 14 | 1 | 10 (花茶肉文字物牛馬鳥魚) |
+| 5 | 05.08. | ～ています (gerade / regelmäßig) | 32 | 2 | 10 (上下中大小本半分力何) |
+| 6 | 12.08. | ～ています (Zustand), kennen | 32 | 4 | – |
+| 7 | 19.08. | Wiederholung & Kanji | 21 | – | 11 (明休体好男林森間畑岩石) |
+| 8 | 26.08. | V-て、V-て (Handlungsfolge) | 15 | 1 | – |
+| 9 | 16.09. | Adjektive: Vergangenheit & Verneinung | 38 | 3 | – |
+| 10 | 23.09. | Adjektive verbinden (～くて / ～で) | 10 | 2 | 9 (目耳手足雨竹米貝糸) |
+| 11 | 30.09. | dürfen / nicht dürfen | 11 | 2 | – |
+| 12 | 07.10. | Wiederholung & Kanji | 11 | 1 | 10 (花茶肉文字物牛馬鳥魚) |
 | 13 | 14.10. | ない-Form & ～ないでください | 22 | 2 | – |
-| | | **Summe** | **547** | **47** | **75** |
+| | | **Summe** | **523** | **47** | **75** |
 
 ## Entscheidungen und unsichere Stellen (bitte kurz prüfen)
 
@@ -45,7 +45,11 @@ alles, was in den PDFs als „Wiederholung" geübt oder ohne Einführung benutzt
 - **Kanji-Seiten sind kein Vokabular.** Wörter, die nur in Kanji-Leselisten, Kanji-Sätzen oder als
   Kanji-Buch-Beispiele vorkommen (z. B. 鳥肉, 牛肉, びょうき, 目, 耳, 森, 林), stehen nur als
   Beispielwörter beim Kanji, nicht im Vokabular. Vokabular = „New"-Listen, Vokabellisten und Wörter,
-  die man für die Übungen und Lesetexte der Stunde braucht.
+  die man für die Übungen der Stunde braucht.
+- **Eigennamen sind kein Vokabular.** Städte, Regionen, Berge, Sehenswürdigkeiten und Feiertage
+  (とうきょう, はこね, ふじさん, クリスマス …) muss man nur lesen können. Länder bleiben drin.
+- **Wörter, die nur in Lesetexten vorkommen** (やきそば-Rezept, Hakone-Text, „わたしはだれですか" …),
+  sind vermutlich schon früher gelernt → **Lektion 0**. Beide Listen stehen in `gen_vokabular.py`.
 - **Wörterbuchform und た-Form** kommen im Kurs noch nicht vor. Im Verbformen-Trainer sind sie daher
   gesperrt, bis der ganze Lernpfad freigeschaltet ist („Alle freischalten" öffnet sie).
 - **Lernstand** wurde zurückgesetzt (neuer Speicher-Schlüssel `katalog_srs_v2`); der alte Stand bleibt

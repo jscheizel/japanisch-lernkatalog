@@ -10,10 +10,22 @@ from themen import THEMEN, DATUM
 
 ROOT = os.path.dirname(os.path.dirname(HERE))
 
+# Eigennamen (Orte, Sehenswürdigkeiten, Feiertage) muss man nur lesen können → kein Vokabular.
+# Länder bleiben (sie stecken in ～人／～語 und vielen Übungen).
+EIGENNAMEN = set('''とうきょう おおさか きょうと ベルリン ミュンヘン あさくさ しんじゅく しぶや ほっかいどう ちば
+ローマ ロンドン パリ よこはま おきなわ ひろしま はこね ふじさん スカイツリー アジア
+クリスマス イースター クリスマスマーケット クリスマスツリー'''.split())
+# Wörter, die nur in Lesetexten der Stunden vorkommen: vermutlich schon früher gelernt → Lektion 0.
+LESETEXT_NACH_L0 = set('''やきそば レシピ ソース えび すてき たのしい よる りょかん おさけ ふとん たたみ
+いざかや いちば おみやげ かぶき ホットワイン キャンドル クレープ ホットチョコレート'''.split())
+
 def entries():
     l1_kana = {k for _, k, _, _ in L[1]}
-    lessons = {0: [e for e in L0 if e[1] not in l1_kana]}
-    lessons.update(L)
+    later = [e for les in sorted(L) for e in L[les] if e[1] in LESETEXT_NACH_L0]
+    lessons = {0: [e for e in L0 if e[1] not in l1_kana] + later}
+    for les in sorted(L):
+        lessons[les] = [e for e in L[les] if e[1] not in LESETEXT_NACH_L0]
+    lessons = {k: [e for e in v if e[1] not in EIGENNAMEN] for k, v in lessons.items()}
     seen = []  # (kana, pos, kanji)
     out = {}
     for les in sorted(lessons):
