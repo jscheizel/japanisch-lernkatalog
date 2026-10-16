@@ -46,6 +46,10 @@ jobs:
           java-version: 17
       - name: Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          # Default wäre „tools platform-tools" — das Legacy-Paket „tools" gibt es in den aktuellen
+          # cmdline-tools nicht mehr (sdkmanager bricht ab). Plattform & Build-Tools lädt Gradle selbst.
+          packages: 'platform-tools'
 
       - run: npm ci
 
