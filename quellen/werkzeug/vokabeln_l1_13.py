@@ -67,8 +67,8 @@ L[7] = [  # 19.08.
  ("","チケット","Ticket","N."),("","ヨガ","Yoga","N."),("","アジア","Asien","N."),("","サッカー","Fußball","N."),("","ゴルフ","Golf","N."),
  ("","ボールペン","Kugelschreiber","N."),("北海道","ほっかいどう","Hokkaido","N."),("写真家","しゃしんか","Fotograf(in)","N."),("千葉","ちば","Chiba (Stadt)","N."),
  ("","ピクニック","Picknick","N."),("","うどん","Udon (Nudeln)","N."),("何も","なにも","nichts (+ Verneinung)","Adv."),("","どこへも","nirgendwohin (+ Verneinung)","Adv."),
- ("","だれも","niemand (+ Verneinung)","Adv."),("石","いし","Stein","N."),("岩","いわ","Felsen","N."),("森","もり","Wald","N."),("林","はやし","Wäldchen","N."),
- ("畑","はたけ","Acker, Feld","N."),("体","からだ","Körper","N."),("明るい","あかるい","hell; fröhlich","い-Adj."),("大好き","だいすき","sehr mögen","な-Adj."),
+ ("","だれも","niemand (+ Verneinung)","Adv."),
+ 
 ]
 L[8] = [  # 26.08. — V-て、V-て
  ("入れます","いれます","hineintun (コーヒーにミルクを～)","V. II"),("","ミルク","Milch","N."),("入ります","はいります","hineingehen; (お風呂に～) baden","V. I"),
@@ -76,7 +76,6 @@ L[8] = [  # 26.08. — V-て、V-て
  ("","デートします","ein Date haben","V. III"),("昼ご飯","ひるごはん","Mittagessen","N."),("晩ご飯","ばんごはん","Abendessen","N."),("今朝","けさ","heute Morgen","N."),
  ("今晩","こんばん","heute Abend","N."),("","ショッピングします","shoppen","V. III"),("","バー","Bar","N."),("","ローマ","Rom","N."),("","ロンドン","London","N."),
  ("","パリ","Paris","N."),("","イタリア","Italien","N."),("","クレープ","Crêpe","N."),("","ホットチョコレート","heiße Schokolade","N."),("歩いて","あるいて","zu Fuß","Adv."),
- ("富士山","ふじさん","Fuji (Berg)","N."),
 ]
 L[9] = [  # 16.09. — Adjektive
  ("甘い","あまい","süß","い-Adj."),("多い","おおい","viel(e)","い-Adj."),("少ない","すくない","wenig(e)","い-Adj."),("広い","ひろい","geräumig, weit","い-Adj."),
@@ -88,21 +87,19 @@ L[9] = [  # 16.09. — Adjektive
  ("髪","かみ","Haar","N."),("","スープ","Suppe","N."),("","テスト","Test","N."),("","コンサート","Konzert","N."),("","パーティー","Party","N."),
  ("","クラス","Klasse, Kurs","N."),("買い物","かいもの","Einkauf, Einkaufen","N."),("","アニメ","Anime","N."),("","バイク","Motorrad","N."),
  ("一人で","ひとりで","allein","Adv."),("横浜","よこはま","Yokohama","N."),("沖縄","おきなわ","Okinawa","N."),("広島","ひろしま","Hiroshima","N."),
- ("","うるさい","laut, nervig","い-Adj."),("複雑","ふくざつ","kompliziert","な-Adj."),("","か","oder (N1 か N2)","Partikel"),
+ ("明るい","あかるい","hell; fröhlich","い-Adj."),("","うるさい","laut, nervig","い-Adj."),("複雑","ふくざつ","kompliziert","な-Adj."),("","か","oder (N1 か N2)","Partikel"),
 ]
 L[10] = [  # 23.09. — Adjektive verbinden; Kanji 第6課
  ("白い","しろい","weiß","い-Adj."),("黒い","くろい","schwarz","い-Adj."),("不親切","ふしんせつ","unfreundlich","な-Adj."),("","リビング","Wohnzimmer","N."),
  ("","タワー","Turm","N."),("相撲","すもう","Sumo","N."),("食べ物","たべもの","Essen, Speise","N."),("箱根","はこね","Hakone","N."),
- ("旅館","りょかん","Ryokan (japanisches Gasthaus)","N."),("お酒","おさけ","Sake; Alkohol","N."),("布団","ふとん","Futon","N."),("畳","たたみ","Tatami","N."),
+ ("旅館","りょかん","Ryokan (japanisches Gasthaus)","N."),("お酒","おさけ","Sake; Alkohol","N."),("富士山","ふじさん","Fuji (Berg)","N."),("布団","ふとん","Futon","N."),("畳","たたみ","Tatami","N."),
  ("空港","くうこう","Flughafen","N."),("","もち","Mochi (Reiskuchen)","N."),("","ティーシャツ","T-Shirt","N."),
- ("目","め","Auge","N."),("耳","みみ","Ohr","N."),("手","て","Hand","N."),("足","あし","Fuß, Bein","N."),("雨","あめ","Regen","N."),
- ("竹","たけ","Bambus","N."),("米","こめ","Reis (ungekocht)","N."),("貝","かい","Muschel","N."),("糸","いと","Faden","N."),
 ]
 L[11] = [  # 30.09. — dürfen / nicht dürfen
  ("捨てます","すてます","wegwerfen (ごみを～)","V. II"),("","ごみ","Müll","N."),("国","くに","Land","N."),("触ります","さわります","anfassen, berühren (Nに/を～)","V. I"),
  ("吸います","すいます","rauchen (タバコを～)","V. I"),("","タバコ","Zigarette","N."),("使います","つかいます","benutzen","V. I"),
  ("","アイス","Eis (Speiseeis)","N."),("","ノート","Heft","N."),("","アルコール","Alkohol","N."),("居酒屋","いざかや","Izakaya (Kneipe)","N."),
- ("","スカイツリー","Skytree (Turm in Tokio)","N."),("市場","いちば","Markt","N."),("歌","うた","Lied","N."),("返します","かえします","zurückgeben","V. I"),
+ ("","スカイツリー","Skytree (Turm in Tokio)","N."),("市場","いちば","Markt","N."),
  ("","いいです","in Ordnung sein (～てもいいです = dürfen)","Ausdruck"),
 ]
 L[12] = [  # 07.10. — Kanji 第7課
@@ -110,10 +107,7 @@ L[12] = [  # 07.10. — Kanji 第7課
  ("馬","うま","Pferd","N."),("美術館","びじゅつかん","Kunstmuseum","N."),("借ります","かります","(aus)leihen, sich borgen","V. II"),
  ("","ちょっと…","das passt (mir) nicht so gut (höfliche Absage)","Ausdruck"),("","カタログ","Katalog","N."),("","エレベーター","Aufzug","N."),
  ("作ります","つくります","machen, herstellen","V. I"),("楽しい","たのしい","fröhlich, macht Spaß","い-Adj."),("素敵","すてき","toll, wunderschön","な-Adj."),
- ("夜","よる","Nacht","N."),("肉","にく","Fleisch","N."),("鳥肉","とりにく","Hühnerfleisch","N."),("牛肉","ぎゅうにく","Rindfleisch","N."),
- ("豚肉","ぶたにく","Schweinefleisch","N."),("牛乳","ぎゅうにゅう","Milch","N."),("抹茶","まっちゃ","Matcha","N."),("着物","きもの","Kimono","N."),
- ("焼き鳥","やきとり","Yakitori (Hähnchenspieße)","N."),("","バーベキュー","Barbecue","N."),("病気","びょうき","Krankheit","N."),("絵文字","えもじ","Emoji","N."),
- ("文字","もじ","Schriftzeichen","N."),("牛","うし","Rind, Kuh","N."),("物","もの","Ding, Sache","N."),
+ ("夜","よる","Nacht","N."),
 ]
 L[13] = [  # 14.10. — ない-Form, ～ないでください
  ("切ります","きります","schneiden (髪を～)","V. I"),("着ます","きます","anziehen (Oberteil; 服を～)","V. II"),("乗ります","のります","einsteigen, fahren mit (車に～)","V. I"),
@@ -122,5 +116,5 @@ L[13] = [  # 14.10. — ない-Form, ～ないでください
  ("弾きます","ひきます","(ein Instrument) spielen (ギターを～)","V. I"),("危ない","あぶない","gefährlich","い-Adj."),("禁煙","きんえん","Rauchverbot, Nichtraucher","N."),
  ("火","ひ","Feuer","N."),("心配します","しんぱいします","sich Sorgen machen","V. III"),("覚えます","おぼえます","sich merken, auswendig lernen (漢字を～)","V. II"),
  ("忘れます","わすれます","vergessen","V. II"),("押します","おします","drücken","V. I"),("","ボタン","Knopf","N."),("","ニュース","Nachrichten","N."),
- ("雑誌","ざっし","Zeitschrift","N."),("遅れます","おくれます","sich verspäten","V. II"),
+ ("雑誌","ざっし","Zeitschrift","N."),("返します","かえします","zurückgeben (本を～)","V. I"),("遅れます","おくれます","sich verspäten","V. II"),
 ]
