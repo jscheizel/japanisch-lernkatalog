@@ -2222,6 +2222,12 @@
       add.title='Vokabeln, Kanji oder Grammatik suchen und dieser Liste hinzufügen';
       add.addEventListener('click',()=>openAddPicker(list,onListChange));
       const back=el('a','btn li-back','<span class="msi" aria-hidden="true">arrow_back</span> Alle Listen'); back.href='listen.html';
+      // Füll-Liste: Füllen-Knopf vorn; neu aufgenommene Einträge danach ohne Neuladen einsortieren.
+      const fill=window.SRS.isFillList(list.id)?fillButton(list,()=>{
+        window.SRS.listItems(list.id).forEach(o=>{ if(!items.some(n=>n.dataset.liId===o.id))onListChange(o.id,true,o); });
+        head();
+      }):null;
+      if(fill){ actionsEl.appendChild(fill); if(subEl)subEl.textContent+=' '+fillInfoText(list)+'.'; }
       actionsEl.appendChild(train); actionsEl.appendChild(add); actionsEl.appendChild(exp); actionsEl.appendChild(back);
     }
     // Ein Eintrag als Katalog-Element + Entfernen-Knopf. Der Klick auf ✕ darf die Karte NICHT
@@ -2286,6 +2292,207 @@
     initVocabClicks(content,true); initKanjiClicks(content); initCollapse(content);
   }
 
+  /* ============================================================  FÜLL-LISTEN
+     Eine Füll-Liste wird aus gewählten Lektionen befüllt: „Füllen" zeigt 10 noch nicht
+     eingeschätzte Vokabeln nacheinander; man schätzt sich selbst ein (sicher / unsicher / nicht).
+     Sicher → nicht in die Liste; unsicher/nicht → in die Liste, danach wird die Übersetzung
+     gezeigt und es geht per „Weiter" zur nächsten Vokabel. Logik: SRS.fillBatch/fillRate. */
+  // Lektionen kompakt: [1,2,3,5] → „L1–3, 5"
+  function lessonRangeLabel(ls){
+    const a=(ls||[]).slice().sort((x,y)=>x-y), parts=[];
+    for(let i=0;i<a.length;i++){ let j=i; while(j+1<a.length&&a[j+1]===a[j]+1)j++;
+      parts.push(j>i?a[i]+'–'+a[j]:String(a[i])); i=j; }
+    return parts.length?'L'+parts.join(', '):'';
+  }
+  // Füllen-Knopf für Karte/Detailseite — Beschriftung und Sperre aus dem Füllstand.
+  function fillButton(list,onChange){
+    const info=window.SRS.fillInfo(list.id);
+    const b=el('button','btn-primary lst-fill',''); b.type='button';
+    if(!info)return null;
+    if(!info.remaining){
+      b.innerHTML='<span class="msi" aria-hidden="true">check</span> Alles durchgegangen';
+      b.disabled=true; b.title='Alle Vokabeln aus '+lessonRangeLabel(info.lessons)+' wurden eingeschätzt.';
+    } else {
+      b.innerHTML='<span class="msi" aria-hidden="true">playlist_add</span> '+(info.started?'Füllen fortsetzen':'Füllen starten')+
+        ' <span class="lst-fill-n">('+info.remaining+' offen)</span>';
+      b.title='Nächste '+Math.min(window.SRS.FILL_BATCH,info.remaining)+' Vokabeln aus '+lessonRangeLabel(info.lessons)+' einschätzen';
+    }
+    b.addEventListener('click',()=>openFill(list,onChange));
+    return b;
+  }
+  function fillInfoText(list){
+    const info=window.SRS.fillInfo(list.id); if(!info)return '';
+    return 'Füll-Liste · '+lessonRangeLabel(info.lessons)+' · '+info.done+' / '+info.total+' Vokabeln eingeschätzt';
+  }
+
+  /* ----- Anlegen: Name + Lektionsauswahl ----- */
+  let fsov=null;
+  function ensureFillSetup(){
+    if(fsov)return fsov;
+    const ov=el('div','pick-overlay fill-setup-overlay'); ov.hidden=true;
+    const counts={}; (window.VOKABULAR||[]).forEach(v=>{ counts[v.lesson]=(counts[v.lesson]||0)+1; });
+    const lessons=Object.keys(counts).map(Number).sort((a,b)=>a-b);
+    ov.innerHTML='<div class="pick-modal fill-setup-modal" role="dialog" aria-modal="true" aria-label="Füll-Liste anlegen">'+
+      '<div class="pick-head"><span class="pick-title">Füll-Liste anlegen</span><button class="drill-close fs-close" type="button" aria-label="Schließen"><span class="msi" aria-hidden="true">close</span></button></div>'+
+      '<p class="fs-hint">Wähle die Lektionen, aus denen die Liste befüllt wird. Beim Füllen schätzt du dich bei je '+window.SRS.FILL_BATCH+
+        ' Vokabeln selbst ein — was du nicht sicher kannst, landet in der Liste.</p>'+
+      '<input class="pick-name fs-name" type="text" placeholder="Name (optional) …" aria-label="Name der Füll-Liste">'+
+      '<div class="fs-tools"><span class="pick-lbl">Lektionen</span><button class="btn fs-all" type="button">Alle</button><button class="btn fs-none" type="button">Keine</button></div>'+
+      '<div class="fs-lessons">'+lessons.map(L=>'<label class="fs-lesson"><input type="checkbox" value="'+L+'"><span class="fs-l">L'+L+'</span><span class="fs-n">'+counts[L]+'</span></label>').join('')+'</div>'+
+      '<div class="fs-foot"><span class="fs-sum" role="status"></span><button class="btn-primary fs-create" type="button" disabled>Anlegen &amp; füllen</button></div>'+
+      '</div>';
+    document.body.appendChild(ov);
+    const q=s=>ov.querySelector(s);
+    const boxes=()=>Array.prototype.slice.call(ov.querySelectorAll('.fs-lesson input'));
+    const chosen=()=>boxes().filter(b=>b.checked).map(b=>+b.value);
+    const upd=()=>{ const ls=chosen(); const n=ls.reduce((s,L)=>s+(counts[L]||0),0);
+      q('.fs-sum').textContent=ls.length?(lessonRangeLabel(ls)+' · '+n+' Vokabeln'):'Noch keine Lektion gewählt';
+      q('.fs-create').disabled=!ls.length;
+      boxes().forEach(b=>b.parentNode.classList.toggle('on',b.checked)); };
+    ov.addEventListener('change',upd);
+    q('.fs-all').addEventListener('click',()=>{ boxes().forEach(b=>{ b.checked=true; }); upd(); });
+    q('.fs-none').addEventListener('click',()=>{ boxes().forEach(b=>{ b.checked=false; }); upd(); });
+    const close=()=>{ ov.hidden=true; };
+    q('.fs-close').addEventListener('click',close);
+    ov.addEventListener('click',e=>{ if(e.target===ov)close(); });
+    document.addEventListener('keydown',e=>{ if(!ov.hidden&&e.key==='Escape')close(); });
+    fsov={ ov, q, boxes, chosen, upd, close };
+    return fsov;
+  }
+  // onCreated(list) wird nach dem Anlegen gerufen; danach startet direkt die erste Füll-Runde.
+  function openFillSetup(onCreated){
+    if(!window.SRS)return;
+    const s=ensureFillSetup();
+    s.q('.fs-name').value=''; s.boxes().forEach(b=>{ b.checked=false; }); s.upd();
+    s.q('.fs-create').onclick=()=>{
+      const ls=s.chosen(); if(!ls.length)return;
+      const nm=(s.q('.fs-name').value||'').trim()||('Füll-Liste '+lessonRangeLabel(ls));
+      const l=window.SRS.createFillList(nm,ls); if(!l)return;
+      s.close();
+      if(onCreated)onCreated(l);
+      openFill(l,onCreated);
+    };
+    s.ov.hidden=false;
+    s.q('.fs-name').focus();
+  }
+
+  /* ----- Füllen: eine Runde mit bis zu FILL_BATCH Vokabeln ----- */
+  let fov=null, fst=null;
+  const FILL_LABEL={ sure:'Kann ich sicher', unsure:'Kann ich unsicher', no:'Kann ich nicht' };
+  function ensureFillDom(){
+    if(fov)return fov;
+    const ov=el('div','drill-overlay fill-overlay'); ov.hidden=true;
+    ov.innerHTML='<div class="drill-modal" role="dialog" aria-modal="true" aria-label="Liste füllen">'+
+      '<div class="drill-head"><div class="drill-titlewrap"><span class="drill-pattern fl-name"></span><span class="drill-title fl-sub"></span></div>'+
+        '<button class="drill-close fl-close" type="button" aria-label="Schließen"><span class="msi" aria-hidden="true">close</span></button></div>'+
+      '<div class="drill-stage">'+
+        '<div class="drill-top"><span class="drill-dir">Füllen</span><span class="drill-prog fl-prog"></span></div>'+
+        '<div class="fl-card">'+
+          '<div class="drill-prompt-lbl">Kennst du diese Vokabel?</div>'+
+          '<div class="fl-word ja"></div>'+
+          '<div class="drill-answer fl-answer hidden"><div class="drill-answer-lbl">Deutsch</div><div class="drill-de fl-de"></div><div class="fl-rated"></div></div>'+
+          '<div class="fl-rate">'+
+            '<button class="fl-btn fl-sure" type="button" data-r="sure"><span class="msi" aria-hidden="true">check_circle</span> '+FILL_LABEL.sure+' <span class="kbd">1</span></button>'+
+            '<button class="fl-btn fl-unsure" type="button" data-r="unsure"><span class="msi" aria-hidden="true">help</span> '+FILL_LABEL.unsure+' <span class="kbd">2</span></button>'+
+            '<button class="fl-btn fl-no" type="button" data-r="no"><span class="msi" aria-hidden="true">cancel</span> '+FILL_LABEL.no+' <span class="kbd">3</span></button>'+
+          '</div>'+
+          '<div class="drill-controls fl-next-wrap hidden"><button class="btn-primary fl-next" type="button">Weiter → <span class="kbd">Leertaste</span></button></div>'+
+        '</div>'+
+        '<div class="drill-done fl-done hidden"></div>'+
+      '</div></div>';
+    document.body.appendChild(ov);
+    const q=s=>ov.querySelector(s);
+    ov.querySelectorAll('.fl-btn').forEach(b=>b.addEventListener('click',()=>fillRate(b.dataset.r)));
+    q('.fl-next').addEventListener('click',fillNext);
+    q('.fl-close').addEventListener('click',closeFill);
+    // Kein Schließen per Hintergrund-Klick (versehentlicher Abbruch) — nur ✕ oder Escape.
+    document.addEventListener('keydown',e=>{
+      if(ov.hidden)return;
+      if(e.key==='Escape'){ closeFill(); return; }
+      // Fokus auf einem Knopf im Overlay: Enter/Leertaste lösen nativ dessen Klick aus.
+      const onBtn=e.target&&e.target.closest&&e.target.closest('.fill-overlay button');
+      const rating=!q('.fl-rate').classList.contains('hidden')&&!q('.fl-card').classList.contains('hidden');
+      if(rating&&(e.key==='1'||e.key==='2'||e.key==='3')){ e.preventDefault(); fillRate(['sure','unsure','no'][+e.key-1]); return; }
+      if(!onBtn&&(e.code==='Space'||e.key==='Enter')&&!q('.fl-next-wrap').classList.contains('hidden')){ e.preventDefault(); fillNext(); }
+    });
+    fov={ ov, q };
+    return fov;
+  }
+  function openFill(list,onChange){
+    if(!window.SRS||!window.SRS.isFillList(list.id))return;
+    const d=ensureFillDom();
+    fst={ list:list, onChange:onChange, batch:window.SRS.fillBatch(list.id), pos:0, answered:false,
+      tally:{ sure:0, unsure:0, no:0 } };
+    fst.total=fst.batch.length;
+    d.q('.fl-name').textContent=list.name;
+    d.ov.hidden=false; document.body.classList.add('drill-open');
+    fillRender();
+  }
+  function closeFill(){
+    if(!fov)return;
+    fov.ov.hidden=true; document.body.classList.remove('drill-open');
+    const cb=fst&&fst.onChange; fst=null;
+    if(cb)cb();
+  }
+  function fillRender(){
+    const d=fov, s=fst, q=d.q;
+    const info=window.SRS.fillInfo(s.list.id);
+    q('.fl-sub').textContent=lessonRangeLabel(info.lessons)+' · noch '+info.remaining+' von '+info.total+' offen';
+    if(s.pos>=s.batch.length){ fillDone(); return; }
+    q('.fl-done').classList.add('hidden'); q('.fl-card').classList.remove('hidden');
+    const o=s.batch[s.pos];
+    s.answered=false;
+    q('.fl-prog').textContent='Vokabel '+(s.pos+1)+' / '+s.total;
+    q('.fl-word').innerHTML=vocabFront(o.data);
+    q('.fl-de').textContent=o.data.de||'';
+    q('.fl-answer').classList.add('hidden');
+    q('.fl-rate').classList.remove('hidden');
+    q('.fl-next-wrap').classList.add('hidden');
+  }
+  function fillRate(r){
+    const s=fst; if(!s||s.answered||s.pos>=s.batch.length)return;
+    s.answered=true;
+    const o=s.batch[s.pos];
+    window.SRS.fillRate(s.list.id,o.id,r);
+    s.tally[r]++;
+    if(r==='sure'){ fillNext(); return; }
+    const q=fov.q;
+    q('.fl-rated').innerHTML='<span class="fl-tag fl-tag-'+r+'">'+esc(FILL_LABEL[r])+'</span> → in die Liste aufgenommen';
+    q('.fl-answer').classList.remove('hidden');
+    q('.fl-rate').classList.add('hidden');
+    q('.fl-next-wrap').classList.remove('hidden');
+    q('.fl-next').focus();
+  }
+  function fillNext(){ const s=fst; if(!s||!s.answered)return; s.pos++; fillRender(); }
+  function fillDone(){
+    const s=fst, q=fov.q;
+    const info=window.SRS.fillInfo(s.list.id);
+    const n=window.SRS.listItems(s.list.id).length;
+    q('.fl-card').classList.add('hidden'); q('.fl-prog').textContent='';
+    const box=q('.fl-done'); box.classList.remove('hidden');
+    const t=s.tally;
+    box.innerHTML=(s.total
+      ?'<div class="drill-done-in">Runde geschafft!<br>'+
+        '<span class="fl-tag fl-tag-sure">'+t.sure+' sicher</span> <span class="fl-tag fl-tag-unsure">'+t.unsure+' unsicher</span> <span class="fl-tag fl-tag-no">'+t.no+' nicht</span><br>'+
+        'Die Liste hat jetzt <b>'+n+'</b> '+(n===1?'Eintrag':'Einträge')+'.</div>'
+      :'<div class="drill-done-in">Nichts mehr zu füllen.</div>')+
+      (info.remaining?'':'<p class="fl-all">Alle Vokabeln aus '+esc(lessonRangeLabel(info.lessons))+' sind eingeschätzt — der Füllen-Modus ist für diese Liste abgeschlossen.</p>')+
+      '<div class="drill-controls fl-done-actions"></div>';
+    const acts=box.querySelector('.fl-done-actions');
+    if(info.remaining){
+      const more=el('button','btn-primary fl-more','<span class="msi" aria-hidden="true">playlist_add</span> Weiter füllen ('+info.remaining+' offen)'); more.type='button';
+      more.addEventListener('click',()=>{ const list=s.list, cb=s.onChange; openFill(list,cb); });
+      acts.appendChild(more);
+    }
+    if(n){
+      const tr=el('button','btn fl-train','<span class="msi" aria-hidden="true">play_arrow</span> Liste üben'); tr.type='button';
+      tr.addEventListener('click',()=>{ const list=s.list; closeFill(); openTrainer(list); });
+      acts.appendChild(tr);
+    }
+    const cl=el('button','btn fl-finish','Schließen'); cl.type='button'; cl.addEventListener('click',closeFill);
+    acts.appendChild(cl);
+  }
+
   function initListen(){
     const root=document.getElementById('lst-root'); if(!root||!window.SRS)return;
     const nameInp=document.getElementById('lst-create-name'), createBtn=document.getElementById('lst-create');
@@ -2315,6 +2522,9 @@
         const open=el('a','btn lst-open','<span class="msi" aria-hidden="true">open_in_new</span> Öffnen');
         open.href='liste.html?id='+encodeURIComponent(l.id);
         open.title='Alle Einträge mit Suche und Filter anzeigen';
+        const fill=window.SRS.isFillList(l.id)?fillButton(l,draw):null;
+        if(fill){ actions.appendChild(fill); card.classList.add('lst-fill-card');
+          card.querySelector('.lst-head').insertAdjacentHTML('afterend','<div class="lst-fill-info">'+esc(fillInfoText(l))+'</div>'); }
         actions.appendChild(train); actions.appendChild(open); actions.appendChild(show); actions.appendChild(ren); actions.appendChild(exp); actions.appendChild(del);
         root.appendChild(card);
       });
@@ -2349,6 +2559,8 @@
 
     if(createBtn)createBtn.addEventListener('click',()=>{ const nm=(nameInp.value||'').trim(); if(!nm){ nameInp.focus(); return; } window.SRS.createList(nm); nameInp.value=''; draw(); });
     if(nameInp)nameInp.addEventListener('keydown',e=>{ if(e.key==='Enter'&&createBtn)createBtn.click(); });
+    const fillBtn=document.getElementById('lst-create-fill');
+    if(fillBtn)fillBtn.addEventListener('click',()=>openFillSetup(draw));
     // Einzelne Liste importieren (JSON aus dem Export) — wird als NEUE Liste angelegt.
     const impBtn=document.getElementById('lst-import'), impFile=document.getElementById('lst-import-file'), msg=document.getElementById('lst-msg');
     if(impBtn&&impFile){

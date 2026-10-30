@@ -112,3 +112,32 @@ test('Schreiben: Deep-Link ?kanji= lädt genau dieses Zeichen', async ({ page })
   await expect(page.locator('#kw-char')).toHaveText('日');
   await expect(page.locator('canvas.kw-canvas')).toBeVisible({ timeout: 10000 });
 });
+
+test('Füll-Liste: Lektionen wählen, 10 Vokabeln einschätzen, Liste wächst', async ({ page }) => {
+  await page.goto('/listen.html');
+  await page.click('#lst-create-fill');
+  await page.locator('.fs-lesson', { hasText: 'L1' }).first().click();
+  await page.locator('.fs-lesson', { hasText: 'L2' }).first().click();
+  await expect(page.locator('.fs-sum')).toContainText('L1–2');
+  await page.click('.fs-create');
+  await expect(page.locator('.fill-overlay')).toBeVisible();
+  await expect(page.locator('.fl-prog')).toHaveText('Vokabel 1 / 10');
+  // sicher → direkt nächste; unsicher/nicht → Übersetzung + Weiter (auch per Tastatur)
+  await page.click('.fl-sure');
+  await expect(page.locator('.fl-prog')).toHaveText('Vokabel 2 / 10');
+  await page.click('.fl-unsure');
+  await expect(page.locator('.fl-answer')).toBeVisible();
+  await page.click('.fl-next');
+  await page.keyboard.press('3');
+  await expect(page.locator('.fl-answer')).toBeVisible();
+  await page.keyboard.press('Space');
+  await expect(page.locator('.fl-prog')).toHaveText('Vokabel 4 / 10');
+  for (let i = 0; i < 7; i++) await page.keyboard.press('1');
+  await expect(page.locator('.fl-done')).toContainText('2 Einträge');
+  await page.click('.fl-finish');
+  await expect(page.locator('.lst-count')).toHaveText('2 Einträge');
+  await expect(page.locator('.lst-fill')).toContainText('Füllen fortsetzen');
+  // Bleibt nach Neuladen erhalten
+  await page.reload();
+  await expect(page.locator('.lst-fill-info')).toContainText('10 /');
+});

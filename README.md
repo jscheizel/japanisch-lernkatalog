@@ -11,6 +11,10 @@ Läuft als **Offline-Website / PWA** und als **Android-APK** — derselbe Code-S
 - **Lernpfad** — Lektionen L1–25 freispielen: Kern beherrschen (Kanji ab einem Level auch
   schreiben) + Lektionstest bestehen.
 - **Listen** — eigene Vokabellisten als Karteikarten in beide Richtungen (日本語↔Deutsch) trainieren.
+- **Füll-Listen** — Lektionen wählen, dann in Runden à 10 Vokabeln selbst einschätzen
+  („Kann ich sicher / unsicher / nicht"). Was nicht sicher sitzt, landet in der Liste
+  (unsicher mit Startpunktzahl 40, nicht mit 0); sichere Wörter gelten als beherrscht und
+  kommen nicht wieder. Sind alle Vokabeln der Lektionen durch, ist das Füllen abgeschlossen.
 - **Dynamische Satzbildung** — generierte Übungen (Partikel-MC, Wörter ordnen, Übersetzen)
   aus geprüften Satz-Vorlagen × getaggten Vokabeln.
 - **Kanji-Schreiben** — echte Strichreihenfolge (KanjiVG): nachzeichnen, abspielen, selbst bewerten.

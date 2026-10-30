@@ -38,6 +38,9 @@
   var DAILY_CAP = 24000;     // max. Punktgewinn über alle Wörter pro Tag (global = „Lernlimit")
   var LEARNED_SCORE = 60;    // „ganze Lektion als gelernt" setzt Items hierher (unter MASTER_AT → sofort fällig)
   var SCORE_THRESHOLDS = [20, 40, 60, 80, 100]; // Blütenblatt je 20 %
+  // Füll-Listen: Selbsteinschätzung → Startpunktzahl (siehe fillRate)
+  var FILL_BATCH = 10;       // Vokabeln pro „Füllen"-Runde
+  var FILL_SCORE = { sure: MASTER_AT, unsure: 40, no: 0 };
   var LEECH_LAPSES = 4;      // ab so vielen Fehlversuchen gilt ein noch-nicht-beherrschtes Item als „schwierig"
   // WICHTIG: muss VOR `var store = load()` zugewiesen sein — normalize() ruft pruneActivity()
   // bereits beim initialen Laden auf. Stand die Zuweisung weiter unten, war der Wert dort noch
@@ -480,12 +483,20 @@
     }
     // Vokabellisten mergen: gleiche id → Items vereinigen; sonst übernehmen.
     var mlists = {}, mid;
-    for (mid in (a.lists || {})) mlists[mid] = { id: mid, name: a.lists[mid].name, created: a.lists[mid].created, items: (a.lists[mid].items || []).slice() };
+    var copyList = function (id, l) {
+      var o = { id: id, name: l.name, created: l.created, items: (l.items || []).slice() };
+      var f = normFill(l.fill); if (f) o.fill = f;
+      return o;
+    };
+    for (mid in (a.lists || {})) mlists[mid] = copyList(mid, a.lists[mid]);
     for (mid in (b.lists || {})) {
       var bl2 = b.lists[mid];
-      if (!mlists[mid]) { mlists[mid] = { id: mid, name: bl2.name, created: bl2.created, items: (bl2.items || []).slice() }; continue; }
+      if (!mlists[mid]) { mlists[mid] = copyList(mid, bl2); continue; }
       (bl2.items || []).forEach(function (x) { if (mlists[mid].items.indexOf(x) === -1) mlists[mid].items.push(x); });
       mlists[mid].name = mlists[mid].name || bl2.name;
+      // Füll-Daten: Lektionen und bereits gesehene Vokabeln vereinigen.
+      var bf = normFill(bl2.fill);
+      if (bf) mlists[mid].fill = mergeFill(mlists[mid].fill, bf);
     }
     // Aktivitäts-Log mergen: je Tag das Maximum (idempotent beim Re-Import derselben Sicherung).
     var activity = {}, ad;
@@ -751,13 +762,92 @@
       .filter(function (o) { return o.data; });
   }
 
+  /* ---------- Füll-Listen ----------
+     Eine Füll-Liste merkt sich, aus welchen Lektionen sie befüllt wird (fill.lessons) und welche
+     Vokabeln man dabei schon eingeschätzt hat (fill.seen). „Füllen" zeigt Vokabeln aus diesen
+     Lektionen, die weder gesehen noch schon in der Liste sind; die Einschätzung setzt die
+     app-weite Lernpunktzahl (FILL_SCORE) und legt unsichere/unbekannte Wörter in die Liste. */
+  function uniqStrings(arr) {
+    var seen = {}, out = [];
+    (Array.isArray(arr) ? arr : []).forEach(function (x) { if (typeof x === 'string' && !seen[x]) { seen[x] = 1; out.push(x); } });
+    return out;
+  }
+  function normFill(f) {
+    if (!f || typeof f !== 'object' || !Array.isArray(f.lessons)) return null;
+    var lessons = [];
+    f.lessons.forEach(function (L) { L = parseInt(L, 10); if (L > 0 && lessons.indexOf(L) === -1) lessons.push(L); });
+    lessons.sort(function (a, b) { return a - b; });
+    return { lessons: lessons, seen: uniqStrings(f.seen) };
+  }
+  function mergeFill(a, b) {
+    if (!a) return b; if (!b) return a;
+    return normFill({ lessons: a.lessons.concat(b.lessons), seen: a.seen.concat(b.seen) });
+  }
+  function createFillList(name, lessons, today) {
+    var f = normFill({ lessons: lessons || [], seen: [] });
+    if (!f || !f.lessons.length) return null;
+    var l = createList(name, today);
+    l.fill = f;
+    save();
+    return l;
+  }
+  function isFillList(id) { var l = store.lists && store.lists[id]; return !!(l && l.fill); }
+  // Alle Vokabel-IDs der gewählten Lektionen (in Katalog-Reihenfolge).
+  function fillPool(id) {
+    var l = store.lists && store.lists[id]; if (!l || !l.fill) return [];
+    var want = {}; l.fill.lessons.forEach(function (L) { want[L] = 1; });
+    return (window.VOKABULAR || []).filter(function (v) { return want[v.lesson]; })
+      .map(function (v) { return srsId('vocab', v); });
+  }
+  // Noch nicht eingeschätzte Vokabeln (weder gesehen noch schon in der Liste).
+  function fillRemaining(id) {
+    var l = store.lists && store.lists[id]; if (!l || !l.fill) return [];
+    var skip = {};
+    l.fill.seen.forEach(function (x) { skip[x] = 1; });
+    (l.items || []).forEach(function (x) { skip[x] = 1; });
+    return fillPool(id).filter(function (x) { return !skip[x]; });
+  }
+  function fillInfo(id) {
+    var l = store.lists && store.lists[id]; if (!l || !l.fill) return null;
+    var pool = fillPool(id), remaining = fillRemaining(id).length;
+    return { lessons: l.fill.lessons.slice(), total: pool.length, remaining: remaining,
+      done: pool.length - remaining, started: l.fill.seen.length > 0 || (l.items || []).length > 0 };
+  }
+  // Nächste Runde: bis zu n zufällige, noch offene Vokabeln als {id,type,data}.
+  function fillBatch(id, n, rng) {
+    var idx = itemIndex();
+    var ids = shuffleArr(fillRemaining(id), rng).slice(0, n != null ? n : FILL_BATCH);
+    return ids.map(function (x) { return { id: x, type: 'vocab', data: idx[x] ? idx[x].data : null }; })
+      .filter(function (o) { return o.data; });
+  }
+  /* Eine Vokabel einschätzen. rating: 'sure' | 'unsure' | 'no'.
+     sure   → nicht in die Liste, Score mind. MASTER_AT (beherrscht)
+     unsure → in die Liste, Score = 40
+     no     → in die Liste, Score = 0
+     Zählt NICHT als Übung (kein Tagesgewinn, keine Historie) — es ist eine Selbsteinschätzung. */
+  function fillRate(id, vid, rating, today) {
+    var l = store.lists && store.lists[id]; if (!l || !l.fill || !FILL_SCORE.hasOwnProperty(rating)) return null;
+    today = today || todayISO();
+    var it = store.items[vid] || defaultItem();
+    var target = FILL_SCORE[rating];
+    it.score = rating === 'sure' ? Math.max(effectiveScore(it, today), target) : target;
+    it.last = today;
+    store.items[vid] = it;
+    if (l.fill.seen.indexOf(vid) === -1) l.fill.seen.push(vid);
+    if (rating !== 'sure' && l.items.indexOf(vid) === -1) l.items.push(vid);
+    save();
+    return { inList: rating !== 'sure', score: it.score };
+  }
+
   /* ---------- UI-Komfort: Download/Upload im Browser ---------- */
   /* Einzelne Liste exportieren/importieren (zwischen Geräten teilen). Die Datei enthält nur
      Namen + Item-IDs — der Katalog ist überall gleich, Lernstände werden NICHT mitkopiert. */
   var LIST_FILE_TYPE = 'katalog_liste';
   function exportListJSON(id) {
     var l = store.lists && store.lists[id]; if (!l) return null;
-    return JSON.stringify({ type: LIST_FILE_TYPE, v: 1, name: l.name, items: (l.items || []).slice() }, null, 2);
+    var out = { type: LIST_FILE_TYPE, v: 1, name: l.name, items: (l.items || []).slice() };
+    if (l.fill) out.fill = { lessons: l.fill.lessons.slice(), seen: l.fill.seen.slice() };
+    return JSON.stringify(out, null, 2);
   }
   // Importiert eine Listen-Datei als NEUE Liste. Unbekannte IDs (fremde/veraltete Inhalte)
   // werden übersprungen. Liefert {ok, list, added, skipped} bzw. {ok:false, error}.
@@ -774,6 +864,8 @@
     });
     var name = String(parsed.name || 'Importierte Liste').slice(0, 60);
     var l = createList(name);
+    var f = normFill(parsed.fill);
+    if (f) { f.seen = f.seen.filter(function (x) { return !!idx[x]; }); l.fill = f; }
     addToList(l.id, items);
     return { ok: true, list: store.lists[l.id], added: items.length, skipped: skipped };
   }
@@ -863,6 +955,8 @@
     // Persönliche Vokabellisten
     createList: createList, renameList: renameList, deleteList: deleteList,
     addToList: addToList, removeFromList: removeFromList, lists: lists, listItems: listItems, listsContaining: listsContaining,
+    createFillList: createFillList, isFillList: isFillList, fillInfo: fillInfo, fillRemaining: fillRemaining,
+    fillBatch: fillBatch, fillRate: fillRate, FILL_BATCH: FILL_BATCH, FILL_SCORE: FILL_SCORE,
     exportListJSON: exportListJSON, importListJSON: importListJSON, downloadList: downloadList, saveJson: saveJson,
     exportJSON: exportJSON, importJSON: importJSON, downloadBackup: downloadBackup, reset: reset,
     snapshot: snapshot, forecast: forecast,
