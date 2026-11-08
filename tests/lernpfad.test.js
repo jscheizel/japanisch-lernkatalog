@@ -28,8 +28,8 @@ function masterLesson(L) {
 }
 
 describe('Kanji-Stufe → Lektion-Mapping', () => {
-  it('mappt die Stufen „L0"–„L15" auf ihre Lektion; Unbekanntes auf null', () => {
-    for (let L = 0; L <= 15; L++) expect(SRS.kanjiLessonOf('L' + L)).toBe(L);
+  it('mappt die Stufen „L0"–„L16" auf ihre Lektion; Unbekanntes auf null', () => {
+    for (let L = 0; L <= 16; L++) expect(SRS.kanjiLessonOf('L' + L)).toBe(L);
     expect(SRS.kanjiLessonOf('A1.2')).toBe(null);
     expect(SRS.kanjiLessonOf(undefined)).toBe(null);
   });
@@ -95,8 +95,8 @@ describe('Freischalten: Kern beherrschen + Test bestehen', () => {
 
   it('unlockAll öffnet alle Lektionen des Pfads', () => {
     SRS.unlockAll();
-    expect(SRS.lessonState(15).unlocked).toBe(true);
-    expect(SRS.maxUnlockedLesson()).toBe(15);
+    expect(SRS.lessonState(16).unlocked).toBe(true);
+    expect(SRS.maxUnlockedLesson()).toBe(16);
   });
 });
 
@@ -203,5 +203,21 @@ describe('Export/Import erhält den Lektionsstatus', () => {
     expect(SRS.lessonState(1).testPassed).toBe(true);
     expect(SRS.lessonState(1).bestScore).toBeGreaterThanOrEqual(0.9);
     expect(SRS.lessonState(2).unlocked).toBe(true);
+  });
+});
+
+describe('Wiederholungsstunde ohne eigene Inhalte (L14, 21.10.)', () => {
+  it('hat keine Kern-Items und keinen Test', () => {
+    expect(SRS.lessonCore(14)).toHaveLength(0);
+    expect(SRS.lessonState(14).empty).toBe(true);
+    expect(SRS.canTakeTest(14)).toBe(false);
+  });
+  it('blockiert den Lernpfad nicht: bestandene L13 öffnet L14 und damit L15', () => {
+    expect(SRS.lessonState(15).unlocked).toBe(false);
+    SRS.recordLessonTest(13, 0.9);
+    expect(SRS.lessonState(14).unlocked).toBe(true);
+    expect(SRS.lessonState(14).testPassed).toBe(true);
+    expect(SRS.lessonState(15).unlocked).toBe(true);
+    expect(SRS.lessonState(16).unlocked).toBe(false);
   });
 });

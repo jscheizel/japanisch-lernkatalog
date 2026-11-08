@@ -1,4 +1,4 @@
-/* Furigana zu den Grammatik-Beispielsätzen (window.GRAMMATIK_FURIGANA) — Japanischkurs (Unterrichts-PDFs), Lektion 0–15.
+/* Furigana zu den Grammatik-Beispielsätzen (window.GRAMMATIK_FURIGANA) — Japanischkurs (Unterrichts-PDFs), Lektion 0–16.
    Erzeugt mit quellen/werkzeug/gen_grammatik.py — dort ändern, nicht hier.
    Schlüssel = exakter `jp`-String aus grammatik.js / grammatik_extra.js.
    Notation: {Basis|Lesung} = Ruby-Annotation über Kanji; alles andere ist Klartext. */

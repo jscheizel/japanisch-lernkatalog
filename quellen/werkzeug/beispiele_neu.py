@@ -214,4 +214,11 @@ N = {
  "しけん": ("しけんの とき、スマホを つかっては いけません。", "Shiken no toki, sumaho o tsukatte wa ikemasen.", "In der Prüfung darf man das Handy nicht benutzen.", "Prüfung; kleiner Test: テスト."),
  "ヘッドフォン": ("あたらしい ヘッドフォンが ほしいです。", "Atarashii heddofon ga hoshii desu.", "Ich möchte neue Kopfhörer.", "Katakana-Wort."),
  "かいだん": ("かいだんの まえに くるまを とめないでください。", "Kaidan no mae ni kuruma o tomenaide kudasai.", "Bitte nicht vor der Treppe parken.", "かいだん = Treppe."),
+ "のみもの": ("パーティーに のみものを もってきてください。", "Pātī ni nomimono o motte kite kudasai.", "Bring bitte Getränke zur Party mit.", "のみ (trinken) + もの (Ding)."),
+ "ラジオ": ("テレビや ラジオを つけないでください。", "Terebi ya rajio o tsukenaide kudasai.", "Bitte Fernseher und Radio nicht einschalten.", "Katakana-Wort."),
+ "ランチ": ("ランチは せんにひゃくえんです。", "Ranchi wa sen nihyaku en desu.", "Das Mittagsmenü kostet 1200 Yen.", "Mittagsmenü im Restaurant."),
+ "サラダ": ("Aセットは サラダと コーヒーです。", "Ē setto wa sarada to kōhī desu.", "Menü A ist Salat und Kaffee.", "Katakana-Wort."),
+ "セール": ("セールで じてんしゃを かいました。", "Sēru de jitensha o kaimashita.", "Im Ausverkauf habe ich ein Fahrrad gekauft.", "Katakana-Wort (sale)."),
+ "ホームステイ": ("にほんで ホームステイを したいです。", "Nihon de hōmusutei o shitai desu.", "Ich möchte in Japan bei einer Gastfamilie wohnen.", "Mit します."),
+ "プログラム": ("ホームステイの プログラムが あります。", "Hōmusutei no puroguramu ga arimasu.", "Es gibt ein Gastfamilien-Programm.", "Katakana-Wort."),
 }

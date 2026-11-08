@@ -21,7 +21,7 @@
   var LESSON_READY_AT = 40;    // Lektion „erfüllt"/test-bereit, wenn jedes Kern-Item Score ≥ 40 hat
   var LESSON_TEST_N = 10;      // Aufgaben pro Lektionstest
   var MIN_LESSON = 0;          // Lektion 0 = vorausgesetzter Grundstoff
-  var MAX_GATED_LESSON = 15;   // Lernpfad umfasst alle Lektionen L0–15 (je Unterrichts-PDF eine)
+  var MAX_GATED_LESSON = 16;   // Lernpfad umfasst alle Lektionen L0–16 (je Unterrichts-PDF eine)
 
   /* ---------- Lernpunktzahl 0–100 (ersetzt SM-2); sanfte, justierbare Defaults ---------- */
   var GAIN = 20;             // Punkte pro richtiger Antwort
@@ -322,7 +322,7 @@
   }
 
   /* ---------- Registries aus den Daten ---------- */
-  // Alle Lektionen sind aktiv (L0–15); kein Vorschau-Filter mehr.
+  // Alle Lektionen sind aktiv (L0–16); kein Vorschau-Filter mehr.
   function registry(source) {
     var out = [];
     if (source === 'kanji') {
@@ -648,15 +648,23 @@
     return rec.partsDone;
   }
   function lessonRec(lesson) { store.lessons = store.lessons || {}; return store.lessons[lesson] || {}; }
+  // Lektion ohne eigene Kern-Items (reine Wiederholungsstunde): es gibt nichts zu lernen und
+  // keinen Test — sie gilt als bestanden, sobald sie freigeschaltet ist, und gibt die nächste frei.
+  function lessonEmpty(lesson) { return lesson >= MIN_LESSON && lesson <= MAX_GATED_LESSON && lessonCore(lesson).length === 0; }
+  function lessonPassed(lesson) {
+    if (lessonRec(lesson).testPassed) return true;
+    return lessonEmpty(lesson) && lessonState(lesson).unlocked;
+  }
   function lessonState(lesson) {
     var rec = lessonRec(lesson);
-    var unlocked = lesson <= 1 || !!lessonRec(lesson - 1).testPassed || !!rec.unlocked;
+    var unlocked = lesson <= 1 || lessonPassed(lesson - 1) || !!rec.unlocked;
     var cp = coreProgress(lesson);
+    var empty = cp.total === 0;
     return {
-      lesson: lesson, unlocked: unlocked, coreProgress: cp, coreMastered: cp.fraction >= 1,
+      lesson: lesson, unlocked: unlocked, coreProgress: cp, coreMastered: cp.fraction >= 1, empty: empty,
       coreReady: cp.readyFraction >= 1, // erfüllt: jedes Kern-Item ≥ LESSON_READY_AT → test-bereit
       learned: !!rec.learned, // „als gelernt markiert" → test-bereit, auch ohne volle Mastery
-      testPassed: !!rec.testPassed, bestScore: rec.bestScore || 0, lastScore: rec.lastScore || 0, testDate: rec.testDate || null,
+      testPassed: !!rec.testPassed || (empty && unlocked), bestScore: rec.bestScore || 0, lastScore: rec.lastScore || 0, testDate: rec.testDate || null,
     };
   }
   function maxUnlockedLesson() {
@@ -671,7 +679,7 @@
     for (var l = MIN_LESSON; l <= max; l++) { if (coreProgress(l).fraction < 1) return l; }
     return max;
   }
-  function canTakeTest(lesson) { var s = lessonState(lesson); return s.unlocked && (s.coreReady || s.learned); }
+  function canTakeTest(lesson) { var s = lessonState(lesson); return s.unlocked && !s.empty && (s.coreReady || s.learned); }
   function recordLessonTest(lesson, score, today) {
     today = today || todayISO();
     store.lessons = store.lessons || {};

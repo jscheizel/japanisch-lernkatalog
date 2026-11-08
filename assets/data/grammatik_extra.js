@@ -1,4 +1,4 @@
-/* Zusätzliche Beispielsätze je Grammatikpunkt — Japanischkurs (Unterrichts-PDFs), Lektion 0–15.
+/* Zusätzliche Beispielsätze je Grammatikpunkt — Japanischkurs (Unterrichts-PDFs), Lektion 0–16.
    Erzeugt mit quellen/werkzeug/gen_grammatik.py — dort ändern, nicht hier.
    Schlüssel = exakter `pattern`-String aus grammatik.js; werden im Katalog an die
    vorhandenen Beispiele angehängt. */

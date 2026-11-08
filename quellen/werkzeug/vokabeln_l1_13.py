@@ -118,7 +118,8 @@ L[13] = [  # 14.10. — ない-Form, ～ないでください
  ("忘れます","わすれます","vergessen","V. II"),("押します","おします","drücken","V. I"),("","ボタン","Knopf","N."),("","ニュース","Nachrichten","N."),
  ("雑誌","ざっし","Zeitschrift","N."),("返します","かえします","zurückgeben (本を～)","V. I"),("遅れます","おくれます","sich verspäten","V. II"),
 ]
-L[14] = [  # 02.11. — müssen (～なければなりません), Häufigkeit (～に～回)
+L[14] = []  # 21.10. — reine Wiederholungsstunde (ない-Form, ～ないでください, Modalverben, Lesen): keine neuen Wörter
+L[15] = [  # 02.11. — müssen (～なければなりません), Häufigkeit (～に～回)
  ("質問","しつもん","Frage","N."),("王様","おうさま","König","N."),("眠い","ねむい","müde, schläfrig","い-Adj."),
  ("主婦","しゅふ","Hausfrau","N."),("神社","じんじゃ","Schrein (Shintō)","N."),("郵便局","ゆうびんきょく","Postamt","N."),
  ("喫茶店","きっさてん","Café (klassisch)","N."),("花屋","はなや","Blumenladen","N."),("部長","ぶちょう","Abteilungsleiter(in)","N."),
@@ -126,7 +127,7 @@ L[14] = [  # 02.11. — müssen (～なければなりません), Häufigkeit (�
  ("一か月","いっかげつ","ein Monat (lang)","N."),("一年","いちねん","ein Jahr (lang)","N."),
  ("～回","～かい","～ Mal (一回 いっかい, 二回 にかい …)","Suffix"),("何回","なんかい","wie oft, wie viele Male","Frage"),
 ]
-L[15] = [  # 04.11. — nicht müssen (～なくてもいいです)
+L[16] = [  # 04.11. — nicht müssen (～なくてもいいです)
  ("会議","かいぎ","Besprechung, Meeting","N."),("出します","だします","abgeben, einreichen (レポートを～)","V. I"),
  ("授業","じゅぎょう","Unterricht","N."),("出ます","でます","hinausgehen, verlassen (うちを～)","V. II"),
  ("","ホストファミリー","Gastfamilie","N."),("","ページ","Seite","N."),("何時間","なんじかん","wie viele Stunden","Frage"),

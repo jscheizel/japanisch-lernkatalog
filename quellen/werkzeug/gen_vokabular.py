@@ -24,6 +24,10 @@ L0_AUS_LESETEXT = [
  ("","えんぴつ","Bleistift","N."),("","サイン","Unterschrift","N."),("音","おと","Ton, Geräusch, Lautstärke","N."),
  ("","ベンチ","Sitzbank","N."),("教科書","きょうかしょ","Lehrbuch","N."),("試験","しけん","Prüfung","N."),
  ("","ヘッドフォン","Kopfhörer","N."),("階段","かいだん","Treppe","N."),
+ # 21.10.: Wortschatz-Wiederholung und Leseübungen
+ ("飲み物","のみもの","Getränk","N."),("","ラジオ","Radio","N."),("","ランチ","Mittagsmenü, Lunch","N."),
+ ("","サラダ","Salat","N."),("","セール","Ausverkauf, Sale","N."),("","ホームステイ","Aufenthalt in einer Gastfamilie","N."),
+ ("","プログラム","Programm","N."),
 ]
 
 def entries():
@@ -52,7 +56,7 @@ def entries():
 
 def main():
     data = entries()
-    lines = ['/* Vokabular — Japanischkurs (Unterrichts-PDFs 24.06.–04.11.2026), Lektion 0–15.',
+    lines = ['/* Vokabular — Japanischkurs (Unterrichts-PDFs 24.06.–04.11.2026), Lektion 0–16.',
              '   Lektion 0 = vorausgesetzter Wortschatz; ab Lektion 1 je Unterrichtsstunde (PDF) eine Lektion.',
              '   Felder: kanji (Schreibweise, "" = nur Kana), kana (Lesung), romaji, de (Bedeutung), pos (Wortart), lesson.',
              '   Verben in der ます-Form; Gruppe in pos (V. I = 五段, V. II = 一段, V. III = unregelmäßig).',

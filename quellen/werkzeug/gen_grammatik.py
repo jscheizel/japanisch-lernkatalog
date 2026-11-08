@@ -49,7 +49,7 @@ def js(o):
     return json.dumps(o, ensure_ascii=False, separators=(',', ':'))
 
 def main():
-    head = '/* %s — Japanischkurs (Unterrichts-PDFs), Lektion 0–15.\n   Erzeugt mit quellen/werkzeug/gen_grammatik.py — dort ändern, nicht hier.\n'
+    head = '/* %s — Japanischkurs (Unterrichts-PDFs), Lektion 0–16.\n   Erzeugt mit quellen/werkzeug/gen_grammatik.py — dort ändern, nicht hier.\n'
     # grammatik.js
     L = [head % 'Grammatik' + '   Felder: lesson, pattern (Muster), title, bildung, erklaerung, beispiele [{jp, r (Rōmaji), de}]. */', 'window.GRAMMATIK = [']
     cur = None

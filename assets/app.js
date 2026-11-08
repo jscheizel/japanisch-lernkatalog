@@ -16,9 +16,10 @@
     8:{thema:'Handlungsfolge (V-て、V-て)'},9:{thema:'Adjektive: Vergangenheit & Verneinung'},
     10:{thema:'Adjektive verbinden (～くて / ～で)'},11:{thema:'dürfen / nicht dürfen'},
     12:{thema:'Wiederholung & Kanji (花 茶 肉 …)'},13:{thema:'ない-Form & ～ないでください'},
-    14:{thema:'müssen (～なければなりません), Häufigkeit'},15:{thema:'nicht müssen (～なくてもいいです)'}
+    14:{thema:'Wiederholung (ない-Form, Modalverben, Lesen)'},15:{thema:'müssen (～なければなりません), Häufigkeit'},
+    16:{thema:'nicht müssen (～なくてもいいです)'}
   };
-  const MIN_LESSON = 0, MAX_LESSON = 15;  // Lektion 0 = vorausgesetzt, 1–15 = je Unterrichts-PDF
+  const MIN_LESSON = 0, MAX_LESSON = 16;  // Lektion 0 = vorausgesetzt, 1–16 = je Unterrichts-PDF
   const ALL_LESSONS = Array.from({length:MAX_LESSON-MIN_LESSON+1},(_,i)=>MIN_LESSON+i);
   const LEVEL_ORDER = Array.from({length:MAX_LESSON-MIN_LESSON+1},(_,i)=>'L'+(MIN_LESSON+i));
 
@@ -1508,6 +1509,7 @@
       let html='<div class="lp-top"><span class="lp-num">Lektion '+L+'</span><span class="lp-badge">'+badge+'</span></div>'+
         '<div class="lp-thema">'+esc(thema)+'</div>';
       if(!st.unlocked){ html+='<div class="lp-hint"><span class="msi" aria-hidden="true">lock</span> Erst die vorige Lektion bestehen.</div>'; card.innerHTML=html; return card; }
+      if(st.empty){ html+='<div class="lp-hint lp-empty"><span class="msi" aria-hidden="true">replay</span> Wiederholungsstunde — keine neuen Vokabeln, keine neue Grammatik, keine neuen Kanji. Nichts zu lernen, die nächste Lektion ist frei.</div>'; card.innerHTML=html; return card; }
       html+='<div class="lp-core"><div class="lp-core-bar"><span style="width:'+Math.round(cp.readyFraction*100)+'%"></span></div>'+
         '<span class="lp-core-n">erfüllt '+cp.ready+' / '+cp.total+' <span class="lp-core-sub">(≥40)</span></span></div>';
       // Teil-Leiste: kurze 5–10-Min-Häppchen, strikt der Reihe nach freigeschaltet.

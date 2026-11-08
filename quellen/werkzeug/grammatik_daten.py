@@ -547,8 +547,8 @@ g(13, "V-ないで ください", "Bitte nicht … (negative Bitte)",
             MC("„Bitte vergiss deinen Schirm nicht!“", ["かさをわすれないでください", "かさをわすれてください", "かさをわすれてはいけません", "かさをわすれませんか"], 0, "negative Bitte → ないでください."),
             CL("まどをあけ＿ください。さむいですから。", "ないで", "Gr. II: あけない + でください.")])
 
-# ======================= Lektion 14 =======================
-g(14, "V-なければ なりません", "müssen",
+# ======================= Lektion 15 =======================
+g(15, "V-なければ なりません", "müssen",
   "V-ない → ない streichen + なければなりません (いかない → いかなければなりません). Frage: ～なければなりませんか。",
   "～なければなりません drückt eine Pflicht aus: „man muss …“.",
   [B("私はあした病院へ行かなければなりません。", "Watashi wa ashita byōin e ikanakereba narimasen.", "Ich muss morgen ins Krankenhaus."),
@@ -563,7 +563,7 @@ g(14, "V-なければ なりません", "müssen",
             MC("müssen-Form von かえします:", ["かえさなければなりません", "かえしなければなりません", "かえすなければなりません", "かえさないければなりません"], 0, "かえさない → かえさなければ."),
             CL("レポートをかか＿なりません。（muss schreiben）", "なければ", "かかない → かかなければなりません.")])
 
-g(14, "N に ～回", "Häufigkeit (～ Mal pro …)",
+g(15, "N に ～回", "Häufigkeit (～ Mal pro …)",
   "[Zeitraum] に [Zahl]回: 一日に二回 (2 Mal am Tag), 一週間に一回, 一か月に三回, 一年に一回. Frage: 一日に何回 ～か。",
   "に nach dem Zeitraum entspricht „pro“; 回 (かい) zählt die Male.",
   [B("あなたは一日に何回、歯をみがきますか。", "Anata wa ichinichi ni nankai, ha o migakimasu ka.", "Wie oft am Tag putzt du dir die Zähne?"),
@@ -576,8 +576,8 @@ g(14, "N に ～回", "Häufigkeit (～ Mal pro …)",
             MC("Lesung von 一回:", ["いっかい", "いちかい", "ひとかい", "いっさい"], 0, "一回 = いっかい."),
             CL("一日に＿回、はをみがきますか。（wie oft）", "何", "何回 = wie oft.")])
 
-# ======================= Lektion 15 =======================
-g(15, "V-なくても いいです", "nicht müssen",
+# ======================= Lektion 16 =======================
+g(16, "V-なくても いいです", "nicht müssen",
   "V-ない → ない streichen + なくてもいいです (はらわない → はらわなくてもいいです).",
   "～なくてもいいです heißt „man muss nicht …“ — es ist erlaubt, etwas nicht zu tun.",
   [B("タクシーをよばなくてもいいです。", "Takushī o yobanakute mo ii desu.", "Du musst kein Taxi rufen."),

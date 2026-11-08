@@ -1,6 +1,6 @@
 # Go! Nihongo 2
 
-Lern-App für Japanisch — Inhalte aus den Unterrichts-PDFs des Kurses (Lektion 0 = vorausgesetzt, Lektionen 1–15 = je Unterrichtsstunde; Quellen und Auswertung unter `quellen/`).
+Lern-App für Japanisch — Inhalte aus den Unterrichts-PDFs des Kurses (Lektion 0 = vorausgesetzt, Lektionen 1–16 = je Unterrichtsstunde; Quellen und Auswertung unter `quellen/`).
 Läuft als **Offline-Website / PWA** und als **Android-APK** — derselbe Code-Stand.
 
 ## Funktionen
@@ -8,7 +8,7 @@ Läuft als **Offline-Website / PWA** und als **Android-APK** — derselbe Code-S
 - **Nachschlagen** — Grammatik, Vokabular, Kanji und Verben (Auto-Konjugator) mit Suche, Filtern und Furigana.
 - **Heute** — tägliche, gemischte Lernrunde aus fälligen Wiederholungen und neuen Inhalten
   (Spaced Repetition, SM-2-light); an den Lernpfad gekoppelt.
-- **Lernpfad** — Lektionen L0–15 freispielen: Kern beherrschen (Kanji ab einem Level auch
+- **Lernpfad** — Lektionen L0–16 freispielen: Kern beherrschen (Kanji ab einem Level auch
   schreiben) + Lektionstest bestehen.
 - **Listen** — eigene Vokabellisten als Karteikarten in beide Richtungen (日本語↔Deutsch) trainieren.
 - **Dynamische Satzbildung** — generierte Übungen (Partikel-MC, Wörter ordnen, Übersetzen)

@@ -1,4 +1,4 @@
-/* Erweiterte Grammatik (window.GRAMMATIK_PLUS) — Japanischkurs (Unterrichts-PDFs), Lektion 0–15.
+/* Erweiterte Grammatik (window.GRAMMATIK_PLUS) — Japanischkurs (Unterrichts-PDFs), Lektion 0–16.
    Erzeugt mit quellen/werkzeug/gen_grammatik.py — dort ändern, nicht hier.
    Schlüssel = exakter `pattern`-String aus grammatik.js.
    Felder je Eintrag (alle optional):
