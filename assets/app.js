@@ -15,9 +15,10 @@
     6:{thema:'～ています (Zustand), kennen'},7:{thema:'Wiederholung & Kanji (明 休 体 …)'},
     8:{thema:'Handlungsfolge (V-て、V-て)'},9:{thema:'Adjektive: Vergangenheit & Verneinung'},
     10:{thema:'Adjektive verbinden (～くて / ～で)'},11:{thema:'dürfen / nicht dürfen'},
-    12:{thema:'Wiederholung & Kanji (花 茶 肉 …)'},13:{thema:'ない-Form & ～ないでください'}
+    12:{thema:'Wiederholung & Kanji (花 茶 肉 …)'},13:{thema:'ない-Form & ～ないでください'},
+    14:{thema:'müssen (～なければなりません), Häufigkeit'},15:{thema:'nicht müssen (～なくてもいいです)'}
   };
-  const MIN_LESSON = 0, MAX_LESSON = 13;  // Lektion 0 = vorausgesetzt, 1–13 = je Unterrichts-PDF
+  const MIN_LESSON = 0, MAX_LESSON = 15;  // Lektion 0 = vorausgesetzt, 1–15 = je Unterrichts-PDF
   const ALL_LESSONS = Array.from({length:MAX_LESSON-MIN_LESSON+1},(_,i)=>MIN_LESSON+i);
   const LEVEL_ORDER = Array.from({length:MAX_LESSON-MIN_LESSON+1},(_,i)=>'L'+(MIN_LESSON+i));
 

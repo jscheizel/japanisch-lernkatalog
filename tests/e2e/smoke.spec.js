@@ -74,7 +74,7 @@ test('Profil: Export-Button vorhanden, Forecast gerendert', async ({ page }) => 
 
 test('Lernpfad zeigt Lektionskarten; L0/L1 offen, L2 gesperrt', async ({ page }) => {
   await page.goto('/lernpfad.html');
-  await expect(page.locator('.lp-card')).toHaveCount(14);
+  await expect(page.locator('.lp-card')).toHaveCount(16);
   await expect(page.locator('.lp-card').first()).not.toHaveClass(/lp-locked/);
   await expect(page.locator('.lp-card').nth(1)).not.toHaveClass(/lp-locked/);
   await expect(page.locator('.lp-card').nth(2)).toHaveClass(/lp-locked/);

@@ -1,6 +1,6 @@
 # Migration: Minna no Nihongo → Unterrichts-PDFs
 
-Die App-Inhalte (`assets/data/*.js`, Kanji-SVGs) stammen jetzt aus den 13 Unterrichts-PDFs in
+Die App-Inhalte (`assets/data/*.js`, Kanji-SVGs) stammen jetzt aus den Unterrichts-PDFs in
 diesem Ordner. Jedes PDF ist eine Lektion (nach Datum), **Lektion 0** ist der vorausgesetzte Stoff:
 alles, was in den PDFs als „Wiederholung" geübt oder ohne Einführung benutzt wird.
 
@@ -8,7 +8,7 @@ alles, was in den PDFs als „Wiederholung" geübt oder ohne Einführung benutzt
 
 | L | Datum | Thema | Vokabeln | Grammatik | Kanji |
 |---|---|---|---|---|---|
-| 0 | – | Grundwortschatz (vorausgesetzt) | 257 | 21 | 31 |
+| 0 | – | Grundwortschatz (vorausgesetzt) | 268 | 21 | 31 |
 | 1 | 24.06. | ～たい / ～がほしい | 21 | 3 | – |
 | 2 | 15.07. | Neue Verben | 29 | – | 4 (百千万年) |
 | 3 | 22.07. | て-Form & ～てください | 16 | 5 | – |
@@ -22,7 +22,9 @@ alles, was in den PDFs als „Wiederholung" geübt oder ohne Einführung benutzt
 | 11 | 30.09. | dürfen / nicht dürfen | 11 | 2 | – |
 | 12 | 07.10. | Wiederholung & Kanji | 11 | 1 | 10 (花茶肉文字物牛馬鳥魚) |
 | 13 | 14.10. | ない-Form & ～ないでください | 22 | 2 | – |
-| | | **Summe** | **523** | **47** | **75** |
+| 14 | 02.11. | müssen (～なければなりません), Häufigkeit (～に～回) | 15 | 2 | – |
+| 15 | 04.11. | nicht müssen (～なくてもいいです) | 7 | 1 | – |
+| | | **Summe** | **556** | **50** | **75** |
 
 ## Entscheidungen und unsichere Stellen (bitte kurz prüfen)
 

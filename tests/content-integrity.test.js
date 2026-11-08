@@ -107,9 +107,9 @@ describe('VOKABULAR_TAGS — Auflösbarkeit', () => {
 });
 
 describe('Lektionstests sind befüllbar', () => {
-  it('buildLessonTest liefert für L0–13 jeweils ≥ 8 Aufgaben', () => {
+  it('buildLessonTest liefert für L0–15 jeweils ≥ 8 Aufgaben', () => {
     W.SRS._useStorage(null);
-    for (let L = 0; L <= 13; L++) {
+    for (let L = 0; L <= 15; L++) {
       const n = W.Exercises.buildLessonTest(L, 10).length;
       expect(n, 'Lektion ' + L).toBeGreaterThanOrEqual(8);
     }

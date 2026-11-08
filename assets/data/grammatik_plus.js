@@ -1,4 +1,4 @@
-/* Erweiterte Grammatik (window.GRAMMATIK_PLUS) — Japanischkurs (Unterrichts-PDFs), Lektion 0–13.
+/* Erweiterte Grammatik (window.GRAMMATIK_PLUS) — Japanischkurs (Unterrichts-PDFs), Lektion 0–15.
    Erzeugt mit quellen/werkzeug/gen_grammatik.py — dort ändern, nicht hier.
    Schlüssel = exakter `pattern`-String aus grammatik.js.
    Felder je Eintrag (alle optional):
@@ -1415,6 +1415,142 @@ window.GRAMMATIK_PLUS = {
         "satz": "まどをあけ＿ください。さむいですから。",
         "luecke": "ないで",
         "erkl": "Gr. II: あけない + でください."
+      }
+    ]
+  },
+  "V-なければ なりません": {
+    "erklaerung_lang": "Grundlage ist die ない-Form (L13): Man streicht das い von ない und hängt ければなりません an — wörtlich „wenn man es nicht tut, geht es nicht“. Gruppe III: しなければなりません, こなければなりません. Mit から davor nennt man den Grund. In einer Handlungskette steht nur das letzte Verb in der müssen-Form.",
+    "fehler": [
+      "Von der ない-Form ausgehen: いきます → いかない → いかなければなりません (nicht いきなければ).",
+      "きます (kommen) → こなければなりません."
+    ],
+    "kontrast": [
+      {
+        "a": "V-なければなりません",
+        "b": "V-なくてもいいです",
+        "note": "müssen ↔ nicht müssen (L15)."
+      }
+    ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "„Ich muss Medikamente nehmen.“",
+        "optionen": [
+          "くすりをのまなければなりません",
+          "くすりをのまないでください",
+          "くすりをのんではいけません",
+          "くすりをのみたいです"
+        ],
+        "richtig": 0,
+        "erkl": "müssen → ない-Stamm + なければなりません."
+      },
+      {
+        "typ": "mc",
+        "frage": "müssen-Form von かえします:",
+        "optionen": [
+          "かえさなければなりません",
+          "かえしなければなりません",
+          "かえすなければなりません",
+          "かえさないければなりません"
+        ],
+        "richtig": 0,
+        "erkl": "かえさない → かえさなければ."
+      },
+      {
+        "typ": "cloze",
+        "satz": "レポートをかか＿なりません。（muss schreiben）",
+        "luecke": "なければ",
+        "erkl": "かかない → かかなければなりません."
+      }
+    ]
+  },
+  "N に ～回": {
+    "erklaerung_lang": "Lesungen beachten: 一回 いっかい, 二回 にかい, 三回 さんかい, 六回 ろっかい, 八回 はっかい, 十回 じゅっかい; 一週間 いっしゅうかん, 一か月 いっかげつ, 一年 いちねん, 一日 いちにち. Für „alle drei Wochen“: 三週間に一回.",
+    "fehler": [
+      "一回 heißt いっかい, nicht いちかい.",
+      "Zeitraum mit に: 一日に二回 (nicht 一日で)."
+    ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "„einmal pro Woche“",
+        "optionen": [
+          "一週間に一回",
+          "一回に一週間",
+          "一週間で一回",
+          "毎週に一回"
+        ],
+        "richtig": 0,
+        "erkl": "Zeitraum に Zahl回."
+      },
+      {
+        "typ": "mc",
+        "frage": "Lesung von 一回:",
+        "optionen": [
+          "いっかい",
+          "いちかい",
+          "ひとかい",
+          "いっさい"
+        ],
+        "richtig": 0,
+        "erkl": "一回 = いっかい."
+      },
+      {
+        "typ": "cloze",
+        "satz": "一日に＿回、はをみがきますか。（wie oft）",
+        "luecke": "何",
+        "erkl": "何回 = wie oft."
+      }
+    ]
+  },
+  "V-なくても いいです": {
+    "erklaerung_lang": "Gebildet wie „dürfen“ (～てもいいです, L11), aber von der ない-Form: ない → なくて + もいいです. Es ist die übliche Antwort auf eine müssen-Frage mit „nein“: ～なければなりませんか。…いいえ、～なくてもいいです。",
+    "fehler": [
+      "Nicht ～なければなりません verneinen — „nicht müssen“ ist ～なくてもいいです.",
+      "Achtung: ～ないでください = bitte nicht tun (Bitte), ～なくてもいいです = muss nicht (Erlaubnis)."
+    ],
+    "kontrast": [
+      {
+        "a": "V-なくてもいいです",
+        "b": "V-ないでください",
+        "note": "nicht müssen (frei) ↔ bitte nicht tun (Bitte)."
+      },
+      {
+        "a": "V-なくてもいいです",
+        "b": "V-てもいいです",
+        "note": "nicht müssen ↔ dürfen."
+      }
+    ],
+    "uebungen": [
+      {
+        "typ": "mc",
+        "frage": "„Du musst nicht bezahlen.“",
+        "optionen": [
+          "はらわなくてもいいです",
+          "はらわないでください",
+          "はらわなければなりません",
+          "はらってもいいです"
+        ],
+        "richtig": 0,
+        "erkl": "nicht müssen → なくてもいいです."
+      },
+      {
+        "typ": "mc",
+        "frage": "…なければなりませんか。…いいえ、＿。",
+        "optionen": [
+          "かかなくてもいいです",
+          "かかなければなりません",
+          "かいてはいけません",
+          "かきたくないです"
+        ],
+        "richtig": 0,
+        "erkl": "Nein-Antwort auf müssen → なくてもいいです."
+      },
+      {
+        "typ": "cloze",
+        "satz": "あしたはこ＿もいいです。（muss nicht kommen）",
+        "luecke": "なくて",
+        "erkl": "こない → こなくてもいいです."
       }
     ]
   },

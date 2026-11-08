@@ -28,10 +28,10 @@ function click(elm) { elm.dispatchEvent(new win.Event('click', { bubbles: true }
 function cards() { return [...win.document.querySelectorAll('.lp-card')]; }
 
 describe('Lernpfad-Seite', () => {
-  it('rendert 14 Lektionskarten (L0–13); L0 und L1 offen, L2 gesperrt', () => {
+  it('rendert 16 Lektionskarten (L0–15); L0 und L1 offen, L2 gesperrt', () => {
     // init() hat beim Laden bereits mit dem Default-Store gezeichnet (L0/L1 frei, Rest gesperrt).
     const c = cards();
-    expect(c.length).toBe(14);
+    expect(c.length).toBe(16);
     expect(c[0].classList.contains('lp-locked')).toBe(false);
     expect(c[1].classList.contains('lp-locked')).toBe(false);
     expect(c[2].classList.contains('lp-locked')).toBe(true);
@@ -65,7 +65,7 @@ describe('Lernpfad-Seite', () => {
     click(win.document.getElementById('lp-unlockall'));
     const c = cards();
     expect(c[2].classList.contains('lp-locked')).toBe(false);
-    expect(c[13].classList.contains('lp-locked')).toBe(false);
+    expect(c[15].classList.contains('lp-locked')).toBe(false);
   });
 
   it('nach Kern-Mastery erscheint „Test starten" und öffnet das Test-Modal', () => {

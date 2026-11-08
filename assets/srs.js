@@ -21,7 +21,7 @@
   var LESSON_READY_AT = 40;    // Lektion „erfüllt"/test-bereit, wenn jedes Kern-Item Score ≥ 40 hat
   var LESSON_TEST_N = 10;      // Aufgaben pro Lektionstest
   var MIN_LESSON = 0;          // Lektion 0 = vorausgesetzter Grundstoff
-  var MAX_GATED_LESSON = 13;   // Lernpfad umfasst alle Lektionen L0–13 (je Unterrichts-PDF eine)
+  var MAX_GATED_LESSON = 15;   // Lernpfad umfasst alle Lektionen L0–15 (je Unterrichts-PDF eine)
 
   /* ---------- Lernpunktzahl 0–100 (ersetzt SM-2); sanfte, justierbare Defaults ---------- */
   var GAIN = 20;             // Punkte pro richtiger Antwort
@@ -322,7 +322,7 @@
   }
 
   /* ---------- Registries aus den Daten ---------- */
-  // Alle Lektionen sind aktiv (L0–13); kein Vorschau-Filter mehr.
+  // Alle Lektionen sind aktiv (L0–15); kein Vorschau-Filter mehr.
   function registry(source) {
     var out = [];
     if (source === 'kanji') {

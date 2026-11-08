@@ -1,4 +1,4 @@
-/* Vokabular — Japanischkurs (Unterrichts-PDFs 24.06.–14.10.2026), Lektion 0–13.
+/* Vokabular — Japanischkurs (Unterrichts-PDFs 24.06.–04.11.2026), Lektion 0–15.
    Lektion 0 = vorausgesetzter Wortschatz; ab Lektion 1 je Unterrichtsstunde (PDF) eine Lektion.
    Felder: kanji (Schreibweise, "" = nur Kana), kana (Lesung), romaji, de (Bedeutung), pos (Wortart), lesson.
    Verben in der ます-Form; Gruppe in pos (V. I = 五段, V. II = 一段, V. III = unregelmäßig).
@@ -262,6 +262,17 @@ window.VOKABULAR = [
   {"kanji":"楽しい","kana":"たのしい","romaji":"tanoshii","de":"fröhlich, macht Spaß","pos":"い-Adj.","lesson":0},
   {"kanji":"素敵","kana":"すてき","romaji":"suteki","de":"toll, wunderschön","pos":"な-Adj.","lesson":0},
   {"kanji":"夜","kana":"よる","romaji":"yoru","de":"Nacht","pos":"N.","lesson":0},
+  {"kanji":"外国人","kana":"がいこくじん","romaji":"gaikokujin","de":"Ausländer(in)","pos":"N.","lesson":0},
+  {"kanji":"","kana":"パンや","romaji":"panya","de":"Bäckerei","pos":"N.","lesson":0},
+  {"kanji":"","kana":"オペラ","romaji":"opera","de":"Oper","pos":"N.","lesson":0},
+  {"kanji":"","kana":"えんぴつ","romaji":"enpitsu","de":"Bleistift","pos":"N.","lesson":0},
+  {"kanji":"","kana":"サイン","romaji":"sain","de":"Unterschrift","pos":"N.","lesson":0},
+  {"kanji":"音","kana":"おと","romaji":"oto","de":"Ton, Geräusch, Lautstärke","pos":"N.","lesson":0},
+  {"kanji":"","kana":"ベンチ","romaji":"benchi","de":"Sitzbank","pos":"N.","lesson":0},
+  {"kanji":"教科書","kana":"きょうかしょ","romaji":"kyōkasho","de":"Lehrbuch","pos":"N.","lesson":0},
+  {"kanji":"試験","kana":"しけん","romaji":"shiken","de":"Prüfung","pos":"N.","lesson":0},
+  {"kanji":"","kana":"ヘッドフォン","romaji":"heddofon","de":"Kopfhörer","pos":"N.","lesson":0},
+  {"kanji":"階段","kana":"かいだん","romaji":"kaidan","de":"Treppe","pos":"N.","lesson":0},
   /* ===== Lektion 1 — ～たい / ～がほしい (möchten) (24.06.) ===== */
   {"kanji":"欲しい","kana":"ほしい","romaji":"hoshii","de":"haben wollen (Nが～です)","pos":"い-Adj.","lesson":1},
   {"kanji":"映画館","kana":"えいがかん","romaji":"eigakan","de":"Kino","pos":"N.","lesson":1},
@@ -541,4 +552,28 @@ window.VOKABULAR = [
   {"kanji":"雑誌","kana":"ざっし","romaji":"zasshi","de":"Zeitschrift","pos":"N.","lesson":13},
   {"kanji":"返します","kana":"かえします","romaji":"kaeshimasu","de":"zurückgeben (本を～)","pos":"V. I","lesson":13},
   {"kanji":"遅れます","kana":"おくれます","romaji":"okuremasu","de":"sich verspäten","pos":"V. II","lesson":13},
+  /* ===== Lektion 14 — müssen (～なければなりません), Häufigkeit (02.11.) ===== */
+  {"kanji":"質問","kana":"しつもん","romaji":"shitsumon","de":"Frage","pos":"N.","lesson":14},
+  {"kanji":"王様","kana":"おうさま","romaji":"ōsama","de":"König","pos":"N.","lesson":14},
+  {"kanji":"眠い","kana":"ねむい","romaji":"nemui","de":"müde, schläfrig","pos":"い-Adj.","lesson":14},
+  {"kanji":"主婦","kana":"しゅふ","romaji":"shufu","de":"Hausfrau","pos":"N.","lesson":14},
+  {"kanji":"神社","kana":"じんじゃ","romaji":"jinja","de":"Schrein (Shintō)","pos":"N.","lesson":14},
+  {"kanji":"郵便局","kana":"ゆうびんきょく","romaji":"yūbinkyoku","de":"Postamt","pos":"N.","lesson":14},
+  {"kanji":"喫茶店","kana":"きっさてん","romaji":"kissaten","de":"Café (klassisch)","pos":"N.","lesson":14},
+  {"kanji":"花屋","kana":"はなや","romaji":"hanaya","de":"Blumenladen","pos":"N.","lesson":14},
+  {"kanji":"部長","kana":"ぶちょう","romaji":"buchō","de":"Abteilungsleiter(in)","pos":"N.","lesson":14},
+  {"kanji":"一日","kana":"いちにち","romaji":"ichinichi","de":"ein Tag (一日に～回 = ～ Mal pro Tag)","pos":"N.","lesson":14},
+  {"kanji":"一週間","kana":"いっしゅうかん","romaji":"isshūkan","de":"eine Woche (lang)","pos":"N.","lesson":14},
+  {"kanji":"一か月","kana":"いっかげつ","romaji":"ikkagetsu","de":"ein Monat (lang)","pos":"N.","lesson":14},
+  {"kanji":"一年","kana":"いちねん","romaji":"ichinen","de":"ein Jahr (lang)","pos":"N.","lesson":14},
+  {"kanji":"～回","kana":"～かい","romaji":"~kai","de":"～ Mal (一回 いっかい, 二回 にかい …)","pos":"Suffix","lesson":14},
+  {"kanji":"何回","kana":"なんかい","romaji":"nankai","de":"wie oft, wie viele Male","pos":"Frage","lesson":14},
+  /* ===== Lektion 15 — nicht müssen (～なくてもいいです) (04.11.) ===== */
+  {"kanji":"会議","kana":"かいぎ","romaji":"kaigi","de":"Besprechung, Meeting","pos":"N.","lesson":15},
+  {"kanji":"出します","kana":"だします","romaji":"dashimasu","de":"abgeben, einreichen (レポートを～)","pos":"V. I","lesson":15},
+  {"kanji":"授業","kana":"じゅぎょう","romaji":"jugyō","de":"Unterricht","pos":"N.","lesson":15},
+  {"kanji":"出ます","kana":"でます","romaji":"demasu","de":"hinausgehen, verlassen (うちを～)","pos":"V. II","lesson":15},
+  {"kanji":"","kana":"ホストファミリー","romaji":"hosutofamirī","de":"Gastfamilie","pos":"N.","lesson":15},
+  {"kanji":"","kana":"ページ","romaji":"pēji","de":"Seite","pos":"N.","lesson":15},
+  {"kanji":"何時間","kana":"なんじかん","romaji":"nanjikan","de":"wie viele Stunden","pos":"Frage","lesson":15},
 ];

@@ -1,4 +1,4 @@
-/* Zusätzliche Beispielsätze je Grammatikpunkt — Japanischkurs (Unterrichts-PDFs), Lektion 0–13.
+/* Zusätzliche Beispielsätze je Grammatikpunkt — Japanischkurs (Unterrichts-PDFs), Lektion 0–15.
    Erzeugt mit quellen/werkzeug/gen_grammatik.py — dort ändern, nicht hier.
    Schlüssel = exakter `pattern`-String aus grammatik.js; werden im Katalog an die
    vorhandenen Beispiele angehängt. */
@@ -54,5 +54,16 @@ window.GRAMMATIK_EXTRA = {
   "V-ないで ください": [
     {"jp":"あぶないですから、おさないでください。","r":"Abunai desu kara, osanai de kudasai.","de":"Weil es gefährlich ist, bitte nicht drücken."},
     {"jp":"しんぱいしないでください。","r":"Shinpai shinai de kudasai.","de":"Bitte mach dir keine Sorgen."}
+  ],
+  "V-なければ なりません": [
+    {"jp":"あした日本ごのテストがありますから、かんじをおぼえなければなりません。","r":"Ashita nihongo no tesuto ga arimasu kara, kanji o oboenakereba narimasen.","de":"Morgen ist ein Japanischtest, deshalb muss ich Kanji lernen."},
+    {"jp":"私はしゅうまつにはたらいて、スーパーへいって、うちでりょうりしなければなりません。","r":"Watashi wa shūmatsu ni hataraite, sūpā e itte, uchi de ryōri shinakereba narimasen.","de":"Am Wochenende muss ich arbeiten, in den Supermarkt gehen und zu Hause kochen."}
+  ],
+  "N に ～回": [
+    {"jp":"おじいさんは一か月に一回、びょういんへ行かなければなりません。","r":"Ojiisan wa ikkagetsu ni ikkai, byōin e ikanakereba narimasen.","de":"Mein Opa muss einmal im Monat ins Krankenhaus."}
+  ],
+  "V-なくても いいです": [
+    {"jp":"レポートを出さなければなりませんか。…いいえ、出さなくてもいいです。","r":"Repōto o dasanakereba narimasen ka. … Iie, dasanakute mo ii desu.","de":"Muss ich den Bericht abgeben? … Nein, musst du nicht."},
+    {"jp":"あしたは休みですから、六時におきなくてもいいです。","r":"Ashita wa yasumi desu kara, roku-ji ni okinakute mo ii desu.","de":"Morgen ist frei, ich muss nicht um sechs aufstehen."}
   ],
 };

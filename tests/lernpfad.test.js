@@ -28,8 +28,8 @@ function masterLesson(L) {
 }
 
 describe('Kanji-Stufe → Lektion-Mapping', () => {
-  it('mappt die Stufen „L0"–„L13" auf ihre Lektion; Unbekanntes auf null', () => {
-    for (let L = 0; L <= 13; L++) expect(SRS.kanjiLessonOf('L' + L)).toBe(L);
+  it('mappt die Stufen „L0"–„L15" auf ihre Lektion; Unbekanntes auf null', () => {
+    for (let L = 0; L <= 15; L++) expect(SRS.kanjiLessonOf('L' + L)).toBe(L);
     expect(SRS.kanjiLessonOf('A1.2')).toBe(null);
     expect(SRS.kanjiLessonOf(undefined)).toBe(null);
   });
@@ -95,8 +95,8 @@ describe('Freischalten: Kern beherrschen + Test bestehen', () => {
 
   it('unlockAll öffnet alle Lektionen des Pfads', () => {
     SRS.unlockAll();
-    expect(SRS.lessonState(13).unlocked).toBe(true);
-    expect(SRS.maxUnlockedLesson()).toBe(13);
+    expect(SRS.lessonState(15).unlocked).toBe(true);
+    expect(SRS.maxUnlockedLesson()).toBe(15);
   });
 });
 

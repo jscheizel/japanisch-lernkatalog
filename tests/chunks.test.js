@@ -29,7 +29,7 @@ describe('lessonChunks (Teil-Lektionen)', () => {
   });
 
   it('kein Mini-Restteil: jeder Teil hat genug Inhalt', () => {
-    for (let L = 0; L <= 13; L++) {
+    for (let L = 0; L <= 15; L++) {
       const parts = win.SRS.lessonChunks(L);
       if (parts.length > 1) expect(parts[parts.length - 1].length).toBeGreaterThanOrEqual(2);
     }

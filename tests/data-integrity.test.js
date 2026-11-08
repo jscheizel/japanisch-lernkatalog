@@ -55,14 +55,14 @@ describe('VOKABULAR_TAGS', () => {
   });
 });
 
-describe('Kursinhalt: Lektionen 0–13 aus den Unterrichts-PDFs', () => {
+describe('Kursinhalt: Lektionen 0–15 aus den Unterrichts-PDFs', () => {
   let kw;
   beforeAll(() => { kw = loadWithData(['assets/data/vokabular.js', 'assets/data/kanji.js', 'assets/data/grammatik.js']); });
 
-  it('jede Lektion 0–13 hat Vokabeln — und es gibt keine anderen Lektionen', () => {
+  it('jede Lektion 0–15 hat Vokabeln — und es gibt keine anderen Lektionen', () => {
     const lessons = new Set(kw.VOKABULAR.map((v) => v.lesson));
-    for (let L = 0; L <= 13; L++) expect(lessons.has(L), 'Lektion ' + L).toBe(true);
-    expect([...lessons].every((L) => L >= 0 && L <= 13)).toBe(true);
+    for (let L = 0; L <= 15; L++) expect(lessons.has(L), 'Lektion ' + L).toBe(true);
+    expect([...lessons].every((L) => L >= 0 && L <= 15)).toBe(true);
   });
 
   it('keine ID-Kollision (v:kana|lesson ist eindeutig)', () => {
@@ -80,7 +80,7 @@ describe('Kursinhalt: Lektionen 0–13 aus den Unterrichts-PDFs', () => {
 
   it('Kanji sind nach Lektion gruppiert (level = "L<n>") und kommen je einmal vor', () => {
     const K = kw.KANJI;
-    K.forEach((k) => expect(k.level, k.k).toMatch(/^L(\d|1[0-3])$/));
+    K.forEach((k) => expect(k.level, k.k).toMatch(/^L(\d|1[0-5])$/));
     expect(K.length).toBe(new Set(K.map((k) => k.k)).size);
   });
 
@@ -114,6 +114,9 @@ describe('Kursinhalt: Lektionen 0–13 aus den Unterrichts-PDFs', () => {
     expect(les('V-て も いいです')).toBe(11);
     expect(les('V ない-Form')).toBe(13);
     expect(les('V-ないで ください')).toBe(13);
+    expect(les('V-なければ なりません')).toBe(14);
+    expect(les('N に ～回')).toBe(14);
+    expect(les('V-なくても いいです')).toBe(15);
   });
 });
 

@@ -27,7 +27,7 @@ describe('Leere Lektionen in den Übersichten', () => {
   it('Grammatik: L2 und L7 (ohne neue Grammatik) erscheinen mit Hinweis', () => {
     const win = page('grammatik', ['assets/data/grammatik.js', 'assets/data/grammatik_extra.js', 'assets/data/grammatik_furigana.js', 'assets/data/grammatik_plus.js']);
     const groups = [...win.document.querySelectorAll('#content .group')];
-    expect(groups.length).toBe(14); // L0–13, keine fehlt
+    expect(groups.length).toBe(16); // L0–15, keine fehlt
     ['2', '7'].forEach((L) => {
       const g = win.document.querySelector('.group-empty[data-empty-for="' + L + '"]');
       expect(g, 'L' + L).toBeTruthy();
@@ -37,9 +37,9 @@ describe('Leere Lektionen in den Übersichten', () => {
     expect(chip(win, '7')).toBeTruthy(); // auch die leere Lektion hat einen Filter-Chip
   });
 
-  it('Kanji: alle 14 Lektionen erscheinen; ohne neue Kanji steht ein Hinweis', () => {
+  it('Kanji: alle 16 Lektionen erscheinen; ohne neue Kanji steht ein Hinweis', () => {
     const win = page('kanji', ['assets/data/kanji.js']);
-    expect(win.document.querySelectorAll('#content .group').length).toBe(14);
+    expect(win.document.querySelectorAll('#content .group').length).toBe(16);
     const g = win.document.querySelector('.group-empty[data-empty-for="L1"]');
     expect(g.textContent).toContain('keine neuen Kanji');
   });

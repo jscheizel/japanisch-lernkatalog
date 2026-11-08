@@ -38,6 +38,10 @@ def furi_engine():
 
 def fix(a):
     a = a.replace('まい{日|び}', 'まい{日|にち}')
+    for w, r in [('一日', 'いちにち'), ('一週間', 'いっしゅうかん'), ('一か月', 'いっかげつ'), ('何回', 'なんかい'), ('一回', 'いっかい'), ('二回', 'にかい'), ('六時', 'ろくじ'), ('歯', 'は'), ('出', 'だ')]:
+        a = re.sub(r'\{' + w + r'\|[^}]*\}', '{%s|%s}' % (w, r), a)
+    a = a.replace('{金|かね}よう{日|び}', '{金|きん}よう{日|び}').replace('{二|ふた}{回|かい}', '{二回|にかい}')
+    a = a.replace('{一|いっ}か{月|がつ}', '{一|いっ}か{月|げつ}')
     a = re.sub(r'([ァ-ヶー])\{人\|ひと\}', r'\1{人|じん}', a)
     return a
 
@@ -45,7 +49,7 @@ def js(o):
     return json.dumps(o, ensure_ascii=False, separators=(',', ':'))
 
 def main():
-    head = '/* %s — Japanischkurs (Unterrichts-PDFs), Lektion 0–13.\n   Erzeugt mit quellen/werkzeug/gen_grammatik.py — dort ändern, nicht hier.\n'
+    head = '/* %s — Japanischkurs (Unterrichts-PDFs), Lektion 0–15.\n   Erzeugt mit quellen/werkzeug/gen_grammatik.py — dort ändern, nicht hier.\n'
     # grammatik.js
     L = [head % 'Grammatik' + '   Felder: lesson, pattern (Muster), title, bildung, erklaerung, beispiele [{jp, r (Rōmaji), de}]. */', 'window.GRAMMATIK = [']
     cur = None

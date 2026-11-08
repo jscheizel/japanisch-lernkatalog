@@ -18,11 +18,18 @@ EIGENNAMEN = set('''とうきょう おおさか きょうと ベルリン ミ�
 # Wörter, die nur in Lesetexten der Stunden vorkommen: vermutlich schon früher gelernt → Lektion 0.
 LESETEXT_NACH_L0 = set('''やきそば レシピ ソース えび すてき たのしい よる りょかん おさけ ふとん たたみ
 いざかや いちば おみやげ かぶき ホットワイン キャンドル クレープ ホットチョコレート'''.split())
+# Wörter aus Lesetexten/Leseübungen von L14/L15, die vorher nicht vorkamen → direkt in Lektion 0.
+L0_AUS_LESETEXT = [
+ ("外国人","がいこくじん","Ausländer(in)","N."),("","パンや","Bäckerei","N."),("","オペラ","Oper","N."),
+ ("","えんぴつ","Bleistift","N."),("","サイン","Unterschrift","N."),("音","おと","Ton, Geräusch, Lautstärke","N."),
+ ("","ベンチ","Sitzbank","N."),("教科書","きょうかしょ","Lehrbuch","N."),("試験","しけん","Prüfung","N."),
+ ("","ヘッドフォン","Kopfhörer","N."),("階段","かいだん","Treppe","N."),
+]
 
 def entries():
     l1_kana = {k for _, k, _, _ in L[1]}
     later = [e for les in sorted(L) for e in L[les] if e[1] in LESETEXT_NACH_L0]
-    lessons = {0: [e for e in L0 if e[1] not in l1_kana] + later}
+    lessons = {0: [e for e in L0 if e[1] not in l1_kana] + later + L0_AUS_LESETEXT}
     for les in sorted(L):
         lessons[les] = [e for e in L[les] if e[1] not in LESETEXT_NACH_L0]
     lessons = {k: [e for e in v if e[1] not in EIGENNAMEN] for k, v in lessons.items()}
@@ -45,7 +52,7 @@ def entries():
 
 def main():
     data = entries()
-    lines = ['/* Vokabular — Japanischkurs (Unterrichts-PDFs 24.06.–14.10.2026), Lektion 0–13.',
+    lines = ['/* Vokabular — Japanischkurs (Unterrichts-PDFs 24.06.–04.11.2026), Lektion 0–15.',
              '   Lektion 0 = vorausgesetzter Wortschatz; ab Lektion 1 je Unterrichtsstunde (PDF) eine Lektion.',
              '   Felder: kanji (Schreibweise, "" = nur Kana), kana (Lesung), romaji, de (Bedeutung), pos (Wortart), lesson.',
              '   Verben in der ます-Form; Gruppe in pos (V. I = 五段, V. II = 一段, V. III = unregelmäßig).',
